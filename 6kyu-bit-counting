@@ -1,0 +1,18 @@
+var countBits = function (n) {
+  let changeStringToBinary = n.toString(2);
+  let binaryToArray = [...changeStringToBinary];
+  return binaryToArray.reduce(
+    (accumulator, item) => accumulator + (item == 1),
+    0,
+  );
+};
+
+//parameter: an integer
+//return integer, equal to the number of ones in the binary rep of that number
+//example ==> 1234 is 10011010010, so the function should return 5
+
+//pseudocode
+//change string to binary
+// change to array so we can use reduce
+//use reduce, for each 1 add to the accumulator
+//(item==1)... if true it'll give us 1, if false it'll give us 0
