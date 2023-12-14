@@ -31,9 +31,14 @@
 > git add .
 > git commit -m "changes to gitbash.md"
 
-- git commit --amend
+- git commit --date="2022-08-12" -m "message"
+- https://www.youtube.com/watch?v=uFRY6Gxw9EA
 
 > git push
+
+## checking Git Contents
+
+> git status
 
 <br>
 
