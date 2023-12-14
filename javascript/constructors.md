@@ -1,6 +1,16 @@
-- All are blueprints to create objects
+# The Blueprint Wars of JavaScript Objects
+
+These all use blueprints to create objects
+
+- Factory Functions,
+- Constructor functions
+- Class Constructors
 
 ## Factory Function
+
+![closeup of a mans conferned face saying that's a lot of text](https://media1.giphy.com/media/cNfdCiR00n8kCKeuhJ/giphy.gif)
+
+EVERY instance of an object gets a copy of all the information. Factory functions laugh at the idea of sharing a single piece of paper (prototype) with the information they all need to know.
 
 ```
 function personFactory (n){
@@ -13,20 +23,26 @@ const me =personFactory("sephiroth")
 
 ```
 
-- uses more space in memory because each instance has a copy of the property and methods
-- prototype is Object.prototype, so the prototype of every object. So you don't want to mess with it, sine you'd be messing with the global object.
-- if you change anything in the blueprint, you'll have to MANUALLY change it on each instance since it doesn't use inheritance
+- uses more space in memory because EACH instance has a copy of the property and methods === lots of extra text
 
-Pro: - Simplier,
+![closeup of a mans conferned face saying that's a lot of text](https://media.tenor.com/2IU9kk3bOt0AAAAM/thats-a-lot-of-text-lots-of-reading.gif)
 
+- prototype is: Object.prototype, aka the prototype of every object. So you don't want to mess with it, since you'd be messing with the global object.
+
+![Astronaut floating in space](https://m.media-amazon.com/images/I/81Lf4eeOC-L._UC256,256_CACC,256,256_.jpg)
+
+- if you change anything in the blueprint, you'll have to MANUALLY change it on each instance since the instances don't use inheritance. Aka you have to manually track down and edit each instance's copies, since they don't share a prototype.
+
+Pro:
+
+- Simplier, just returns an object
 - no new keyword,
-- just return an object,
-- using closures 18:56 https://www.youtube.com/watch?v=fbuyliXlDGI, which can avoid bugs since you can't overwrite the data as easily by accident
+- using closures 18:56 https://www.youtube.com/watch?v=fbuyliXlDGI, which can avoid bugs since you can't overwrite the data as easily by accident and allows for data privacy
 
 Con:
 
-- Prototype is the OBJECT prototype for every object
-- so harder to make edits to (you have to manually edit each instance)
+- Prototype is the GLOBAL OBJECT prototype for every object
+- so its harder to make edits (you have to manually edit each instance's copy of the information)
 
 ```
 function createPerson(name){
@@ -47,7 +63,9 @@ me.name
 
 # Constructors
 
-Under the hood all constructors add an empty this object and then return the "this" object
+![Gender neutral young person waving their hand in a circle and looking pensive as they say big fan of... this](https://media4.giphy.com/media/Y3AQNvFtEM2rBNqPdv/giphy.gif?cid=ecf05e47kx55lchnwkzdv9thlzpw13ww31dbgiy6zz136ac1&ep=v1_gifs_search&rid=giphy.gif&ct=g)
+
+Under the hood all constructors start with an empty object which is stored as "this". They then return the "this" object
 
 ```
 ~
@@ -56,21 +74,29 @@ this.name = name
 return this
 ~
 
+const JediMovie= new Movie("Star Wars)
+
 ```
 
-So they use this because its attaching the blueprint to a prototype/this object. The instances of a constructor all SHARE this blueprint instead of needing individual copies of the blueprint, as is the case for factory functions.
+new is basically javascripts way of saying "hey! we're going to be making a new object"
 
-- So you can edit the constructor function and EVERY instance will automatically fix itself
+You can think of {}, as a shiny new empty box which is labeled as "this". Aka an empty object which we'll soon put data in.
+
+![A gif of a box with a cat sticking its head out](https://media.giphy.com/media/jgciX4khX2xck/giphy.gif)
+
+So the constructors use this because its attaching the blueprint to a prototype/this object. The instances of a constructor all SHARE this blueprint instead of needing individual copies of the blueprint, as is the case for factory functions.
+
+- So you can edit the constructor function and EVERY instance will automatically fix itself ????
 
 - we call a new instance with the new keyword
-
-```
-const JediMovie= new Movie("Star Wars)
-```
 
 - Special Note: **All constructors use a Capital letter, call with new Keyword**
 
 ## Constructor Function
+
+![Zack Fair from ff7 doing squats in the background](https://38.media.tumblr.com/tumblr_lq99fwOIQs1qersozo1_500.gif)
+
+(Pictured above, A Shinra trainee doing squats as all shinra cadets are taught. In other words, they inherit this squatting behavior from their shared Shina Cadet Constructor!)
 
 ```
 function ShinraCadetConstructor(name, age) {
@@ -114,6 +140,10 @@ ShinraCadetConstructor.prototype.sayHello =function(){
 
 ## Class Constructor
 
+![squirrel eating nuts](https://media4.giphy.com/media/fZqrfZJSEZzfW/giphy.gif?cid=ecf05e477ecws3nm4mehv2xntibjvr1v1negx5jjijnpz8v2&ep=v1_gifs_search&rid=giphy.gif&ct=g)
+
+(Above: An instance of a squirrel object ("Miss Cashew"), inheriting its nut stuffing behavior from its squirrel object ancestory)
+
 - Its just an easier way of writing constructors, it uses the same crazy prototype inheritence under the hood.
 
 Pros:
@@ -121,6 +151,7 @@ Pros:
 - easier to write
 - always runs in strict mode
 - not hoisted
+- Less writing since class Constructors already know it needs to attach functions to the prototype object! Aka we don't have to write out something like object.prototype.run= function(){"gotta go fast"} and can instead just type of run(){"blah Blah}
 
 ```
 class Person {
@@ -161,11 +192,110 @@ console.log(john.sayHello())
 ///"My name is actually..." Changed!
 ```
 
+## Adding Properties After Creating Instances of the Class
+
+You can add properties to the prototype
+
+`ShinraCadetConstructor.prototype.class="second"`
+
+And the "ShinraCadetCloud" Object will be confused for a second when you ask `ShinraCadetCloud.class` since it doesn't have that. But it will realize it should look at it's prototype. And it will discover it's ShinraCadetConstructor prototype now has a class
+
+```
+console.log(ShinraCadetCloud.class)
+/// second
+
+console.log(ShinraCadetCloud)
+
+///ShinraCadetConstructor {name: "Cloud", age: 23}
+name:"Cloud"
+age:23
+constructor:ƒ ShinraCadetConstructor()
+sayHello:ƒ ()
+class:"second"
+[[Prototype]]:(2) {sayHello: function(), class: "secon...}
+
+```
+
+## Comparing the three with console.log!
+
+Factory Function, its prototype is the GLOBAL object
+
+```
+Object { … }
+​name: "Sina"​
+<prototype>: Object { talk: talk()
+ }
+​​
+talk: function talk()​​
+<prototype>: Object { … }
+```
+
+Constructor Function, its an instance of the ShinraCadetConstructor, so thats its prototype
+
+```
+ShinraCadetConstructor {name: "Cloud", age: 23}
+name:"Cloud"
+age:23
+constructor:ƒ ShinraCadetConstructor()
+sayHello:ƒ ()
+[[Prototype]]:(1) {sayHello: function()}
+```
+
+Class Constructor, its an instance of the Person constructor, so thats its prototype
+
+```
+Person {name: "John", age: 30}
+name:"John"
+age:30
+constructor:ƒ Person()
+sayHello:ƒ sayHello()
+[[Prototype]]:{}
+```
+
+## Getting into the Weeds, the exception to Factory Functions
+
+![A man, wen Ning from the untamed, peeking out of long grass weeds](https://media1.tenor.com/m/VgyvaMd0nwcAAAAd/the-untamed-tall-grass.gif)
+
+It's technically possible to use Object.Create() to give a factory function a prototype object which is not the global object.
+
+```
+const myCoolProto= {
+    talk(){
+         return `Hello, I am ${this.name}`
+}
+}
+function createPerson(name){
+    return Object.create(myCoolProto,{
+        name:{
+            value:name
+        }
+    })
+}
+const me= createPerson('Sina')
+console.log(me.talk())
+```
+
+In the console.log() you'll see that the talk function is stored in the prototype object! So this means all the instances of createPerson can actually grab the function from the same prototype object, myCoolProto, instead of them each having a copy of it.
+
+```
+Object { … }
+​name: "Sina"
+​<prototype>: Object { talk: talk()
+ }​​
+talk: function talk()....
+```
+
+![A kid with glasses speaking dramatically with his hands outstretched saying "its a prototype"](https://media1.tenor.com/m/t-BFC-kUfo8AAAAd/its-a-prototype-prototype.gif)
+
+So essentially this is just a long winded way of giving a factory function a prototype it can share with all its object instances, like its big constructor siblings can do.
+
+See 9:50 @ https://www.youtube.com/watch?v=fbuyliXlDGI&t=1284s for more information
+
 ## Constructor function versus Factory Function
 
-A constructor function ===> function that makes a new object that can optionally have a prototype in which you can store methods.
+A constructor function ===> function that makes a new object that can optionally have a prototype, where you can store methods.
 
-A class in Javascript ===> function that returns a new object with a prototypical link to another object that contains methods. Under the hood its basically a constructor function.
+A class in Javascript ===> function that returns a new object with a prototypical link to another object that contains methods. Under the hood it's basically a constructor function.
 
 ### Checking Understanding
 
