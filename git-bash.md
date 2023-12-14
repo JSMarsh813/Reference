@@ -28,6 +28,15 @@
 
 ## Saving Changes in Git
 
+> git add .
+> git commit -m "changes to gitbash.md"
+
+- git commit --amend
+
+> git push
+
+<br>
+
 ## 🐣 1st time Uploading
 
 ### Initialize git
