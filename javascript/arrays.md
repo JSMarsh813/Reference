@@ -48,6 +48,8 @@ arr2[i] [6,7,8,9,10]
 console.log(result);
 ```
 
+# Looping
+
 ## for loop
 
 ```
@@ -65,6 +67,32 @@ return sum // return sum to the place it was called
 
 }
 
+```
+
+## If else and recursion
+
+```
+function isEven(num){
+
+      if( num >= 0) {
+        // if number is > 0, snd to nested if
+
+         if (num == 0) {
+               return true    }
+
+            else if (num == 1) {
+                return false
+
+            }else {
+                   return (isEven(num-2))
+             // num gets 2 removed
+             // relooped until it reaches 0 or 1
+             }
+
+    } else {
+            return "negative"
+    }
+}
 ```
 
 ## Remove specific value from string
