@@ -1,5 +1,7 @@
 # The Blueprint Wars of JavaScript Objects
 
+![cartoon image of a blueprint with the lines changing, the text says your imagination](https://media1.giphy.com/media/3orieLio6xMouAYkxi/giphy.gif)
+
 These all use blueprints to create objects
 
 - Factory Functions,
@@ -10,18 +12,25 @@ These all use blueprints to create objects
 
 ![closeup of a mans conferned face saying that's a lot of text](https://media1.giphy.com/media/cNfdCiR00n8kCKeuhJ/giphy.gif)
 
-EVERY instance of an object gets a copy of all the information. Factory functions laugh at the idea of sharing a single piece of paper (prototype) with the information they all need to know.
+We use a blueprint to create each object, so we don't have to manually type out each object. So in this example, we just tell it to create a new person with the name of "sephiroth"
 
 ```
 function personFactory (n){
 return {
-    name: n
-    }
+  name: n,
+  stab(){
+      "From the back!"
+        }
+     }
 }
 
-const me =personFactory("sephiroth")
+const sephirothClone =personFactory("sephiroth")
 
 ```
+
+However EVERY instance of an object gets a copy of all the information. Factory functions laugh at the idea of sharing a single piece of paper (prototype) with the information they all need to know. So every sephiroth will have a copy of the stabbing function, instead of inheriting it from their shared conscious (a prototype)
+
+Cons:
 
 - uses more space in memory because EACH instance has a copy of the property and methods === lots of extra text
 
@@ -31,13 +40,13 @@ const me =personFactory("sephiroth")
 
 ![Astronaut floating in space](https://m.media-amazon.com/images/I/81Lf4eeOC-L._UC256,256_CACC,256,256_.jpg)
 
-- if you change anything in the blueprint, you'll have to MANUALLY change it on each instance since the instances don't use inheritance. Aka you have to manually track down and edit each instance's copies, since they don't share a prototype.
+- if you change anything in the blueprint, you'll have to MANUALLY change it for each instance since the instances don't use inheritance. Aka you have to manually track down and edit each instance's copies, since they don't share a prototype (besides the global object, which we don't want to edit).
 
 Pro:
 
 - Simplier, just returns an object
 - no new keyword,
-- using closures 18:56 https://www.youtube.com/watch?v=fbuyliXlDGI, which can avoid bugs since you can't overwrite the data as easily by accident and allows for data privacy
+- using closures 18:56 https://www.youtube.com/watch?v=fbuyliXlDGI, which can avoid bugs since you can't overwrite the data as easily by accident and it allows for data privacy
 
 Con:
 
@@ -138,6 +147,41 @@ ShinraCadetConstructor.prototype.sayHello =function(){
 }
 ```
 
+## methods, add directly with this or use prototype?
+
+If you only:
+
+1. plan to have a few instances of an object
+2. accessing local object variables is part of your code design
+
+then adding this directly to the new object instance with this would work
+
+```
+
+function ShinraCadetConstructor(name, age) {
+this.name = name;
+this.age = age;
+
+this.sayHello = function() {
+console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+}
+}
+
+```
+
+However, in most cases you'll want to do store methods in the constructors's prototype.
+
+Why? Because otherwise those extra lines of code will eat up more memory once you have large amounts of objects. By making all of those 100s or 1000s of objects look at the prototype any time they need that method, it saves space in memory.
+
+```
+
+ShinraCadetConstructor.prototype.sayHello = function() {
+console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+}
+```
+
+Read more at: https://www.thecodeship.com/web-development/methods-within-constructor-vs-prototype-in-javascript/
+
 ## Class Constructor
 
 ![squirrel eating nuts](https://media4.giphy.com/media/fZqrfZJSEZzfW/giphy.gif?cid=ecf05e477ecws3nm4mehv2xntibjvr1v1negx5jjijnpz8v2&ep=v1_gifs_search&rid=giphy.gif&ct=g)
@@ -218,19 +262,16 @@ class:"second"
 
 ## Comparing the three with console.log!
 
-Factory Function, its prototype is the GLOBAL object
+Factory Function, its prototype is the GLOBAL object. Once its created, it never looks back to see if its has new updates. Unless you hack the global prototype, its stuck relying on its own copy of the information.
 
 ```
 Object { … }
-​name: "Sina"​
-<prototype>: Object { talk: talk()
- }
-​​
-talk: function talk()​​
-<prototype>: Object { … }
+name:"sephiroth"
+stab:ƒ stab()
+[[Prototype]]:{}
 ```
 
-Constructor Function, its an instance of the ShinraCadetConstructor, so thats its prototype
+Constructor Function, its an instance of the ShinraCadetConstructor, so thats its prototype. If we add more information to the shinraCadetConstructor prototype, cloud will recieve that new information.
 
 ```
 ShinraCadetConstructor {name: "Cloud", age: 23}
@@ -241,7 +282,7 @@ sayHello:ƒ ()
 [[Prototype]]:(1) {sayHello: function()}
 ```
 
-Class Constructor, its an instance of the Person constructor, so thats its prototype
+Class Constructor, its an instance of the Person constructor, so thats its prototype. If we add more information to the person class's prototype, John will recieve that new information.
 
 ```
 Person {name: "John", age: 30}
@@ -252,11 +293,11 @@ sayHello:ƒ sayHello()
 [[Prototype]]:{}
 ```
 
-## Getting into the Weeds, the exception to Factory Functions
+## Getting into the Weeds, how factory functions can get prototypes!
 
 ![A man, wen Ning from the untamed, peeking out of long grass weeds](https://media1.tenor.com/m/VgyvaMd0nwcAAAAd/the-untamed-tall-grass.gif)
 
-It's technically possible to use Object.Create() to give a factory function a prototype object which is not the global object.
+It's technically possible to use Object.Create() to give a factory function a prototype object (which is not the global object).
 
 ```
 const myCoolProto= {
@@ -296,6 +337,10 @@ See 9:50 @ https://www.youtube.com/watch?v=fbuyliXlDGI&t=1284s for more informat
 A constructor function ===> function that makes a new object that can optionally have a prototype, where you can store methods.
 
 A class in Javascript ===> function that returns a new object with a prototypical link to another object that contains methods. Under the hood it's basically a constructor function.
+
+### Which to use?
+
+In general most JavaScript devs will use Constructor Classes.
 
 ### Checking Understanding
 

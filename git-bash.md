@@ -4,6 +4,10 @@
 
 > cd d:
 
+## go back to home folder
+
+> cd ~
+
 ## open a whole folder in vscode (once navigated to folder)
 
 > code .
@@ -14,7 +18,7 @@
 
 <br>
 
-# 👼 CREATION
+# 👼 CREATION && Saving
 
 ## create folder
 
@@ -24,22 +28,35 @@
 
 > touch (name)
 
-<br>
-
 ## Saving Changes in Git
 
 > git add .
+
+- puts it in staging area
+
 > git commit -m "changes to gitbash.md"
 
-- git commit --date="2022-08-12" -m "message"
 - https://www.youtube.com/watch?v=uFRY6Gxw9EA
 
 > git push
+
+- git push: cleans up messy hisotry before merging a feature branch to main
+
+## Backdating commit
+
+- git commit --date="2022-08-12" -m "message"
 
 ## checking Git Contents
 
 > git status
 
+## View current directory
+
+> pwd
+
+<br>
+
+<br>
 <br>
 
 ## 🐣 1st time Uploading
@@ -49,6 +66,8 @@
 1. > git init
 2. > git add .
 3. > git commit -m "initial commit"
+
+- commits a fancy way of saying snapshot/save point
 
 ### Make folder on github
 
@@ -76,9 +95,126 @@
 
 ## 📛 Change Branch Name ex: Master to Main
 
-git branch -m master main
+> git branch -m master main
+
+- -m = not-yet-existing branch, ex new empty repo
+- -m is useful since git requires you to be on "some" branch
 
 <br>
+
+## Removal & Undoing Changes
+
+### Undo commited snapshot/faulty commit
+
+When you discover a faulty commit, reverting is a safe and easy way to completely remove it from the code base.
+
+> git revert
+
+### Undo changes to files in working directory git
+
+Usually just deals with tracked files
+
+> git reset
+
+### Removes untracked files from the working directory
+
+> git clean
+
+### Remove folder
+
+> rm -r \<folder>
+
+> rm -rf \<folder>
+
+- -f ==> if you want to remove protected files too
+
+### Remove files from staging
+
+> git rm --cached \<index.html>
+
+# Grabbing Temote Branch
+
+## Grab branch but choose what to integrate
+
+> git fetch
+
+- Fetching downloads a branch from another repository, along with all of its associated commits and files. But, it doesn't try to integrate anything into your local repository.
+
+- This gives you a chance to inspect changes before merging them with your project.
+
+## Grab branch and automatically integrate it
+
+> git pull
+
+# Troubleshooting/Fixing Problems
+
+## Fell into vim, forgot -m flag in git commit
+
+i \<message> escape + :wq + enter
+
+## Resurrect deleted branch or one that was merged with main branch
+
+- branch must of been on your machine
+- git's safety net
+
+> git reflog
+
+## Before commiting: clean up branches
+
+> git merge
+
+### git merge versus rebase
+
+-non-destructive
+-existing branches are not changed
+-safer
+-has traceability
+
+## Before Commiting: Avoid unnecessary merge commits
+
+- By moving branching arounds
+- Creates a linear history that's easier to understand
+
+> git rebase -i
+
+- i ==> interactive
+- cleans up messy hisotry before merging a feature branch to main
+
+## folder has a space in name
+
+- escape it with \
+- or use tab
+
+## clone repo && be able to make commits
+
+- fork the code instead of cloning it
+- if you cloned it, you wouldn't be able to make commits when we fork it
+
+## Experiment with a specific old revision/commit
+
+> git checkout 757c47d4
+
+- you're checking out a commit which will result in a detached head state aka the changes you make do NOT belong to any branch, so its easy to lose the data/changes
+
+-rarely used
+
+- ex: want to experiment with a specific old revision so you need that revision's files in your working copy folder
+
+## collaborating on the same feature && incorporate changes
+
+![Alt text](image.png)
+
+option 1: Merge your local feature with john/feature
+
+![Alt text](image-1.png)
+
+Option 2: rebase
+
+- basically saying add my changes to what john has already done
+
+- key point: only your local feature commits are being moved, everything before that is untouched
+
+![Alt text](image-2.png)
 
 # 😨 Errors
 
