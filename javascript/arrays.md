@@ -1,9 +1,29 @@
 ## Create Array
 
-> Array.from( {length:n},(\_, i)=> i);
+### Array.from(arrayLike, mapFn, thisArg)
+
+1.
+
+```
+Array.from( {length:n},
+                   (_, i)
+                        => i);
+```
 
 - \_ because the elements in our array are blank and not needed
 - in this example, we fill all those blank spots with the index numbers
+
+2.
+
+```
+> Array.from (new Array(b-a+i),
+        //created as many blank slots as needed
+
+                         (_, i)
+
+                             => a + i);
+                    //=> is the mapping function to put values in the new array
+```
 
 ## Sum to one value
 
@@ -110,3 +130,16 @@ return string
 return arrayList.filter(function(v)
        {return type of v =="number"})
 ```
+
+## Sort
+
+```
+let filteredArray = inventorsByYear.sort((a,b)=>
+    a.year > b.year ? 1: -1
+)
+console.table(filteredArray)
+```
+
+![Alt text](image-3.png)
+
+![Alt text](image-10.png)
