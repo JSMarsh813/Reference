@@ -1,4 +1,4 @@
-## is integer?
+## is integer/whole number?
 
 Number.isInteger()
 ![Alt text](image.png)

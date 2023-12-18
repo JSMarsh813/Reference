@@ -21,3 +21,19 @@
 ### grab a specific character
 
 > name.charAt(0).toUpperCase()
+
+## Repeating
+
+1. `[...Array(n+1)]``
+
+```
+ return [...Array(n+1)]
+ //create an empty array of N+1 elements
+
+ .join(s)
+ // join the empty elements with a given seperator
+ //if the length is 5, will only have 4 seperators
+//ex: Fire-Air-Water
+```
+
+![Alt text](image-18.png)

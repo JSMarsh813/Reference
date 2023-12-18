@@ -6,8 +6,8 @@
 
 ```
 Array.from( {length:n},
-                   (_, i)
-                        => i);
+                   (_, index)
+                        => index);
 ```
 
 - \_ because the elements in our array are blank and not needed
@@ -68,51 +68,11 @@ arr2[i] [6,7,8,9,10]
 console.log(result);
 ```
 
-# Looping
-
-## for loop
+## remove a specific type of value ==> filter && type of
 
 ```
-function countSheeps(arrayOfSheep){
-let sum = 0
-
-for (let i=0; i< arrayOfSheep.length; ++i>){ //go through each sheep in the array
-
-  if (arrayOfSheep[i]===true) // if sheep= true then do next thing
-
-  sum ++; //add 1 to the sum of sheep
-}
-
-return sum // return sum to the place it was called
-
-}
-
-```
-
-## If else and recursion
-
-```
-function isEven(num){
-
-      if( num >= 0) {
-        // if number is > 0, snd to nested if
-
-         if (num == 0) {
-               return true    }
-
-            else if (num == 1) {
-                return false
-
-            }else {
-                   return (isEven(num-2))
-             // num gets 2 removed
-             // relooped until it reaches 0 or 1
-             }
-
-    } else {
-            return "negative"
-    }
-}
+return arrayList.filter(function(v)
+       {return type of v =="number"})
 ```
 
 ## Remove specific value from string
@@ -122,13 +82,6 @@ return string
         .split("!") //turns it into an array
         .join(") // turns it back into a string
 
-```
-
-## remove a specific type of value ==> filter && type of
-
-```
-return arrayList.filter(function(v)
-       {return type of v =="number"})
 ```
 
 ## Sort
