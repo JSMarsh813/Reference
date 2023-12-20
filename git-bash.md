@@ -69,6 +69,14 @@
 
 - commits a fancy way of saying snapshot/save point
 
+  3.b you will want to commit something, otherwise you'll get an error:
+
+- git fetch origin
+- git checkout
+- fatal: You are on a branch yet to be born
+  > As ever, Git is right, it just has a quirky way of saying it: when you create a repository, the master branch actually doesn't exist yet because there's nothing for it to point to.
+  > https://stackoverflow.com/questions/24001587/you-are-on-a-branch-yet-to-be-born
+
 ### Make folder on github
 
 3. click +, new repo

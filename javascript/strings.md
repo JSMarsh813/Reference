@@ -1,16 +1,34 @@
-## repeat a string value
+# Contents
 
-> #".repeat(10)
+1. Converting
+2. Grabbing
+3. Repeating
 
-![Alt text](image-4.png)
+## Converting
 
-## To upper or lowercase
+### To upper or lowercase
 
 > StringSelection.toUpperCase()
 
 > StringSelection.toLowerCase()
 
-## grab a section of the string
+### To Binary
+
+> (a + b).toString(2)
+
+> Number.toString(2)
+
+For Negative integers:
+
+> (-1 >>> 0).toString(2)
+
+- unsigned right shift bitwise operator (>>>) to coerces number to an unsigned integer
+
+https://stackoverflow.com/questions/9939760/how-do-i-convert-an-integer-to-binary-in-javascript
+
+<br>
+
+## Grabbing
 
 ### substring( start index, length of string )
 
@@ -22,9 +40,17 @@
 
 > name.charAt(0).toUpperCase()
 
+<br>
+
 ## Repeating
 
-1. `[...Array(n+1)]``
+### repeat a string value
+
+> #".repeat(10)
+
+![Alt text](image-4.png)
+
+### Repeating a seperator
 
 ```
  return [...Array(n+1)]
