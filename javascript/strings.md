@@ -12,19 +12,11 @@
 
 > StringSelection.toLowerCase()
 
-### To Binary
+### Number To Binary
 
 > (a + b).toString(2)
 
 > Number.toString(2)
-
-For Negative integers:
-
-> (-1 >>> 0).toString(2)
-
-- unsigned right shift bitwise operator (>>>) to coerces number to an unsigned integer
-
-https://stackoverflow.com/questions/9939760/how-do-i-convert-an-integer-to-binary-in-javascript
 
 <br>
 

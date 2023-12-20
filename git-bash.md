@@ -42,6 +42,16 @@
 
 - git push: cleans up messy hisotry before merging a feature branch to main
 
+## renaming a file
+
+### not in git
+
+> mv 6kyu-create-phone-number 6kyu-create-phone-number.js
+
+### if you're renaming a file thats in git already
+
+> git mv (old file) (new file)
+
 ## Backdating commit
 
 - git commit --date="2022-08-12" -m "message"

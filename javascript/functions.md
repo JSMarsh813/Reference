@@ -1,3 +1,9 @@
+# Table Of Contents
+
+- General
+
+- Validating input/ Error Throwing
+
 ## General
 
 \>= will automatically convert strings to numbers, so you don't have to do `Number(str[i]>=5)`
@@ -6,6 +12,12 @@ you can just do `str[i]>5`
 ## switch statements
 
 ![Alt text](image-8.png)
+
+## Object behaving like switch statement
+
+![](image-22.png)
+
+- we're creating the object then saying return it at this given index, and using Math.min to decide if we're going with the max of 4, or the given names.length
 
 ## prompt
 
@@ -88,5 +100,17 @@ function isEven(num){
     } else {
             return "negative"
     }
+}
+```
+
+### Validating input/ Error Throwing
+
+- by using typeOf
+
+```
+function addBinary(a,b) {
+  // validate input
+  if (typeof(a) !== 'number' || typeof(b) !== 'number') throw new Error('addBinary: invalid non-numeric input parameters!');
+  return ((a+b) >>> 0).toString(2);
 }
 ```
