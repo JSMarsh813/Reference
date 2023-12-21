@@ -260,16 +260,14 @@ Do:
 
 locally do
 
-1. git rm (file name)
+> git rm (file name)
 
-then do a normal
+- then do a normal git add, commit, push
 
-2. git add .
+IF you only want to stage the deletion but keep the file locally: use the --cached flag
 
-3. git add (file name)
+> git rm --cached unwanted-file.txt
 
-4. git commit -m "mistake"
+If the file we want to remove contains sensitive content:
 
-5. git push
-
-then push to the repo
+- https://sentry.io/answers/delete-a-file-from-a-git-repository/
