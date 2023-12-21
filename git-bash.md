@@ -255,3 +255,21 @@ Do:
 Do:
 
 > git push --set-upstream origin main
+
+## Pushed a commit to github and by mistake
+
+locally do
+
+1. git rm (file name)
+
+then do a normal
+
+2. git add .
+
+3. git add (file name)
+
+4. git commit -m "mistake"
+
+5. git push
+
+then push to the repo
