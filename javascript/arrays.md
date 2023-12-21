@@ -1,8 +1,21 @@
-## Create Array
+# Table of contents
+
+1. Create an Array
+   > Array.from(arrayLike, mapFn, thisArg)
+
+- from a given length
+- make an array of a specific size
+- integer to array of integers
+
+2. Sum to one value/ Reduce
+3. Filter/remove values
+4. Sort
+
+## Create An Array
 
 ### Array.from(arrayLike, mapFn, thisArg)
 
-1.
+1. from a given length
 
 ```
 Array.from( {length:n},
@@ -13,7 +26,7 @@ Array.from( {length:n},
 - \_ because the elements in our array are blank and not needed
 - in this example, we fill all those blank spots with the index numbers
 
-2.
+2. make an array of a specific size
 
 ```
 > Array.from (new Array(b-a+i),
@@ -23,7 +36,29 @@ Array.from( {length:n},
 
                              => a + i);
                     //=> is the mapping function to put values in the new array
+
 ```
+
+3. integer to array of integers
+
+```
+
+let n=942
+
+function digitalRoot(n) {
+   let convertStringToNumber= num => Number(num);
+
+   let nToArray=Array.from(String(n),convertStringToNumber);
+
+}
+
+```
+
+> turn n into a string so its splitable
+
+> use Array.from()'s mapping function' (second parameter)
+
+- to change the arrays elements from strings ===? numbers, by "MAPPING" through it
 
 ## Sum to one value
 
@@ -68,6 +103,8 @@ arr2[i] [6,7,8,9,10]
 console.log(result);
 ```
 
+## Replace values
+
 ### Using Reduce with replace
 
 ```
@@ -80,14 +117,43 @@ createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0])
 
 ```
 
-## remove a specific type of value ==> filter && type of
+## Filter/remove values
+
+### remove a specific type of value ==> filter && type of
 
 ```
 return arrayList.filter(function(v)
        {return type of v =="number"})
 ```
 
-## Remove specific value from string
+### Compare two arrays, use set.has() instead of Array.includes()
+
+> set.has() is significantly faster than includes() for larger arrays (~>50)
+
+> Array.includes() ==> o(n) (linear)
+
+> set.has() has better time complexity of o(1) (constant)
+
+See zloyrusskiy's explanation (a reply) here to understand why this is better for larger arrays
+
+https://www.codewars.com/kata/523f5d21c841566fde000009/solutions/javascript
+
+- let a= [1,2,2,2,3]
+- let b= [2]
+- If a value is present in b, all of its occurrences must be removed from the other:
+- end result: [1,3]
+
+```
+function array_diff(a, b) {
+  b = new Set(b)
+  //get rid of the duplicates so theres less to iterate to and because it will give us access to .has()
+
+  return a.filter(v => !b.has(v))
+
+}
+```
+
+### Remove specific value from string
 
 ```
 return string
@@ -97,6 +163,8 @@ return string
 ```
 
 ## Sort
+
+### Sort
 
 ```
 let filteredArray = inventorsByYear.sort((a,b)=>
