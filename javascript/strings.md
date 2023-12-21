@@ -3,6 +3,7 @@
 1. Converting
 2. Grabbing
 3. Repeating
+4. Reversing
 
 ## Converting
 
@@ -55,3 +56,23 @@
 ```
 
 ![Alt text](image-18.png)
+
+## Reversing
+
+### Reversing some text and not others
+
+```
+function spinWords(string){
+
+  let stringToArray= string.split(" ")
+    //needs to be an array to use map, split into the individual words " " not letters ""
+
+  let overFiveReverse=stringToArray.map(word=>word.length>=5?
+                                                word.split("").reverse().join("")
+                                                :word)
+     //use map to change formatting of words that meet the requirement
+
+  return overFiveReverse.join(" ")
+      //change it back into a string, with spaces between letters " "
+}
+```
