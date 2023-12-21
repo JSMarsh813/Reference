@@ -65,7 +65,8 @@
 function spinWords(string){
 
   let stringToArray= string.split(" ")
-    //needs to be an array to use map, split into the individual words " " not letters ""
+    //needs to be an array to use map
+    //split into the individual words " " not letters ""
 
   let overFiveReverse=stringToArray.map(word=>word.length>=5?
                                                 word.split("").reverse().join("")
