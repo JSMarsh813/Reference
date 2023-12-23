@@ -19,6 +19,43 @@
 
 > Number.toString(2)
 
+### change letters into something else based on some condition
+
+Example 1: If letters occur more than once change to ")"
+
+- change to array
+- reduce into a new object, giving the sum of each letters occurance
+- use for loop to create array of same size, depending on the letters value in the accumulator object
+
+> word ==>"Success"
+
+> if word occurs once ==> (
+
+> if word 2+ times ==> )
+
+> result ==> ")())())"
+
+```
+function duplicateEncode(word){
+  let wordtoLower=word.toLowerCase()
+  let wordToArray=wordtoLower.split("")
+  let newArray=[]
+
+  let acc=wordToArray.reduce((accumulator,item)=> {
+               accumulator[item]?
+                   accumulator[item]++:
+                   accumulator[item]=1
+                       return accumulator
+                   },{})
+
+for (let i=0;i<wordtoLower.length;i++){
+    acc[wordtoLower[i]]==1?
+         newArray.push("(")&&console.log(wordtoLower[i])
+         :newArray.push(")")&&console.log(wordtoLower[i])
+  }
+
+```
+
 <br>
 
 ## Grabbing

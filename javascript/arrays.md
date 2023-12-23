@@ -7,6 +7,10 @@
 - make an array of a specific size
 - integer to array of integers
 
+2. map(Number)
+
+- integer to array of integers
+
 2. Sum to one value/ Reduce
 3. Filter/remove values
 4. Sort
@@ -39,7 +43,7 @@ Array.from( {length:n},
 
 ```
 
-3. integer to array of integers
+3.  integer to array of integers
 
 ```
 
@@ -53,6 +57,22 @@ function digitalRoot(n) {
 }
 
 ```
+
+## map(Number)
+
+### integer to array of integers
+
+```
+n.toString(2)
+  .split("")
+      .map(Number)
+          .reduce((a,b) => a+b,0);
+```
+
+//change number to binary string
+//split to array
+// turn it into an array of numbers
+// add accumulator to each value (b)
 
 > turn n into a string so its splitable
 
