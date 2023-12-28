@@ -60,6 +60,8 @@ return "Hello, " +
 
 ## for loop
 
+### normal for loop
+
 ```
 function countSheeps(arrayOfSheep){
 let sum = 0
@@ -75,6 +77,20 @@ return sum // return sum to the place it was called
 
 }
 
+```
+
+### Stopping variable unrelated to iterator
+
+loop will continue without care to the years/iterator, it only will pay attention to the yearly population
+
+```
+function nbYear(popStart, percent, aug, goalPopulation) {
+
+  for (let years = 0; popStart < goalPopulation; years++) {
+    popStart = Math.floor(popStart + popStart * percent / 100 + aug);
+  }
+  return years
+}
 ```
 
 ## If else and recursion
@@ -101,6 +117,29 @@ function isEven(num){
             return "negative"
     }
 }
+```
+
+### recursion
+
+```
+function nbYear(p0, percent, aug, p) {
+
+  let percentConverted=percent/100
+   let finalYearlyAmount=p0
+   let loop=0
+
+   return AddPeople(p0)
+
+function AddPeople(lastYear){
+   let percentIncrease=lastYear*percentConverted
+   let newImigrants=aug
+   loop++
+   finalYearlyAmount=Math.floor(lastYear + percentIncrease + newImigrants)
+
+   return finalYearlyAmount<p? AddPeople(finalYearlyAmount):loop
+}
+
+  }
 ```
 
 ### Validating input/ Error Throwing

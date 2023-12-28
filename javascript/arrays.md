@@ -58,6 +58,10 @@ function digitalRoot(n) {
 
 ```
 
+4. From a string
+
+let goodLetters = "abcdefghijklm".split("");
+
 ## map(Number)
 
 ### integer to array of integers

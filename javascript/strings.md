@@ -4,6 +4,7 @@
 2. Grabbing
 3. Repeating
 4. Reversing
+5. Checking for/comparing
 
 ## Converting
 
@@ -54,6 +55,15 @@ for (let i=0;i<wordtoLower.length;i++){
          :newArray.push(")")&&console.log(wordtoLower[i])
   }
 
+```
+
+### binary to string
+
+```
+const binaryArrayToNumber = (arr) => {
+  let binary = arr.join("");
+  return parseInt(binary, 2);
+};
 ```
 
 <br>
@@ -116,3 +126,40 @@ function spinWords(string){
 ```
 
 testing
+
+## Checking for
+
+### based on unicode essentially
+
+```
+function printerError(s) {
+    // your code
+    var count = 0;
+    for(var i = 0; i < s.length; i++) {
+      if (s[i] > "m") {
+        count++;
+      }
+    }
+    return count+"/"+s.length;
+}
+```
+
+- s[i]>"m" is comparing the unicode values of the different letters "a", "b", "y" ect to the unicode value of m
+  https://www.codewars.com/kata/56541980fa08ab47a0000040/solutions/javascript
+
+### a specific string is always included
+
+```
+function isPangram(string){
+
+  string = string.toLowerCase();
+
+  let alphabet = 'abcdefghijklmnopkrstuvwxyz'.split('');
+
+  return alphabet.every(x => string.includes(x));
+}
+
+}
+```
+
+- this example is checking if a given string includes every letter of the alphabet

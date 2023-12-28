@@ -128,11 +128,39 @@ When you discover a faulty commit, reverting is a safe and easy way to completel
 
 > git revert
 
-### Undo changes to files in working directory git
+- undoes a SINGLE commit
+- able to target an individual commit at an arbitrary point in the history,
 
-Usually just deals with tracked files
+Safer:
 
-> git reset
+- Git revert is a safer alternative to git reset in regards to losing work.
+- it doesn’t change the project history, which makes it a “safe” operation for commits that have already been published to a shared repository.
+
+https://www.atlassian.com/git/tutorials/undoing-changes/git-revert
+
+### Undo changes to files in working directory git/more than one commit at once
+
+> git reset (can only work backwards from current commit)
+
+- Usually just deals with tracked files
+- will "revert" back to the previous state of a project by removing all subsequent commits
+- changes project history
+
+> :( if you wanted to undo an old commit with git reset, you would have to remove all of the commits that occurred after the target commit, remove it, then re-commit all of the subsequent commits. Needless to say, this is not an elegant undo solution.
+
+https://www.atlassian.com/git/tutorials/undoing-changes/git-revert
+
+https://stackoverflow.com/questions/927358/how-do-i-undo-the-most-recent-local-commits-in-git
+
+```
+$ git commit -m "Something terribly misguided" # (0: Your Accident)
+$ git reset HEAD~                              # (1)
+[ edit files as necessary ]                    # (2)
+$ git add .                                    # (3)
+$ git commit -c ORIG_HEAD                      # (4)
+```
+
+"Commit the changes, reusing the old commit message. reset copied the old head to .git/ORIG_HEAD; commit with -c ORIG_HEAD will open an editor, which initially contains the log message from the old commit and allows you to edit it. If you do not need to edit the message, you could use the -C option."
 
 ### Removes untracked files from the working directory
 
