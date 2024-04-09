@@ -1,4 +1,10 @@
-![  ]()
+Thread for my 100 hours project progress!
+
+![anakin skywalker with text this is where the fun beings](https://media4.giphy.com/media/NsIwMll0rhfgpdQlzn/giphy.gif?cid=6c09b952um5pw8cbgatq5qzllus74tcu1tpvjvlf86sbxc8j&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1598391767682154497 11:01 AM · Dec 1, 2022
+
+---
 
 started off with a bang 🤣 did " npm run start" and was going what the hell why won't it show my edits unless I reboot it.
 
