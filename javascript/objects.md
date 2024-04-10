@@ -2,7 +2,8 @@
 
 1. Create an object
 2. iterate through object
-3.
+3. copy an object
+4. No-touchy/make an object immutable
 
 ## Create an Object
 
@@ -55,7 +56,18 @@ function duplicateCount(text){
  }
 ```
 
-## add old object to new one, replace a property
+## Copy an object, add old object to new one
+
+X let Object1=object2 ==> will point to the same object in the heap
+-  so its not copied
+- Object1, object2 variables point to the same object in the heap 
+the heap
+![Alt text](image-25.png)
+
+
+- the following methods will allow the variable to point to a new cloned object in 
+
+![Alt text](image-26.png)
 
 1. Spread syntax
 
@@ -72,7 +84,10 @@ let player2 = {...player,
                   // {score:2, name:"jeff"}
 ```
 
-2. Object.assign({})
+2. Object.assign(target, source)
+
+- The target can == empty object/ {}
+- if source.[keyname] == target.[keyname], the source object wins and overwrites target's key
 
 ```
 let newPlayer= Object.assign({},
@@ -82,3 +97,87 @@ let newPlayer= Object.assign({},
 ```
 
 ![Alt text](image-13.png)
+
+## 4. No-touchy/make an object immutable
+
+For all these methods Object.defineProperty() is better:
+
+1. dot notation
+
+- quietly fails to add the property, no error message
+
+2.   Object.defineProperty(objectToAddTo, propertyToAddOrChange, valueOfProperty)
+
+- Adding a NEW property throws error "Uncaught TypeError: Cannot define property age, object is not extensible"
+- you can MODIFY an existing property
+
+```
+ Object.preventExtensions(makeNonExtensive)
+
+   Object.defineProperty(makeNonExtensive, "age", {
+      value: "twenty",
+   })
+
+   console.log(makeNonExtensive)
+```
+
+
+### Object.preventExtensions(obj)
+- stops new properties from entering the object
+- You can CHANGE and DELETE existing properties
+
+```
+   Object.preventExtensions(objectName)
+  ```
+
+### Object.seal(objectName)
+
+- cannot add NEW properties
+- cannot DELETE properties
+- you CAN MODIFY existing properties
+
+```
+   Object.seal(objectName)
+  ```
+
+to check if an object is sealed: 
+ > console.log(Object.isSealed(studentNames))
+
+
+ ### Object.freeze(objectName)
+
+- CANNOT have properties deleted, modified or added
+
+BUT objects nested INSIDE this object:
+- CAN have properties deleted, modified or added
+
+to check if an object is frozen: 
+ console.log(Object.isFrozen(obj))
+
+### Deep Freeze Function
+
+- object AND nested objects:
+- CANNOT have properties deleted, modified or added
+
+```
+const deepVal = obj => {
+        Object.keys(obj).forEach(prop => {
+        if (typeof obj[prop] === 'object') deepVal(obj[prop]);
+        });
+        return Object.freeze(obj);
+    };
+
+   const teamplayers = deepVal( {
+            player1: "Andrey",
+            player2: "Abundance",
+                    substitutes: {
+                        player3: "Jeremiah",
+                        player4: "Jayden"
+                    }
+            }
+    )
+   const squad = teamplayers;
+
+   Object.freeze(teamplayers)
+
+```

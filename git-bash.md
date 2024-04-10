@@ -87,17 +87,27 @@
   > As ever, Git is right, it just has a quirky way of saying it: when you create a repository, the master branch actually doesn't exist yet because there's nothing for it to point to.
   > https://stackoverflow.com/questions/24001587/you-are-on-a-branch-yet-to-be-born
 
-### Make folder on github
+====== Make folder on github =======
 
 3. click +, new repo
 4. click code, https ex: https://github.com/JSMarsh813/Reference.git
 
-### In Bash Terminal
+====== In Bash Terminal ========
 
 5. > git remote add origin [copied web address]
 6. Push your branch to Github
 
 - > git push -u origin main
+
+### push an existing repository to github for the first time
+
+as suggested by github
+
+- git remote add origin https://github.com/~~~~/~~~~~.git
+- git branch -M main
+- git push -u origin main
+
+![Alt text](image-4.png)
 
 <br>
 
@@ -138,6 +148,10 @@ Safer:
 
 https://www.atlassian.com/git/tutorials/undoing-changes/git-revert
 
+### Remove Node_modules
+
+> rm -r node_modules
+
 ### Undo changes to files in working directory git/more than one commit at once
 
 > git reset (can only work backwards from current commit)
@@ -177,6 +191,15 @@ $ git commit -c ORIG_HEAD                      # (4)
 ### Remove files from staging
 
 > git rm --cached \<index.html>
+
+### remove files not staged for commit
+
+![Alt text](image-3.png)
+
+> git reset --hard
+
+if you're sure you don't want to save the changes, otherwise stash them
+https://stackoverflow.com/questions/22424142/error-your-local-changes-to-the-following-files-would-be-overwritten-by-checkou
 
 # Grabbing Temote Branch
 

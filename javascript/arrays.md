@@ -17,9 +17,9 @@
 
 ## Create An Array
 
-### Array.from(arrayLike, mapFn, thisArg)
+### from a given length
 
-1. from a given length
+1. Array.from(arrayLike, mapFn, thisArg)
 
 ```
 Array.from( {length:n},
@@ -30,10 +30,8 @@ Array.from( {length:n},
 - \_ because the elements in our array are blank and not needed
 - in this example, we fill all those blank spots with the index numbers
 
-2. make an array of a specific size
-
 ```
-> Array.from (new Array(b-a+i),
+2. Array.from (new Array(b-a+i),
         //created as many blank slots as needed
 
                          (_, i)
@@ -43,7 +41,22 @@ Array.from( {length:n},
 
 ```
 
-3.  integer to array of integers
+1. [...Array(n)] Empty array
+
+```
+[...Array(n)].map((_,i)=>" ".repeat(n-1-i)+"*".repeat(i*2+1)+" ".repeat(n-1-i))
+```
+
+returns an Array of length n where each element is undefined, until mapped
+
+"by
+
+- deconstructing the empty array using spread syntax (...)
+- reconstructing the array with brackets,
+- you can easily convert [ <n empty items> ] into [n * undefined]
+- make an array of a specific size
+
+2.  integer to array of integers
 
 ```
 
@@ -58,7 +71,7 @@ function digitalRoot(n) {
 
 ```
 
-4. From a string
+3. From a string
 
 let goodLetters = "abcdefghijklm".split("");
 
@@ -86,7 +99,7 @@ n.toString(2)
 
 ## Sum to one value
 
-### Reduce Function
+## Reduce Function
 
 ```
 function squareSum(numbers){
@@ -96,7 +109,7 @@ function squareSum(numbers){
 }
 ```
 
-### Reduce Arrow
+## Reduce Arrow
 
 ```
 function squareSum(numbers){
@@ -106,7 +119,7 @@ function squareSum(numbers){
 }
 ```
 
-### Reduce, combining arrays
+## Reduce, combining arrays
 
 ```
 const arr1=[1,2,3,4,5];
@@ -125,6 +138,58 @@ ar[i] [1,4,9,16,25]
 arr2[i] [6,7,8,9,10]
 
 console.log(result);
+```
+
+## Reduce, pushing values into accumulator (an empty array)
+
+Array.reduce MUST return accumulator on every loop, since it will use the last value on the next loop
+
+so if you're checking for a trait you CAN"T tell it to ignore that cycle
+
+so in the following example, if check(item) returns false, then nothing gets pushed to the array
+
+so the accumulator will use this undefined value for the next reduce cycle, aka it will no longer be an array and fail
+
+```
+ERROR ACC.PUSH() IS NOT A FUNCTION
+return arr.reduce((acc,item)=>check(item)<=n&&acc.push(item)
+                              ,[])
+
+
+```
+
+### GOOD EXAMPLES
+
+push:
+
+```
+const deleteNthPush = arr.reduce((acc, item) => {
+    check(item)<=n&&acc.push(item)
+           //return must be on a new line, or we'll get an error
+           //the accumulator for next iteration will be the return value of the callback for the current iteration
+           //so  without return, it won't return anything
+           //so the second time that the callback is called without return, acc will be undefined
+    return acc
+          // return acc so it can be used in the next cycle
+},[])
+```
+
+concat:
+
+```
+return arr.reduce((acc,item)=>acc.concat(item)
+                              ,[])
+```
+
+```
+return arr.reduce((acc,item)=>
+{return
+                                     (check(item)<=n)?
+                                                 acc.concat(item)
+                                                 :acc}
+                              ,[])
+
+
 ```
 
 ## Replace values
@@ -148,6 +213,23 @@ createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0])
 ```
 return arrayList.filter(function(v)
        {return type of v =="number"})
+```
+
+### check an objects property, to determine what to filter
+
+```
+function deleteNth(arr,x) {
+  var cache = {};
+  return arr.filter(function(n) {
+    cache[n] = (cache[n]||0) + 1;
+    return cache[n] <= x;
+  });
+}
+
+// for each item in an array, in this example 21
+// cache["21"] = (whatever cache[21]'s previous value was or 0)
+// +1 since 21 occured again
+// return the item, 21, only if cache["21] <= 3, aka it occured less than or exactly 3 times
 ```
 
 ### Compare two arrays, use set.has() instead of Array.includes()

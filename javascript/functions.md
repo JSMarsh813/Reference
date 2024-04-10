@@ -153,3 +153,73 @@ function addBinary(a,b) {
   return ((a+b) >>> 0).toString(2);
 }
 ```
+
+# Controlling where "this" is pointing at/ Create a bond between a function and object
+
+https://www.youtube.com/watch?v=9eUe1-gLeKs
+
+Call, apply, bind are the same for passing an object as this, but they vary if you want to add extra parameters.
+
+## Basic use
+
+call/apply/bind says hey function your THIS == object I'm passing to you
+
+```
+const game ={
+  title: "sonic the hedgehog",
+  year: 1991,
+};
+
+function info(){
+    console.log(`${this.title} was released ${this.year}`)
+    console.log(this)
+}
+
+info.call(game)
+// tells function where to find the "this" object with the properties it needs
+// so it says hey, the game object is your "this" now
+```
+
+![Alt text](image-24.png)
+
+## call versus apply versus bind
+
+call
+
+- arguement values seperated by commas
+- can only use once, aka won't change the functions this forever
+
+apply
+
+- arguement values passed in an array
+- can only use once, aka won't change the functions this forever
+
+bind
+
+- arguement values seperated by commas
+- use forever, will change the functions this forever
+- if you try to bind a new object to the function, it won't work. Once bound, it will never consider another
+
+### call example
+
+```
+const game ={ ...}
+function info(platform,character){
+  ....
+}
+info.apply(game,"sega","sonic) <====PASSING HERE
+
+```
+
+### apply example
+
+```
+const game ={ ...}
+function info(platform,character){
+  ....
+}
+info.apply(game,["sega","sonic]) <===PASSING HERE
+
+```
+
+### bind example

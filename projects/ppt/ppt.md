@@ -530,3 +530,558 @@ Turns out for some buttons I had linked TO the text, not the button itself😂wh
 ![alt text](FlYrOv4akAA133F.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1609521939307167745 4:08 AM · Jan 1, 2023
+
+---
+
+Today started like this, and ended like this!
+
+Curious if anyone will remember what my avatar is from👀wink wink nudge nudge. Nothing like starting of the year with a dad joke😉
+
+![alt text](FlYs-yAakAA5hKx.png)
+![alt text](FlYtEE5aEAE07dl.jpg)
+![alt text](FlYtHWLaMAI6qGC.jpg)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1609524358372032513 4:18 AM · Jan 1, 2023
+
+---
+
+gotta love simple fixes!
+
+Noticed the grey space under some areas, so I simply set the height to the screen height. Fixed! 🎊
+
+![alt text](FldAFKWacAMJGi2.jpg)
+![alt text](FldAIy8agAQMblf.jpg)
+![alt text](FldAcMjaUAAiioA.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1609826417755435009 12:18 AM · Jan 2, 2023
+
+---
+
+Added a toast notification for when someone successfully and unsuccessfully adds a name
+
+![alt text](FldG-2IaEAAwMDg.jpg)
+![alt text](FldHCsTakAArTpW.png)
+![alt text](FldIW2dagAAbX0h.jpg)
+
+## Twitter Post Link: https://twitter.com/Janetthedev/status/1609835034978156544 12:52 AM · Jan 2, 2023
+
+Biggest issue I'm facing is to be able to access the session.user.\_id, so i can use the unique \_id for mongoDb queries
+
+Next Auth's getSession() only works on the CLIENT side NOT server side. so the session data can't be used to talk to mongoDB ☹️ unless I say AWAIT getSession()
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1609857840415657985 2:23 AM · Jan 2, 2023
+
+---
+
+I currently save the current user's id in localStorage but this is ALSO only client side (and security wise, isn't a good option)
+
+Thought over my options, and the best choice seems to be to use contextAPI and getSession (store user id so it can be used throughout the app)
+
+![alt text](FlddOGwacAIO493.png)
+![alt text](FlddokUaUAEj-Jh.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1609858935145795589 2:27 AM · Jan 2, 2023
+
+---
+
+so when the user logins in, I'll have it set up so that it saves the current user's Id in the context (storage for global state objects)
+
+When they sign out, it'll be removed from context
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1609859499258707976 2:29 AM · Jan 2, 2023
+
+---
+
+So far I know:
+
+1. Context object STORES the shared data
+2. Provider DELIVERS the context object when requested
+
+Creating the actual context itself seems dead simple! 🥳
+
+But I can feel my brain go numb whenever I try to figure out how to write the provider bit 🥴
+
+![alt text](FldfejXaUAEc_pI.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1609862959135879170 2:43 AM · Jan 2, 2023
+
+---
+
+huh seems I misunderstood the context API. Seems you have to declare the prop when you wrap something in <context.provider> . And my \_app.js page doesn't have access to session, only its children... so I can't place session in the context store?
+
+![alt text](Fld_48uakAAnpoQ.png)
+![alt text](Fld_-O8aAAMXFNi.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1609896163578372099 4:55 AM · Jan 2, 2023
+
+---
+
+hoping someone will see my question on the 100devs discord, looks like I might have to use Next auth's unstable_getServerSession after all? 🥴
+
+![alt text](FleAZBXakAYNrDp.png)
+![alt text](FleAf99aUAMXE0j.png)
+
+## Twitter Post Link: https://twitter.com/Janetthedev/status/1609896731600375808 4:57 AM · Jan 2, 2023
+
+Yeah as I figured, I can't access useSession in \_app.js, since \_app.js can't be wrapped in a <SessionProvider session={session}> 😭 Still tried anyway for the wild thrill of trying impossible things haha
+
+But confirmed that I got context to work with a normal string `:)`
+
+![alt text](FleF7V5aUAIXdQl.jpg)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1609902930702000128/photo/1 5:22 AM · Jan 2, 2023
+
+---
+
+Its times like these that I really LOVE💓 react!
+
+Look at that, ONE beautiful line which secretly carries two reusable components
+
+(MainChartComponent=54 lines and
+nameListing which is inside MainChartComponent = 70ish lines if the comments were taken out)
+🥰🥰🥰
+
+![alt text](FleO6BLakAEbJ5p.png)
+![alt text](FlePh2JacAQInug.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1609913421931376641 6:04 AM · Jan 2, 2023
+
+---
+
+Small achievement! 🎊
+
+Fixed the tags so when they show up there's a ", " between them 😁
+
+Laughed when I tried to do ".split().Join(", ")" before my brain clicked on. Braincell: "aayy this is an array not a string friend `:)`"
+
+![alt text](FleRfXMaYAAxGS3.png)
+![alt text](FleRnE7aYAAmOrK.png)
+![alt text](FleR3v3acAATe0Q.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1609916870056112129 6:17 AM · Jan 2, 2023
+
+---
+
+Success is mine! I could cry with joy and relief 🥺The put request for my likes features finally works!
+
+been slooowly working on it with any spare time I've had this week, and it finally paid off 🔥
+
+<video src="images/success_is_mine.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1611349214780624897 5:09 AM · Jan 6, 2023
+
+---
+
+For a sec I couldn't figure out why I couldn't get my mobile menu's text to center 🤔
+
+I had forgotten they were flexed, once that was removed it works!
+
+![alt text](Fl4CVLvaUAE1AS6.png)
+![alt text](Fl4CWVJaAAEyLQb.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1611728622100054016 6:17 AM · Jan 7, 2023
+
+---
+
+Was getting this error that what rendered was different than what the server had initially rendered
+
+realized it was because the tagList from the fetch only was grabbed AFTER the server had rendered the page.
+
+Once I told it to wait, no more error messages ~
+
+![alt text](Fl7HCfiaEAEMJn2.png)
+![alt text](Fl7HFFyagAAMoip.png)
+![alt text](Fl7HUYnaMAEdQKl.png)
+![alt text](Fl7H0v8acAIVRZj.jpg)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1611945493722181632 8:38 PM · Jan 7, 2023
+
+---
+
+the user who submits the new names id is now added to the name in the database!
+(I was having problems but then remembered getSession() has to be used on pages not components, so I passed the session as a prop)
+
+Descriptions can now be added as well
+
+<video src="images/the_user_who_submits.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1611994453430120449 11:53 PM · Jan 7, 2023
+
+---
+
+Is anyone familiar with next Auth sessions for next js? I'm trying to add the profile image data to my session and I can't get it to work🤔
+
+Below is my nextauth file, console.log, mongodb data and user model #SoftwareDeveloper #Nextjs #nextauth
+
+![alt text](FmM8zO6agAE8bH0.png)
+![alt text](FmM80x7aMAESMgO.png)
+![alt text](FmM82MsaMAAwp66.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1613201046473682947 7:47 AM · Jan 11, 2023
+
+---
+
+tried this and it didn't work either `:(`
+![alt text](FmM-RiPaEAAT7t7.png)
+
+## Twitter Post Link: https://twitter.com/Janetthedev/status/1613201592920190979 7:50 AM · Jan 11, 2023
+
+REPLY FROM Rawand Faraidun @rawandfaraidun https://twitter.com/rawandfaraidun
+
+try replacing the `callbacks` object with this:
+callbacks: {
+jwt({ token, user }) {
+if (user) token = user
+return token
+},
+session({ session, user, token }) {
+session.user = token
+return session
+}
+}
+
+Twitter Post Link: https://twitter.com/rawandfaraidun/status/1613989983915806722 12:02 PM · Jan 13, 2023
+
+---
+
+THANK YOU! That was it, words can't express my gratitude!
+
+You're a lifesaver
+
+![gif of spongebob bowing](https://media1.tenor.com/m/pJ-kOhx8dkYAAAAC/spongebob-worship.gif)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1614200418107797506 1:59 AM · Jan 14, 2023
+
+---
+
+alright so on postman my api, which gives a list of all names the current user liked works, but I'm still trying to get it to work in the actual app...
+
+![alt text](FmVxKVnaYAMnwwd.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1613820757137846275 12:50 AM · Jan 13, 2023
+
+---
+
+Got it to work! On the dashboard, now only the current user's favorite names show up!🥳
+
+![alt text](FmV_XbCaEAAKwqZ.png)
+![alt text](FmV_gLCaEAAzALp.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1613836487359098885 1:52 AM · Jan 13, 2023
+
+---
+
+Thanks to @rawandfaraidun (https://twitter.com/rawandfaraidun) I managed to fix my [...nextauth].js file so the session object will have the user's profile image link!
+
+now when I load session in getServerSideProps with unstable_getServerSession, I can grab the profile image before rendering even starts 🥳
+
+![alt text](FmboL6laAAI-4v2.png)
+![alt text](Fmbov1haYAQRj8C.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1614234032044396544 4:12 AM · Jan 14, 2023
+
+---
+
+Made it so if a user goes to the dashboard when not logged in, they'll be automatically redirected to the login page.
+
+useRouter() is a bit of an odd one, it doesn't work unless I stuff it in a useEffect, because it only works on client side.
+
+![alt text](Fmbpf2AakAABtd8.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1614234667666010112 4:15 AM · Jan 14, 2023
+
+---
+
+Finished my component with the rank titles!
+
+If they have more points than 40, then it defaults to the "A good Pupper title".
+
+Was confused for a hot sec until I remember to do Math.floor! (so 1.2 ect becomes 1) All those codewars memories are flooding back to me
+
+![alt text](FmbrK9faYAInSYf.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1614236185429250050 4:21 AM · Jan 14, 2023
+
+---
+
+I put the rank names component into the dashboard page. So it automatically adjusts the title, based on the users current number of points (treats)
+
+![alt text](FmbrjQjakAAETcf.jpg)
+![alt text](Fmbr0bPacAE4Gqc.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1614236826302287872 4:23 AM · Jan 14, 2023
+
+---
+
+I'm going to have the user's name and profile image load in ServerSideProps, so theres no delay.
+
+However components can't use ServerSideProps, so I'll need to pass them as props to the layout from EACH page that calls it ...
+
+I'll fight with that tomorrow
+
+![alt text](FmbsDMHakAEkFjN.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1614238710152957954 4:31 AM · Jan 14, 2023
+
+---
+
+🙌 fixed the header so it grabs session from serversideprops
+🙌 did a few small edits
+🙌 Started working on making it possible for users to upload profile images with cloudinary, I got to the highlighted part tonight. Giving my brain a break for now 🥱
+
+![alt text](FmgMWMraEAQnfcI.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1614554408490250241 1:25 AM · Jan 15, 2023
+
+---
+
+My intention was to relax but, ended up started on the social area of the app (batsignal/playyard) 😂
+
+Users can ask the community for suggestions for names, pet descriptions, fundraisers, ect or just show off images of their pets
+
+<video src="images/my_intention_was_to_relax.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1614589714857877509 3:46 AM · Jan 15, 2023
+
+---
+
+🐤worked a tiny bit on integrating cloudinary
+🐤Started on the filtering system for the posts
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1614973965583421440 5:12 AM · Jan 16, 2023
+
+---
+
+users can now upload profile image to cloudinary and have it replace the profile image in their mongoDB user document!
+
+Wanted to use the widget but its extra broken for function components rn😅Look at all those error messages in that second sandbox
+https://support.cloudinary.com/hc/en-us/artic
+
+![alt text](FmrB68yakAAdYWr.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1615316730309660672 3:54 AM · Jan 17, 2023
+
+---
+
+Temporarily have a cool cat😎😼as a profile picture, eventually I'll go back to the turtle duck!
+
+![alt text](FmrEo1AaMAAxep6.jpg)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1615320136805937155 4:08 AM · Jan 17, 2023
+
+---
+
+Was confused why I had 2 toast containers for a moment, then remembered there was another in the nav bar!
+
+so I got rid of the one in the nav bar for now. Phew, nice easy fix.
+
+![alt text](FmrF2jsaMAAB6zS.png)
+
+![alt text](FmrF4l8aUAchB6B.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1615321177769259009 4:12 AM · Jan 17, 2023
+
+---
+
+time to de-uglyify this bad boy and reword some things (uploading avatar section)
+
+![alt text](Fmtd_BPacAABhAa.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1615488312789340161 3:16 PM · Jan 17, 2023
+
+---
+
+When styling I found out file input is a bit picky, it needs to be onCHANGE not onCLICK. If its switched to onClick, clicking it will do nothing (it will give back undefined)
+
+![alt text](FmtxqB5acAA5M9x.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1615510358525120512 4:44 PM · Jan 17, 2023
+
+---
+
+Looks MUCH better!
+
+Also used state to decide when the upload button is disabled and what it looks like
+
+<video src="images/looks_much_better.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1615527956180504577 5:54 PM · Jan 17, 2023
+
+---
+
+Added a quick image too ~
+
+![alt text](FmuLExPaMAA7J_j.jpg)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1615537955862609922 6:33 PM · Jan 17, 2023
+
+---
+
+Future users on smaller screen sizes/mobile rejoice!
+
+I made a toggle button so the user can get rid of the filter menu if they want!
+
+(I'll be changing that banner later, the text on top of the image is mild torture for the eyes rn, but eh, future me will take care of that 😂)
+
+<video src="images/future_users_on_smaller.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1615546973695934464 7:09 PM · Jan 17, 2023
+
+---
+
+aaah so satisfying, its the little things in life ☺️
+
+I imported a component and replaced all the class= with className= with one simple button click!
+
+![alt text](Fmux-Z4agAUXpoY.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1615580915241226240 9:24 PM · Jan 17, 2023
+
+---
+
+Made progress on the front-end side of things on the community area!
+
+Was struggling to get the buttons to center until I stumbled across a tip online to use text-center on its parent component
+
+<video src="images/made_progress_on_the_frontend.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1615678479303077888 3:52 AM · Jan 18, 2023
+
+---
+
+two of my pages keep making fast refresh do a full reload... not looking forward to debugging that ugh
+
+![a charmander surrounded by 2 bushes, when he uses a waterbucket to put out the fire in one bush the other one catches fire because of his tail](https://tenor.com/view/debugging-is-like-debuggining-charmander-charmander-putting-out-fire-pokemon-gif-16297751)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1615683520839716864 4:12 AM · Jan 18, 2023
+
+---
+
+Fixed the full reload bug! the page's function component needed to be capitalized😂🤦‍♀️
+
+Also fixed mobile view for the posts page! One of the components had been set to width max instead of width full.
+
+<video src="images/fixed_the_full_reload_bug.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1615902005570203648 6:40 PM · Jan 18, 2023
+
+---
+
+Added a footer, which decided to float on one of my pages!
+🤪
+Found out it was because one of the divs was set to h-screen, so it wasn't resizing to the content. Even though visually it had looked fine.
+
+Removing that height fixed it!💪
+
+![alt text](Fmzhzw9agAA9Ke4.png)
+![alt text](Fmzh1kCaMAY5WTM.png)
+![alt text](Fmzh3rwaAAEfRC8.png)
+![alt text](Fmzh6_xacAAqeii.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1615914868472942597 7:31 PM · Jan 18, 2023
+
+---
+
+Got most of the post upload bits done!
+
+- Model created,
+- states created to store values,
+- attached state to form behavior,
+- finished cloudinary upload logic,
+
+now to finish the logic for uploading the new post to mongoDB
+
+<video src="images/got_most_of_the_upload_bits.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1616007573588828161 1:40 AM · Jan 19, 2023
+
+---
+
+################## CAN"T VIEW PAST MARCH 12th????? ##################
+https://twitter.com/search?q=(from%3Ajanetthedev)%20until%3A2023-03-31%20since%3A2023-01-01%20&src=typed_query&f=live
+
+---
+
+🐢fixed share links so they no longer use localhost but instead grab the correct url from the env
+🐢fixed next image issues
+🐢improved filtering, so it doesn't flash at the user. Ended up being a dead simple fix that hit me as a random epiphany while showering
+🐢changed headers!
+
+![alt text](FrCDuIracAAyR6T.jpg)
+![alt text](FrCFcJCagAITBBG.png)
+
+Main pages have the same background image (thanks everyone who commented on the poll earlier for this!)
+
+Pages for one specific item (ex: one name) I've decided to get rid of the header for
+
+💫test everything to double check if everythings working, especially as a signed out user
+💫 considering adding swr to the mvp, I was going to wait to implement it until later, but it really bugs me to not have this set up
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1634953439758389249 9:24 AM · Mar 12, 2023
+
+---
+
+Think I may of turned into a bear for real, these two days off i've basically just been sleeping! aka waking up for a few hours, and then sleeping again.
+
+Don't think i've ever slept this much, fam was checking on me to make sure i was alive
+
+![man flying through sky and text says winning GIF](https://media2.giphy.com/media/3ohryhNgUwwZyxgktq/giphy.gif?cid=6c09b952ixdl917uuft3nkccxz08fcwinu330as0bu83046u&ep=v1_gifs_search&rid=giphy.gif&ct=g)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1636649948510048256 1:45 AM · Mar 17, 2023
+
+---
+
+Almost have swr to work but its being stubborn, I'm following the doc example but i'm confused why its loading all the names instead of just 10 at a time 😅ugggh so close!
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1636768832068161537 9:37 AM · Mar 17, 2023
+
+---
+
+Couldn't get it to work with a true infinite scroll (aka grabs 10 more pieces of data when you scroll down). But I've got it to work with a load more button and it plays nicely with my filtering, after lots of fine tuning! 🎊
+
+Though now it doesn't automatically show new data 🙃
+
+So I figured out I can revalidate/mutate the data when the user clicks, so they'll get any new data without having to refresh the page.
+
+Although I'd be nice to automatically have new names pop up, I worry having mutate run constantly would be too resource intensive 🤔
+
+![alt text](Frg9LjhaYAAJ2pe.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1637111512778309637 8:19 AM · Mar 18, 2023
+
+---
+
+REPLY from Adam Morsa https://twitter.com/RamblingAdam
+
+If your mutate function is running too often, you could either throttle its execution, or debounce it!
+
+This article is discusses functions that run on window resize, but you could definitely adapt the technique for your purposes!
+
+Twitter Post Link: https://twitter.com/RamblingAdam/status/1637189718491160576 1:30 PM · Mar 18, 2023
+
+---
+
+Thinking about making it so users can personalize how many names ect they want to show on each page.
+
+And they can give a page number, so they can jump back and forth through their filtered list 🤔
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1637137770035679232 10:03 AM · Mar 18, 2023
+
+---
+
+Been squeezing in tiny bits of code here and there, since i've been extra tired from getting that bread/working 😪
+
+But I made some progress on pagination! I had to make it from scratch because of my apps filtering system & because I didn't want to overtax my free mongo account🎊
+
+Ideally I would of liked to make a "real" pagination, where we know exactly how many items match the filters/know how many pages there are. Aka, filtered on mongodbs side before starting swr/grabbing the data in bunches.
+
+But that would require users submitting a new mongodb request EVERY time they change their filters.
+So instead, users will get the data from mongodb, and the page numbers will increase the further along they go, until the server tells us "I got nothing!". Filtering is done client side, to avoid extra requests
+
+Going to move the pagination logic into a component, then add it to the bottom as well so the user won't have to scroll alllll the way back up
+
+Then its time to add the pagination && swr to the description listings and community areas of the site
+
+<video src="images/been_squeezing_in_tiny.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1638266915868254208 12:50 PM · Mar 21, 2023
