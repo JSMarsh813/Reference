@@ -1911,9 +1911,220 @@ now to do the same for the descriptions, and then its time to deploy and test ev
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1631653284170842119 5:50 AM · Mar 3, 2023
 
-####################################
+---
 
-####################
+Fixed a thing!
+
+My text was coming back correctly with its formatting information (/n) but it wasn't showing in the browser.
+
+After a decent amount of googling (it was weirdly hard to find the right words!), I figured out it was a html thing and was able to fix it w/ tailwindcss
+
+![alt text](Fqdjt6MacAAwd-y.png)
+![alt text](Fqdj44baQAAou8D.png)
+![alt text](FqdkVRxaEAI8okL.png)
+![alt text](FqdkZ5ZaYAEDKRJ.png)
+
+Heres some of the links that helped me figure out how to handle getting the /n formatting to show ! https://stackoverflow.com/questions/29608841/how-do-i-store-display-paragraphs-with-mongodb
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1632383852491702272 6:13 AM · Mar 5, 2023
+
+---
+
+Moved the edit/delete buttons around to things mesh better. Figured I'd rather have them arranged like a spaced out triangle, so its a little harder to accidentally click on the wrong button.
+
+![alt text](FqdnqCxaUAAQx3l.png)
+![alt text](FqdnvHMaEAEARfU.jpg)
+
+changed the text to be a slightly more subtle yellow, so hopefully it looks sliiiightly better
+![alt text](FqdogkpaUAEh8Uc.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1632387814049587206 6:29 AM · Mar 5, 2023
+
+---
+
+🐸did some project work when I got home, ended up deciding to redo the layout for descriptions since I'm going to allow longer descriptions
+I'm soooo close to finishing the 1st version of the site, I wish I had more time to work on it uuuggh 🥲
+🌶️no anki/banki
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1632390735092928512 6:40 AM · Mar 5, 2023
+
+---
+
+🐊Worked (got my 2nd break/anki time today! huzzah)
+🐊did a TINY bit of project work (just changing the visuals a little bit). Alas, as much as I want to work on it more I've got to sleep 🥲
+
+![alt text](Fqh-OObaAAEcUKs.jpg)
+![alt text](Fqh-RGVaAAAEfH0.png)
+
+Did another small visual adjustment, was a bit of a pain to get the flex to do exactly what I wanted. But I was victorious in the end! 🔥
+
+![alt text](FqiIvv8aMAAze24.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1632693995875995649 2:45 AM · Mar 6, 2023
+
+---
+
+🐸did anki during work breaks today and yesterday
+🐸did a little bit of project work before going into work at 8pm
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1633463441003511812 5:43 AM · Mar 8, 2023
+
+---
+
+Finished with the description tags!
+
+But now i'm going back and adding a "related names" section for descriptions, so users can easily find descriptions that are tailored to specific names
+
+https://twitter.com/Janetthedev/status/1633733753301512192 11:37 PM · Mar 8, 2023
+
+---
+
+Did more project work! Decided instead of saving the tag directly ex: "dog". I'm saving the tag ids to the listings, and then using a populate to get all the information.
+
+This way if the tags change, the filter option will still work, since the tags will update automatically
+
+![alt text](Fqx8-NVaAAILfYQ.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1633818776260218883 5:15 AM · Mar 9, 2023
+
+---
+
+🐸Did more project work (slowly, very slowly inching closer) 🐌
+🐸Played a little bit of ff14
+🌶️no anki
+🐸caught up on sleep
+
+tomorrow:
+💫fix name/description listing deletion
+💫fix description edit button
+💫take the inspiration menu option off the nav, since I combined that idea with the description section
+💫play some ff14
+❓ gym/walk on treadmill?
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1633819699975954433 5:19 AM · Mar 9, 2023
+
+---
+
+Got it mostly working on vercel! However when I try to load the dashboard page and profile page I'm getting this error 🤔
+
+https://github.com/JSMarsh813/PetProfileTailor/blob/main/pages/dashboard.js
+https://nextjs.org/docs/messages/client-side-exception-occurred
+
+I'll fight with it tomorrow
+
+![alt text](Fq28YucakAAXYY_.png)
+![alt text](Fq29QesaYAE9BmU.png)
+
+uh the profile page is working now suddenly? still no luck with the dashboard though hmmm
+
+or it was working, went i went back to it again, the profile page flashes and then that error message appears (smiling face with a tear)😂
+
+even though getServerSideProps is working fine on other pages, I have a feeling this is because I was naughty and basically calling the internal api 🙈
+
+Tomorrow I'll copy over the parts of the api i need, like the documentation says to, and see if it likes that better
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1634173205991813126 4:43 AM · Mar 10, 2023
+
+---
+
+Slowly but surely making progress on debugging my next.js app!🫠
+Moved the api logic into the getServerSideProps and oddly, I have to use JSON.Parse(JSON.Stringify()) to get the prop to pass correctly
+
+Found the perfect thread for my issue
+https://stackoverflow.com/questions/72176573/object-object-object-cannot-be-serialized-as-json-please-only-return-js
+
+> REPLY
+> Joe Prisk @jeprisk
+> object Object might be getting logged because console.log returns a string value, you could try console.log(JSON.stringify(data)) to see the full payload
+
+Thanks Joe for taking the time to offer some help!
+
+My bad I should of clarified the bit of the question I was looking at was for the returned props, not the console.log. I need to use JSON.parse(JSON.stringify()) for it to be passed correctly, otherwise I get a client error.
+
+Twitter Post Link https://twitter.com/Janetthedev/status/1634401162161197056 7:49 PM · Mar 10, 2023
+
+---
+
+🐸Moved most of the api logic into getserverside props
+🐸 managed to replace most imgs with Next Image...and now i understand why so many people hate next image (for 12 not 13) 😭
+🐸 added more alt tags
+🐸 deleted used variables, notes ect
+
+almost done (for the mvp version anyway) 🫠!
+Need to:
+💫fix a few errors
+💫change the related name input for descriptions, so the user can enter any names rather than selecting from existing names. It works for now, but grabbing a list of EVERY name would be unweildly eventually
+
+I'm thinking about removing the repeating image banners, but I'm not sure yet 🤔
+![alt text](Fq8fPHRaEAAkIKE.jpg)
+
+This image is misbehaving juuuust a wee bit 😂Its grown to powerful with the power of next image!
+
+ngl i cackled coming across this ridiculous error
+
+<video src="images/moved_most_of_the_api.mp4" width="320" height="240" controls></video>
+
+Rejoice! the dino gif has been contained already, it was a nice escape attempt though I got to admit 😉
+
+![alt text](Fq8jGMCaMAImIYm.png)
+
+Twitter Post Link https://twitter.com/Janetthedev/status/1634556497287086082 6:06 AM · Mar 11, 2023
+
+---
+
+Hoping to borrow some of your big brains!
+
+For the headers do you think it'd be better to
+
+1. keep the repeating images
+2. replace all header images with the one used in the dashboard
+3. leave it blank
+   🤔
+
+![alt text](Fq8l6lqaAAAHe0y.png)
+
+Here's a poll for those who prefer them:
+
+Keep the repeating image (0%)
+use the dashboard image (72.7%)
+leave it blank (27.3%)
+
+> REPLY
+> Jeremiah @acesupmedia
+> Leaving it blank may look nice and also make it easier for testing responsiveness on different screen sizes ☺️
+
+Very good point! And thanks Jeremiah taking a look and giving feedback, I might leave it blank for a few pages 😁
+
+> REPLY
+> Adam Morsa🏕 @RamblingAdam
+> Dashboard image 100%!
+
+Thanks adam for taking a look, super appreciate it! Looks like the dashboard image is the winner 🔥🔥🔥😁
+
+Thanks everyone for the feedback! You'll all appreciated ❤️ looks like the dashboard image wins!
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1634567376040787968 6:50 AM · Mar 11, 2023
+
+---
+
+🐢fixed share links so they no longer use localhost but instead grab the correct url from the env
+🐢fixed next image issues
+🐢improved filtering, so it doesn't flash at the user. Ended up being a dead simple fix that hit me as a random epiphany while showering
+🐢changed headers!
+
+![alt text](FrCDuIracAAyR6T-1.jpg)
+![alt text](FrCFcJCagAITBBG-1.png)
+
+Main pages have the same background image (thanks everyone who commented on the poll earlier for this!)
+
+Pages for one specific item (ex: one name) I've decided to get rid of the header for
+
+💫test everything to double check if everythings working, especially as a signed out user
+💫 considering adding swr to the mvp, I was going to wait to implement it until later, but it really bugs me to not have this set up
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1634953439758389249 9:24 AM · Mar 12, 2023
+
+---
 
 🐢fixed share links so they no longer use localhost but instead grab the correct url from the env
 🐢fixed next image issues
@@ -1984,6 +2195,8 @@ Been squeezing in tiny bits of code here and there, since i've been extra tired 
 
 But I made some progress on pagination! I had to make it from scratch because of my apps filtering system & because I didn't want to overtax my free mongo account🎊
 
+<video src="images/been_squeezing_in_tiny.mp4" width="320" height="240" controls></video>
+
 Ideally I would of liked to make a "real" pagination, where we know exactly how many items match the filters/know how many pages there are. Aka, filtered on mongodbs side before starting swr/grabbing the data in bunches.
 
 But that would require users submitting a new mongodb request EVERY time they change their filters.
@@ -1993,6 +2206,150 @@ Going to move the pagination logic into a component, then add it to the bottom a
 
 Then its time to add the pagination && swr to the description listings and community areas of the site
 
-<video src="images/been_squeezing_in_tiny.mp4" width="320" height="240" controls></video>
-
 Twitter Post Link: https://twitter.com/Janetthedev/status/1638266915868254208 12:50 PM · Mar 21, 2023
+
+---
+
+Pagination is now in its own cozy and private component. Its also now on the top and the bottom 🥳
+Progress!
+
+Now time to roll back into bed for a before-work nap 😴
+
+<video src="images/pagination_is_now_in.mp4" width="320" height="240" controls></video>
+
+> REPLY
+> Adam Morsa🏕 @RamblingAdam
+> Custom pagination! Super cool. Good way to limit Mongo traffic. Nice work Janet!
+
+Thanks adam means a lot coming from you! my fellow 300+ hour long "100 project" friend😉
+
+---
+
+I was going to sleep but then noticed huntober standup going on 👀its been months since I was able to catch one! I've missed hearing leons voice so much and seeing the community hyping out in chat!
+
+Also ended up working on pagination more, cause I just can't stop myself 😂
+
+<video src="images/i_was_going_to_sleep.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1638291369717547009 2:27 PM · Mar 21, 2023
+
+---
+
+alright time for bed for real this time!
+
+But looks like all thats left for the project is:
+
+- adding pagination and swr to the community section && description
+- bug hunting!/testing
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1638311276068888580 3:47 PM · Mar 21, 2023
+
+---
+
+Finally fixed the bug that made me want to punt my code off a cliff!
+
+The width wasn't being respected (see how the div with the white border respects it, but the one in red doesn't)
+
+The reason? a very long "word" from a hyperlink!
+Fixed it by telling it to break-all
+
+<video src="images/finally_fixed_the_bug.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1638858527568719873 4:01 AM · Mar 23, 2023
+
+---
+
+Managed to find a way to make this image bow to the users' will! aka found a way to make a Next JS image to be responsive
+
+<video src="images/managed_to_find_a.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1638930568795815939 8:47 AM · Mar 23, 2023
+
+---
+
+Wow, it doesn't feel real to say but, swr and pagination is done for the main pages!
+Eventually I'll want to add it to the profile pages/ect but got to leave some things to future me haha
+
+<video src="images/wow_it_doesnt_feel_real.mp4" width="320" height="240" controls></video>
+
+Now its just a matter of checking for bugs and deleting the dummy data from the database 🥳
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1638932784155869187 8:56 AM · Mar 23, 2023
+
+---
+
+youtube.com/watch?v=qkdyum3L-kg&ab_channel=SanjayTechNPet Not me seeing how short this is and being tempted to add chatgpt to petProfileTailor😂
+
+that way if the user submitted names and descriptions aren't cutting it, they can use it as a backup.
+
+But! no, saving that for the maybe future
+
+![family guy image of their white dog hitting peter with a newspaper](https://media1.tenor.com/m/giUeDzyB41MAAAAC/no-no-newspaper.gif)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1638942533408673792 9:35 AM · Mar 23, 2023
+
+---
+
+Alas! Figures deployment wouldn't go without some hitches 🥲 not sure why its giving me 500 when it works perfectly in the dev build?
+
+and its showing me the message that pops up when the swr api file has been found...so its managed to get inside the right file?
+
+<video src="images/alas_figures_deployment.mp4" width="320" height="240" controls></video>
+
+this is such a weird error to me... running the dev and build locally work fine? But when deployed, i'll see all the data load and then woosh, theres 500 and client side errors?
+
+![alt text](Fr7InLpaUAAUoRO.png)
+
+the error isn't with swr infinite, since the error returned undefined.
+
+Mongodb access is for all IPs (0.00 ect). Also its accessing the correct api file, since it shows the console.log at the start of the doc
+
+not sure why the deployed version keeps getting 500 errors?? 🥴
+
+removed everything besides logging the various forms of the data
+
+weird that its getting nothing back when in production mode 🤔triple checked my env variable and its correct with what i have in vercel...
+
+![alt text](Fr7UHHZagAAUxJs.png)
+![alt text](Fr7UJ9eakAASwQO.png)
+
+okay phew looks like i'm not insane! for some reason the production mode doesn't like the populates? (why is it always populate 😂)
+![alt text](Fr7U7onaAAARn-n.png)
+
+My life as a dev in a nutshell 😂
+![alt text](Fr7VbyKacAEKwlg.png)
+
+Alright, trying to add one of the populates back. Added the model it needs to find at the top, in case we're running into THAT issue again 🙄
+![alt text](Fr7WJoOakAIVScM.png)
+
+flashed as undefined for a second but then figured itself out, time to add the second populate back
+![alt text](Fr7W0i-acAM8CEY.png)
+
+IT WAS POPULATE! Ugghhhh, my nemesis returns.
+
+I had to add the models populate will use, since .populate() is a dumb little gremlin that is easily lost 🙃
+
+![alt text](Fr7XlbNaQAAjq2f.jpg)
+![alt text](Fr7Xp5BaUAACqfa.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1638984856574230528 10:42 AM · Mar 23, 2023
+
+---
+
+alright now that the populate bug is defeated (again 🙃), time to sleep then hunt for some bugs && clear out the dummy data!
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1638986900278226944 12:31 PM · Mar 23, 2023
+
+---
+
+Ended up adding sorting, because why not be an overachiever! 😂
+
+sadly sorting by likes/popularity looks like it'd be more complicated than just comparing the likedby property lengths, so alas maybe one day.
+
+<video src="images/ended_up_adding_sorting.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1639096488394641408 7:47 PM · Mar 23, 2023
+
+---
+
+<video src="images/been_squeezing_in_tiny.mp4" width="320" height="240" controls></video>
