@@ -1487,15 +1487,433 @@ But eh, I decided screw it. Users can use the magic link to login and go to edit
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1622931386033389569 4:12 AM · Feb 7, 2023
 
-##
+---
 
-##
+> Meg @megfdev
+>
+> Do you like suffering? Why not try getting your react form to accept your img file path from the input, send that off to cloudinary to do whatev it needs to do, get that img url back n add that to the post request with the other form data and send that to your DB without an error
+>
+> https://twitter.com/megfdev/status/1623184981873885193 9:00 PM · Feb 7, 2023
 
-##
+My Reply:
+Oh hey! a pain i know all too well :D we're twinsies in suffering! Here's how I bound cloudinary's power to my will in my project
 
-##
+![alt text](FobrjeRagAIHFac.png)
+![alt text](FobrtyzaEAEsvRo.png)
+![alt text](FobrwbLaYAAK4Ai.jpg)
 
-##
+the general code https://github.com/JSMarsh813/PetProfileTailor/blob/adding-edit-and-deletion-capabilities-to-comments-and-names/components/AddingNewData/AddPost.js  
+my api https://github.com/JSMarsh813/Pet
+
+> Janet! Sorry just one question but in your controllers on the server side, in your .create() does your object include a key for the image url and the cloudinaryId?
+
+My Reply: For my app, I just stored the url in a variable because its all I needed.
+But most people do end up using the public_id from my understanding.
+You could have imagefromcloudinary store the entire data object, then take use the keys "url" and "public_id" to take out what you need
+
+![alt text](FohMevIaYAA-tow.png)
+
+---
+
+Finished adding the deletion option for names! And had a 🤯 moment and realized I could easily turn it into a reusable component for all items.
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1623288655564648448 3:52 AM · Feb 8, 2023
+
+---
+
+Was having a hell of a time updating my data for filtering names. Ex: Category: "Gender" Tags: Unisex, male, female.
+
+So I wanted to split it into 2 collections, a category and a tags collection
+
+So the category populate tags based on their objectID. But no matter how I tried
+
+![alt text](Fo2SpCPaIAAYKvT.jpg)
+
+mongodb REFUSED to work with the individual tags collection. Yet It worked with the user collection easily!
+So created a new model and it works🤷‍♀️
+
+maybe since I didn't use a plural name ("NameTag" not "NameTags")?
+
+I had tried every casing w/ the old model so it shouldn't be that
+
+![alt text](Fo2UQitaQAA3yOf.jpg)
+
+Annnndd after killing and restarting the development server it now doesn't work 😂(smiling face with tears)
+
+why are you like this???
+
+Glad my paranoia paid off I i did this before posting this update on linkedin
+
+It was working again when I briefly switched to the user model, then back to the NameTag model .... but once I killed and restarted the development server its returning {} when populate is run. Aka not working
+WELP time to sleep. I'm now more confused than ever (smiling face with tears)
+
+![alt text](Fo2g1G-aMAEkWrX.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1625116999729942528 4:57 AM · Feb 13, 2023
+
+---
+
+🐢fought with my project when I got home, thought we came to a truce. But! alas, mongodb decided to go the ol' julius caesar route, et tu mongodb 🥲
+🐢 went to work
+🦀 no anki
+
+the last few days at work have been busy, so not much time for much, other than sleeping and working
+
+## Twitter Post Link: https://twitter.com/Janetthedev/status/1625134363645206529 6:06 AM · Feb 13, 2023
+
+Posted this to the 100devs discord, hopefully someone will have an idea why mongoose's populate() is being so funky 🥴
+
+"Hey everyone o/ happy valentines day! Speaking of valentines, I'll love you forever if you manage to help me solve this annoying mystery ;). Corny jokes aside, I've tried messing with mongoose's populate for hours but I'm having no luck. I'm trying to populate my namecategories collection's TAGS property, with TAGS from my tags collection.
+
+However, it seems like something must be wrong with the tags collection, because populate works perfectly with my users collection, but returns an empty object when I use my tags collection???
+
+Tried:
+
+1. dropping collections for name categories and tags in mongodb and recreating them by creating new apis and new models, and submitting the new data to the api.
+
+2. Dropping the tags collection and trying different names for the tags collection (NameTags, IndividualTags)
+
+3. adjusting wording in the models, ect
+
+Its so weird that it works perfectly with the users collection but it hates any version of the tags collection I've tried?"
+
+![alt text](Fo8qgMDaMAAKTNJ.jpg)
+![alt text](Fo8qjZ3aAAABcXK.jpg)
+![alt text](Fo8ql8waAAUDcAk.jpg)
+
+I could return to the old school route of manually typing the tags to the collection in mongodb.
+
+Or create an api which submits a put request to the name categories collection to add tags
+
+But this seems like the most professional solution? And its ALMOST working uggghhh
+
+update in case someone stumbles across this thread later: https://twitter.com/Janetthedev/status/1626464366886518784 (unlikely with twitters algo but juuuust in case)
+
+> REPLY (user deleted their account, but I was replying to something here)
+
+Knew there was something I forgot to mention! I started out by using ref in my schema but it didn't work either.
+
+So I ended up using this as an alternative, since it was easier to switch between the user and tag model for troubleshooting
+
+Thanks though for the suggestion
+
+![alt text](Fo9UwaXaIAARnRP.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1625564893570306048
+
+---
+
+Thiiink i figured out the issue with populate! looks like it might be a nextjs specific bug, I'll mess around with it more tomorrow to confirm then i'll reply to everyone and post about it
+
+In the meantime, HUGE thanks to everyone who passed around my question and offered ideas!
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1626208623570616320 5:15 AM · Feb 16, 2023
+
+---
+
+slept 12 hours 😂
+
+now time to confirm the fix i found yesterday still works!
+
+eyyy it still works huzzah! Going to explain what happened in a blog post since it'd otherwise turn into hellishly long twitter post thread 😂
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1626433068792971264 8:07 PM · Feb 16, 2023
+
+---
+
+Victory is mine! Found out why populate wasn't working in next js! 😤
+
+I had to import the model we're using to populate the objectId (nametags in the case)! 🤷
+
+Wrote it out in detail here if you're curious
+
+https://dev.to/janetthedev/using-mongooses-populate-in-nextjs-4jof
+
+---
+
+started working on descriptions! I've got the models set up and the basic apis
+
+tomorrow I've got some errands to run then I can maybe work on the fetchdescriptions page
+
+![alt text](FpKhaNlaEAAHykp.jpg)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1626539978149994496 3:12 AM · Feb 17, 2023
+
+---
+
+Huh, I finished the description area in a day 😳?! Wow, All the CRUD features work already? guess I am learning after all😂
+
+welp time to review the to-do list again
+
+![alt text](FpPIdJBX0AEF6wJ.jpg)
+![alt text](FpPIzJkXwAcwyPA.png)
+
+Okay so next I'll focus on
+
+1. Profile page: adding the descriptions the user has added to their profile page
+2. Points system: adding the descriptions likes and added descriptions to the points system
+3. Dashboard: adding liked descriptions to the dashboard
+
+done! I suppose the next main things to focus on will be
+
+1. making a single page for each description
+2. sharing
+   🤔
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1626864852114325506 12:43 AM · Feb 18, 2023
+
+---
+
+Finished the individual pages for descriptions!
+
+Now that its 4am 🤪time to sleep and get ready for a week of work
+
+![alt text](FpP-tjWWcAA-fBi.jpg)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1626924140274888710 4:38 AM · Feb 18, 2023
+
+---
+
+Huh letting users share links by clicking a button, which automatically copies the link to their clipboard is easier than I thought!
+
+I already had the individual pages set up, so I just had to follow the instructions here!
+
+https://medium.com/nerd-for-tech/how-to-add-copy-to-clipboard-functionality-in-a-reactjs-app-45404413fdb2
+
+<video src="images/huh_lettings_users_share_links.mp4" width="320" height="240" controls></video>
+
+I still have to add a toastify popup that says its copied to clipboard.
+
+And I want the share links section to pop up when the share button is clicked, but good progress for now!
+
+![alt text](FpVDzCEaMAEUhM1.png)
+![alt text](FpVD5ehaAAAWx7O.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1627281310212575233 4:17 AM · Feb 19, 2023
+
+---
+
+Did some more work on the shares area!
+
+Ended up not adding facebook messenger since the appID ect process was starting to be a pain, and I don't think it would add much value anyway 🤷‍♀️
+
+Now to make it into a reusable component!
+
+<video src="images/did_some_more_work_on_the_shares.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1627650479156264965 4:44 AM · Feb 20, 2023
+
+---
+
+Finished the followers/following function today and other edits. man am i wiped but I'm one step closer to finishing the mvp!
+
+<video src="images/finished_the_followers.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1628733325950214144 4:27 AM · Feb 23, 2023
+
+---
+
+Started to add a function to let a users check if a name exists before trying to add it
+But its almost 5am! time to sleep and battle with it again tomorrow😴
+
+![alt text](FppvKx1aQAEypmL.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1628736548668866560 4:40 AM · Feb 23, 2023
+
+---
+
+🐍Did lots of project work, I feel like i'm getting SO close to finishing the mvp! So its hard to take breaks but I know I will need to soon, before I go cross eyed/lost my sanity 🥴
+🦀 didn't work out
+🦀 didn't do anki/banki
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1628736974235521025 4:42 AM · Feb 23, 2023
+
+---
+
+Funny how its the small features that end up being a pain 😂
+but I'm victorious! The check if a name exists feature now works!
+
+<video src="images/funny_how_its_the_small.mp4" width="620" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1628980564744364032 8:50 PM · Feb 23, 2023
+
+---
+
+Figured out how to push object ids into a documents comments array in mongodb!
+
+buuut then I remembered that .populate will fail since some of my name documents arrays will be empty 🥲
+
+So I have to scrap it, well learned something new anyway
+
+![alt text](FpurSCWaAAAdCsJ.png)
+
+So I'll end up doing the same workaround as I did for the posts page.
+
+So the namelisting will call on an api to fetch all comments with that have its nameid, on rendering (thus the useEffect)
+
+![alt text](Fpuuq7paIAAzkav.png)
+
+sweet so the fetch in each component is working, now I just have to map through them and display them
+
+![alt text](FpuxNaZakAET_KA.png)
+
+Alright so now each one shows!
+
+Phew that's enough for tonight. Later I'll just need to make it possible for users to reply to the comment for the name, like I did for posts, and it'll be done
+
+![alt text](Fpu2An4aUAA6HD6.jpg)
+
+> REPLY mattie.eth @EthMattie
+> You should consider using a code formatter. There is a vscode extension called prettier which will format your code and give consistent style and spacing.
+
+Thanks mattie! Its funny I've heard of prettier in passing but for some reason I thought it was more involved to implement? I was surprised how easy it looks to get set up
+
+You've saved me a ton of time going through and cleaning up my code's formatting manually, thank you!
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1629084793077108737 3:44 AM · Feb 24, 2023
+
+---
+
+Update on my progress so far! If my job & the code is nice to me, with any luck I might release the 1st version in ~2 weeks!
+
+After that, I'll probably wait until I've done most of the "future" features before sharing with the animal welfare community (maddie's pet forum ect)
+
+Leftover Tasks
+
+1. Finishing comment feature for names
+2. Improve validation (description can include only so many letters, so no clowns can upload the bee movie script ect :P)
+3. Checking if things are working, minor changes such as text sizes ect
+4. Fix nav/clean up code
+5. Move everything to a clean database
+6. Host on render
+
+FUTURE
+
+1. SWR/pagination
+2. add comments to descriptions
+3. Notification feature
+4. Advanced name search (begins with, contains, ends with)
+5. Advanced description search (begins with, contains, ends with)
+6. Advanced user search (begins with, contains, ends with)
+7. Messaging feature, probably with socket io
+8. Add inspiration section (users can share adoption listing examples they found or came up with, that they thought were cool)
+
+Potential Future ideas:
+
+1. Add giphy api/gifs support
+2. Adoption campaign ideas section? It technically already exists in the community section but if it suprisingly becomes big enough, I could give it its own section
+3. Add a "cookies" feature, where users can send virtual cookies as a special thank you. For example, if a user used a specific name they can send the user that created that description a cookie.
+4. how to get involved and or/other tips. Example: explaining what goes on with fostering. Letting users find shelters with unique programs like doggydayout programs (can take specific shelter pets out in the community, to help them get adopted)
+5. helpful sites/resources
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1629101162556440581 4:49 AM · Feb 24, 2023
+
+---
+
+My sites officially big enough now, that my video of clicking through everything quickly is still too long to post on twitter in one vid 😂
+
+Not how I planned to measure my progress but I'll take it!
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1629111664477106176 5:31 AM · Feb 24, 2023
+
+---
+
+🐍some anki at work, slooowly catching back up!
+🐍 some more project work, I realized I have to adjust my models property names so I can reuse some components. They're basically the same but /one/ property is named slightly differently so its screwing up the components ugh
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1629503290034778112 7:27 AM · Feb 25, 2023
+
+---
+
+🥲 Lost 2nd/anki break again but on the flip side, i'll probably get killer tips
+🐸did some more project when I got home, the comment section seems to be fixed! 🎊Just scared to say its fixed in case the code hears me and decides to mess up again :P
+🐸went to gym before work
+
+Twitter Post Link https://twitter.com/Janetthedev/status/1630176312433463298 4:01 AM · Feb 27, 2023
+
+---
+
+Slept for a bit then:
+🐸 added maxlength for various input fields, so users can't submit the bee movie script, ect :P
+🐸 fixed the pages for viewing a single comment from posts, and a single comment from names
+🐸users now can't submit descriptions if it already exists🥳
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1630644282192437249 11:01 AM · Feb 28, 2023
+
+---
+
+Thanks sephiroth for helping me test out some validation!
+
+no army of sephiroth mimics in this database, there can only be one (sorry @ kadaj, Loz, and Yazoo)
+Image
+
+![alt text](FqFLRcbaUAEms03.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1630669601498624000 12:41 PM · Feb 28, 2023
+
+---
+
+Users can now check if a profile name exists!🥳
+
+<video src="images/users_can_now_check.mp4" width="520" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1631084438229757952 4:10 PM · Mar 1, 2023
+
+---
+
+🐊did some anki while picking up groceries
+🐊worked on the project, buttons are now all in the BUTTON folder, ect. Sadly VSC is glitchy with updating the routes, so I had to manually update most of the paths, ugh
+🐻keep falling asleep, body how about we not be a bear 😂?
+
+getting close! What's left:
+
+1. fix nav
+2. clean up code (basically getting rid of console.logs)
+3. move everything to a clean database
+4. make sure things work
+5. host on render
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1631224685492080640 1:27 AM · Mar 2, 2023
+
+---
+
+Prettiers pretty simple to set up but liked the little snippets he mentioned here https://youtube.com/watch?v=DqfQ4DPnRqI&ab_channel=WebDevSimplified
+
+SO grateful for prettier, it would of been a nightmare to manually go through and clean up the formatting
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1631225524130291713 1:30 AM · Mar 2, 2023
+
+---
+
+switching to a new database was easy as I hoped! 😁
+So now I'm making the official categories and tags. I tried to condense things into as few categories while also not adding too many tags to any one category
+
+![alt text](FqSh60_acAEuxL4.jpg)
+
+Ended up spoiling myself by creating a page just for me, where I can create a name tag, and then add it to several categories, that way I don't have to copy and paste ids manually!
+
+![alt text](FqSsqs2aYAABXj-.png)
+![alt text](FqSsxCJaMAATCJd.png)
+
+still torn on whether to eventually allow for users to access this page, if they have very high levels of points and opt into it.
+
+But eh, not expecting this site to go viral or anything so telling myself to put that off for maybe the future
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1631607836097789953 2:49 AM · Mar 3, 2023
+
+---
+
+Finished the name categories and name tags!😤🔥 one step closer!
+
+now to do the same for the descriptions, and then its time to deploy and test everything again 😁
+
+<video src="images/finished_the_name_categories.mp4" width="720"  controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1631653284170842119 5:50 AM · Mar 3, 2023
+
+####################################
+
+####################
 
 🐢fixed share links so they no longer use localhost but instead grab the correct url from the env
 🐢fixed next image issues
