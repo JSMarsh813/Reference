@@ -724,25 +724,23 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1613201046473682947 7:
 tried this and it didn't work either `:(`
 ![alt text](FmM-RiPaEAAT7t7.png)
 
-## Twitter Post Link: https://twitter.com/Janetthedev/status/1613201592920190979 7:50 AM · Jan 11, 2023
+Twitter Post Link: https://twitter.com/Janetthedev/status/1613201592920190979 7:50 AM · Jan 11, 2023
 
 REPLY FROM Rawand Faraidun @rawandfaraidun https://twitter.com/rawandfaraidun
 
-try replacing the `callbacks` object with this:
-callbacks: {
-jwt({ token, user }) {
-if (user) token = user
-return token
-},
-session({ session, user, token }) {
-session.user = token
-return session
-}
-}
-
-Twitter Post Link: https://twitter.com/rawandfaraidun/status/1613989983915806722 12:02 PM · Jan 13, 2023
-
----
+> try replacing the `callbacks` object with this:
+> callbacks: {
+> jwt({ token, user }) {
+> if (user) token = user
+> return token
+> },
+> session({ session, user, token }) {
+> session.user = token
+> return session
+> }
+> }
+>
+> Twitter Post Link: https://twitter.com/rawandfaraidun/status/1613989983915806722 12:02 PM · Jan 13, 2023
 
 THANK YOU! That was it, words can't express my gratitude!
 
@@ -997,10 +995,507 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1616007573588828161 1:
 
 ---
 
-################## CAN"T VIEW PAST MARCH 12th????? ##################
-https://twitter.com/search?q=(from%3Ajanetthedev)%20until%3A2023-03-31%20since%3A2023-01-01%20&src=typed_query&f=live
+Spent a good chunk of time dealing w/ the insurance but I made progress!
+
+🐶Did some form validation,
+🐶hid the ugly file input field (input is now the image icon),
+🐶clear the image when clicking the x,
+🐶storing URL.createObjectURL in state to preview image
+
+<video src="images/spent_a_good_chunk.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1616311858511896576 9:49 PM · Jan 19, 2023
 
 ---
+
+Small thing, added a little bit of drop shadow to the x font awesome icon!
+
+That way its still possible to see even if someone uploads a bright image
+
+![alt text](Fm5n5P7aUAEHW7t.png)
+![alt text](Fm5oAlkaMAA8eZy.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1616346190836301824 12:05 AM · Jan 20, 2023
+
+---
+
+Here's a quick overview of what i've done so far for my 100 hours project! beware theres some glitches 😂esp on the add name page rn
+
+<video src="images/heres_a_quick_overview.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1617016132120244229 8:27 PM · Jan 21, 2023
+
+---
+
+I'm tired enough I was looking at this for a solid minute going ??? what error?
+
+then laughed when I realized I basically told JS to do "function function" . Double raiiiiinbow javascript edition 🌈
+
+![alt text](FnDYiUHacAAaYJt.png)
+![alt text](FnDYkOxaYAEPuPZ.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1617030775949656064 9:25 PM · Jan 21, 2023
+
+---
+
+Success is mine!! I got my onclick function to run two functions. AND the second one correctly grabs the first one data!
+
+Here i was thinking I had to do .then(), ect, when just doing this works:
+
+![alt text](FnDf5qvaAAIqXRf.png)
+
+nevermind, once I json.Stringified the object i realized it was coming back as empty. So the second function isn't waiting on the first to finish :(
+
+makes sense, as this isn't a proper callback but hoped it'd be this easy. Oh well!
+
+Figured it out. So in the function that creates the new post, I had it await for cloudinarys message to return so we got the url for the image from cloudinary, and then it continues the rest of the function
+
+![alt text](FnD3V97aUAIHkZL.png)
+
+when I'm not wiped I'll work on making the actual api for sending the post request ect, but hey its still progress!
+
+ngl i was stressing about how to make it /wait/ and for it to not freak out if the user didn't upload an image, didn't actually end up being too bad
+
+nevermind I spoke too soon 🥲, looks like it ISN'T waiting to get data for that function to run. I have to click it twice for it to work
+I'm using async await and then so i'm not sure why its not waiting for handleImageUpload() to finish running before the console.log goes off??
+
+![alt text](FnD6oBraAAIaVLs.png)
+![alt text](FnD669yaAAUGdKQ.png)
+
+stackoverflow.com/questions/55960027/await-doesnt-wait
+
+I've tried both after the function and within a .then() statement 🥲 why code won't you just work on the first click please
+
+![alt text](FnD8UefaAAM5uE5.png)
+
+![alt text](FnD8UefaAAM5uE5-1.png)
+
+Thought maybe adding this would work, but no dice 😭at this rate might just have to try the 100devs help channel
+
+![alt text](FnD9lZFagAIAWs2.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1617038809212018688 9:57 PM · Jan 21, 2023
+
+---
+
+Alright so I posted this in the 100devs discord but wanted to ask here juuuust in case someone can figure out what I'm doing wrong 🥲
+is it maybe correctly waiting for the handleImageUpload function, but since state variables are async maybe the image variable hasn't updated?
+
+![alt text](FnIEYGOaEAE2vkd.jpg)
+![alt text](FnIEw8MaMAAFN_e.png)
+
+A-HA! my hunch was right! shoutout to breakpoint in 100 devs for being a hero 🎉 highlighted what I needed to change
+
+![alt text](FnIPxu1agAE5tZ5.jpg)
+![alt text](FnIQAxwaEAQ5fNx.png)
+![alt text](FnIQImracAAsbgP.png)
+![alt text](FnIQSS7aMAEWWSr.jpg)
+
+100 devs is the best community i swear 😭🙏i would of been fighting this for HOURS.
+
+here I was trying to create a second function to await, putting a setInterval in that function, ect which wasn't working.
+
+when all I needed to do basically was return the state
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1617361155617619969 7:18 PM · Jan 22, 2023
+
+---
+
+after lots of debugging:
+
+IT WORKS, my users now have the power to upload new posts!!
+🔥🔥🔥
+
+![bobs burger character laughing maniacally as fire is behind her ](https://media0.giphy.com/media/EJIqwKKY30Dlu/200w.gif?cid=6c09b9526nwh89rv9wmhubnprwbnk7a6is0t75ke8k0rvp9z&ep=v1_gifs_search&rid=200w.gif&ct=g)
+only bug i'm noticing if that someone submits a post, it works fine the first time.
+
+But the second time we get an error 🤔strange
+
+figured it out! I had the description set to unique: true.
+
+So I had to change it to unique: false and completely delete the original collection from mongoDB
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1617401458533732358 9:58 PM · Jan 22, 2023
+
+---
+
+Getting the newest posts to show up first was easier than I thought!
+
+I just had to add a sort({\_id:-1})
+
+I thought i'd have to use the timestamps but here they mentioned the ids could be used instead, so I did some digging and.... (1/2)
+
+https://mongodb.com/community/forums/t/sorting-with-mongoose-find/158594
+
+![alt text](FnUZrBuacAUYhkJ.png)
+![alt text](FnUbMJQaMAAiry6.png)
+
+I found out why .sort({ \_id:-1}) worked to get the most recent documents!
+
+I found out why .sort({ \_id:-1}) worked to get the most recent documents!
+
+Turns out each ObjectID in mongoDB contains a 4 byte timestamp! 🤯
+https://www.mongodb.com/docs/manual/reference/bson-types/#std-label-objectid
+
+![alt text](FnUb7KkaAAAOWqg.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1618229992416251905 4:51 AM · Jan 25, 2023
+
+---
+
+Been working on my project in little bits of time but its been adding up!
+
+1. Filtering now works
+2. Edited my api so the newest posts show first
+3. Each post has the users id. So EACH post COMPONENT calls an api, finds a user w/ that id & grabs the posters username and picture
+
+<video src="images/been_working_on_my_project.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1618233433662316551 5:04 AM · Jan 25, 2023
+
+---
+
+hmm making the post's creation date show up correctly in the current users timezone is more complicated than I thought...
+
+It looks like its not recommended to use the timestamps??
+so i guess I'll have to add a dateCreated property. Then somehow convert it w/ luxon or something??
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1618234181926150147 5:07 AM · Jan 25, 2023
+
+REPLY
+
+> Jesse Pence @JessePence5
+>
+> This sent me down a rabbit hole.
+>
+> So, you have to ask the user for their current time zone and save it as part of their model.
+>
+> Then, you can make a new Date object with localestring and a modifier.
+>
+> https://stackoverflow.com/a/54453990
+>
+> The other thing that comes to mind would be middleware in Next.JS that tries to figure out the user's location and set the time zone from there.
+>
+> https://www.jamesperkins.dev/post/using-next-middleware-for-geolocation
+
+REPLY
+
+> Jesse R @jesseranon
+>
+> I went down this rabbit hole too. Luckily, if you're using mongodb, it converts timestamps to UTC for storage and all that's left is doing conversion on the client's browser.
+>
+> For me, it meant passing date-fns addMinutes function to front-end templates and using Date.offset.
+>
+> I got the idea from reading this article:
+>
+> https://www.toptal.com/software/definitive-guide-to-datetime-manipulation
+>
+> It took a bit to get to my solution, as I had to really get down in the weeds of playing with Date objects. But it works for my project and I understand Date objects a bit better than when I started out. Happy to help if you still need it.
+
+Janet(she/her) | ghiblimagic
+@JessePence5 @skadadark amused that both of my fav jesses came rushing to my aid to fight time itself, I can now confirm jesse is clearly the name of time lords! Thanks both for sharing the gems of your deep dives 🙏
+
+Funnily enough I stumped across a simple solution
+
+![alt text](FnczqgdaAAAoD3i.png)
+
+@58:00 he goes over managing the time https://youtube.com/watch?v=lyNetvEfvT0&ab_channel=WebDevSimplified
+
+So i was able to take my timestamp from mongodb/mongoose and convert it to a date that will show in the users timezone!
+
+Thanks again both of you, you're the best truly 💖
+
+REPLY
+
+> Jesse Pence @JessePence5
+>
+> I heard about the Intl API, but I didn't know it could be used for this! That is super handy and easy to write out. Great tip, Janet! `:)`
+
+---
+
+alright I want to keep going but its 5am I really need to go to bed 😂
+🐍 did some anki during work breaks
+🐍 worked on my project when I got home, figured out a part that made me nervous: making an api that lets me grab user info from the database within a component!💪
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1618236190339256320 5:15 AM · Jan 25, 2023
+
+---
+
+🤯This changes everything! https://youtube.com/watch?v=o7dZWGiXcA8&t=191s&ab_channel=HuzaifaAsif
+
+Found out how to link two mongoDB collections and WOW, its SO much easier!
+
+So now when I grab post data, and it automatically knows to look at the user collection and grab the data for that userID!🎉🎉🎉
+
+![alt text](FndE-hVaAAARSRZ.png)
+![alt text](FndFRnWaYAE5X2f.png)
+![alt text](FndFaFXaQAcrrfg.png)
+
+now i can delete that extra api I made, where i had the userID as an end point to grab all their data from the database 😁
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1618839109526773760 9:11 PM · Jan 26, 2023
+
+---
+
+me, wondering why an async function was being console.logged when it wasnt called???
+
+So! turns out I forgot I had console.logged the variable earlier for something else, before reusing it for this function😂
+
+whoops!
+
+![guy laughing text says i crack myself up](https://media.tenor.com/ya-itgEcpEsAAAAM/i-crack-myself-up.gif)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1618886932158889985
+
+---
+
+FINALLY figured out how to get populate to work with an array of objectIds
+
+I had to change the formatting a bit and change up the type 🥳
+
+![alt text](FngPg8MaYAAfVit.png)
+![alt text](FngPtnHaEAERTPg.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1619061498365751296
+
+---
+
+Welp turns out that populate doesn't like it when some objects don't have any object ids for the field you want to populate 💀
+
+so I either need to find a way to tell mongoose, hey if theres no object id in the path, do not populate. Or switch to apis for grabbing comments 😢
+
+populate works fine when every post has comments though! So for now, I figured out the api logic for adding comments, and replies to comments ect, not letting replies nest too far ect ect
+
+![alt text](Fnja2yAacAAeNYg.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1619284632775823360 2:41 AM · Jan 28, 2023
+
+---
+
+Made some progress with profile pages today! 🔥🔥🔥 now its 5am time to sleep
+
+![alt text](FnpJ5-9aIAAbIfg.jpg)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1619688376101376003 5:26 AM · Jan 29, 2023
+
+---
+
+Progress! Instead of using ids, i let users look up profiles by unique profilenames
+
+Made the grid layout change depending on screen size, so it doesn't get jumbled on small screens 🥴
+
+Took a hot minute but figured out how to force a 404 if I get nothing back from the api! 😤
+
+<video src="images/progress_instead_of_using_ids.mp4" width="320" height="240" controls></video>
+
+For nextjs, the key was to return notFound: true if the .find() from the api returns [] (aka it found nothing)
+
+![alt text](Fntyb8OaEAEgV91.png)
+
+I also created the pages for individual posts! The likes feature ect also works here.
+
+<video src="images/I_also_created_the_pages.mp4" width="320" height="240" controls></video>
+
+Start of the dynamic page for individual names, also redirects to 404 is the name is not found
+
+![alt text](Fnt5MpKagAEwP2R.jpg)
+
+When findById() finds nothing the redirect to 404 works now, but required slightly different wording
+
+https://stackoverflow.com/questions/45172700/what-does-mongoose-return-when-a-find-query-is-empty
+
+This thread was a gift🙏
+
+![alt text](Fnt6J2JaUAE6aoF.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1620014287468265472 3:01 AM · Jan 30, 2023
+
+---
+
+Big thing left is the lost password function. users can already reset their password if they're logged in, but I'll have to somehow email them a link so they can edit it
+
+guessing I'll end up using nodemailer & setting up nextjs email provider? But ugh, not looking forward to it
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1620043436832473090 4:57 AM · Jan 30, 2023
+
+---
+
+Worked on the front end bit of editing posts! Was dreading doing this and yeah it's taken hours 🥲
+
+partly because I've never messed with modals before. But proud of my progress so far!
+
+<video src="images/worked_on_the_front_end.mp4" width="320" height="240" controls></video>
+
+What I"m especially proud of is the tags! They look simple but they kept appearing blank (aka text wasn't showing)
+Was about to give up and make the user manually reenter the tags, when I realized this uses a label AND value tag!
+The tags were showing up fine in react state,...
+
+![alt text](Fnym1OUaQAAGFnN.png)
+![alt text](FnynGViaEAEBEv4.png)
+![alt text](Fnync1EakAEJ9hr.png)
+
+So since they were appearing fine in the state, I knew there was something making the text not appear to the user.
+
+So what I did was make sure the value showed the values AND tags by mapping through the tags and turning each one into an object with a tag and label. 🥳
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1620353109724897280 1:27 AM · Jan 31, 2023
+
+---
+
+Progress on the profile pages 🎊🎊🎊
+
+Though I eventually need a different system than loading them in separate scrollable containers
+
+maybe using a button and state, so when the button is clicked, the next 10 or so items are rendered? 🤔
+
+🥴or maybe pagination...?
+
+<video src="images/progress_on_the_profile.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1620358163601186817 1:47 AM · Jan 31, 2023
+
+---
+
+Forgot to post, I fixed up the front page the other day as an excuse to avoid apis for a bit 😂
+
+All the links now work and they all play nice on mobile now
+
+(I feel like I should add some silly effect/pic if someone clicks the impactful, fun, or tailor-fitted buttons 🤔)
+
+<video src="images/forgot_to_post_I.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1620360251081109504 1:56 AM · Jan 31, 2023
+
+---
+
+Still a good chunk left, but getting there!
+
+Though I'll be working lots this week so RIP productivity 🥲
+But! On the other hand, I was feeling the early signs of burnout so it's probably for the best I'm forced away from the computer
+
+- pagination/endless scroll/ect?
+
+- grabbing current numbers for dashboard "treat" points + profile page
+- Show edit and delete symbol if signed in:  
+   names
+  comments
+
+- Do edit and delete api logic for:
+  posts, names, comments
+
+-do descriptions section (frontend, backend/api, individual pages, adding to profile page + dashboard)
+
+-fixing the header on some pages (adding session to it ect)
+
+LATER
+
+- followers + followers (will be shown on separate pages like on twitter)
+- add tags to existing name
+- add comments to names
+- lost password feature
+- shares
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1620366164445794307 2:19 AM · Jan 31, 2023
+
+---
+
+☘️did a tiiiny bit of walking while coding
+☘️worked on 100 hours project, probably too much tbh i felt the edges of burnout
+🦀no anki/banki
+
+![alt text](FnzcmzUaEAUFOBL.jpg)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1620412529704058881 5:23 AM · Jan 31, 2023
+
+---
+
+Did a tiny bit before work!
+
+Fixed some pages so the profile image and profile name shows
+
+And got the backend logic for editing posts to work 🥳
+
+![alt text](Fn6me1xacAAv8eO.jpg)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1620916187441025024 2:45 PM · Feb 1, 2023
+
+---
+
+Wanted to add this on to the last post, but twitters vertical scroll bar is broken/unresponsive??😂
+
+But anyway, users can now edit posts!
+
+<video src="images/wanted_to_add_this_on.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1620919536483696641 2:58 PM · Feb 1, 2023
+
+---
+
+Looks like swr would be the answer to automatically reloading the data w/out the page flickering + pagination/endless scroll
+
+But with how insane my work schedule is, might have to push that to the "a future feature, not a mvp level feature list"
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1622455963038150657 8:43 PM · Feb 5, 2023
+
+---
+
+Worked more on my "100" hours project!
+
+Users can now sign in with magic links through their email 🪄
+
+Shame that for forgot passwords I can't just tell it, hey do this same exact thing, but redirect them to reset password page instead of the dashboard 🙃
+
+![alt text](FoSMYfUakAAXgty.jpg)
+
+Could just tell users in the email, hey if you want to reset your password go to your edit profile page after logging in with the magic link.
+
+But alas that won't look as good as a direct link, curses 😂
+
+I'm using next auth so the magic link setup is only for logins
+
+I'd have to make a separate mongodb collection and write the logic myself for a lost pw magic link
+
+But eh, I decided screw it. Users can use the magic link to login and go to edit profile to change their pw rn😂
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1622576945774088194 4:44 AM · Feb 6, 2023
+
+<video src="images/" width="320" height="240" controls></video>
+
+---
+
+Narrowing down what things have to "actually" be done to make the mvp version of the project
+
+- Edit and deletion logic for names and comments
+- adding descriptions category (frontend, backend/api, individual pages, adding to profile page + dashboard)
+- grabbing actual numbers for "treat" points for dashboard and profile
+- shares
+  Possibly:
+- followers and following
+- add tags to existing names
+
+Just thinking about writing out the reset password logic and page felt like death, so screw it 😂for now, users can just use the magic password link and manually go to the edit profile page to reset the password
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1622929366559899648 4:04 AM · Feb 7, 2023
+
+---
+
+I'm using next auth so the magic link setup is only for logins
+
+I'd have to make a separate mongodb collection and write the logic myself for a lost pw magic link
+
+But eh, I decided screw it. Users can use the magic link to login and go to edit profile to change their pw rn😂
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1622931386033389569 4:12 AM · Feb 7, 2023
+
+##
+
+##
+
+##
+
+##
+
+##
 
 🐢fixed share links so they no longer use localhost but instead grab the correct url from the env
 🐢fixed next image issues
@@ -1049,15 +1544,13 @@ Although I'd be nice to automatically have new names pop up, I worry having muta
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1637111512778309637 8:19 AM · Mar 18, 2023
 
----
+REPLY
 
-REPLY from Adam Morsa https://twitter.com/RamblingAdam
-
-If your mutate function is running too often, you could either throttle its execution, or debounce it!
-
-This article is discusses functions that run on window resize, but you could definitely adapt the technique for your purposes!
-
-Twitter Post Link: https://twitter.com/RamblingAdam/status/1637189718491160576 1:30 PM · Mar 18, 2023
+> Adam Morsa https://twitter.com/RamblingAdam
+>
+> If your mutate function is running too often, you could either throttle its execution, or debounce it!
+>
+> This article is discusses functions that run on window resize, but you could definitely adapt the technique for your purposes!
 
 ---
 
