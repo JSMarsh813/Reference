@@ -1,12 +1,3 @@
-<style>
-img[src*="#image-styling"] {
-    max-width:500px;
-}
-img[src*="#large-image-styling"] {
-    max-width:800px;
-}
-</style>
-
 Woke up randomly so figured I might as well play with Gatsby!
 
 Already did some troubleshooting 😂
@@ -25,14 +16,14 @@ looked in the starter and realized I had to install sanity separately! Starter s
 
 But the error is still there 🤔
 
-![alt text](FuZ1R6PaIAAf2af.png#image-styling)
-![alt text](FuZ1hPqaEAA6P1d.png#image-styling)
+![alt text](FuZ1R6PaIAAf2af.png)
+![alt text](FuZ1hPqaEAA6P1d.png)
 
 okay! I think the issue is here
 
 gatsby is looking in the env folder, but I don't have an env folder set up yet
 
-![alt text](FuZ6MxAakAAWaDI.png#image-styling)
+![alt text](FuZ6MxAakAAWaDI.png)
 
 ah! that removed one of the errors at least
 
@@ -44,11 +35,11 @@ alright so promising progress!
 
 I rebuild the sanity build, and then had graphql deploy. Before that I was getting an error (3rd image) 🥳
 
-![alt text](FuaBOCaaMAAXwI_.png#image-styling)
+![alt text](FuaBOCaaMAAXwI_.png)
 
-![alt text](FuaBTPDacAgT810.png#image-styling)
+![alt text](FuaBTPDacAgT810.png)
 
-![alt text](FuaBc5aacAA8jBQ.png#image-styling)
+![alt text](FuaBc5aacAA8jBQ.png)
 
 So i successfully deployed graphQL, did another build within the studio (backend) folder, the moved back to the frontend
 
@@ -56,7 +47,7 @@ But when i started it up from the frontend folder its doing THIS again 😒
 
 welp, will be an adventure for another day, gotta try to nap for a few more hours!
 
-![alt text](FuaFtnaaQAAP-dO.png#image-styling)
+![alt text](FuaFtnaaQAAP-dO.png)
 
 Said that then tried one more idea, ran the server in one terminal and the front end in another terminal.
 
@@ -64,7 +55,7 @@ But alas, same error message `:(`
 
 womp womp
 
-![alt text](FuaJxb4agAI9sJu.png#image-styling)
+![alt text](FuaJxb4agAI9sJu.png)
 
 > REPLY
 > Rosy @zina_o_codes
@@ -86,7 +77,7 @@ So i completely deleted and reinstalled it, realized my issues before were becau
 
 https://www.gatsbyjs.com/starters/gatsbyjs/gatsby-starter-sanity-homepage/
 
-![alt text](FueoUoQaEAA4JtI.png#image-styling)
+![alt text](FueoUoQaEAA4JtI.png)
 
 However! The sanity template is very buggy? By console.logging I was able to figure out how to fix this issue (see img)
 
@@ -95,8 +86,8 @@ however theres 4 more...
 It looks like the contentful starter is way more popular and more recently updated, so i'll probably switch
 https://www.gatsbyjs.com/starters/gatsbyjs/gatsby-starter-contentful-homepage
 
-![alt text](Fueori5acAAXM0Y.png#image-styling)
-![alt text](FueotB_aEAAV0iZ.png#image-styling)
+![alt text](Fueori5acAAXM0Y.png)
+![alt text](FueotB_aEAAV0iZ.png)
 
 words cannot express my relief that this starter works! https://github.com/gatsbyjs/gatsby-starter-datocms-homepage
 
@@ -112,7 +103,7 @@ Twitter Post Link https://twitter.com/Janetthedev/status/1650472968353648642
 Never had I wished good karma on someone so much, this fix WORKED.
 
 I could cry from happiness, yesss we're getting somewhere finally! 🥳 https://github.com/decaporg/gatsby-starter-decap-cms/issues/875
-![alt text](FufVzRFaMAIhjT-.png#image-styling)
+![alt text](FufVzRFaMAIhjT-.png)
 
 Twitter Post Link https://twitter.com/Janetthedev/status/1650523098226249728
 
@@ -122,8 +113,8 @@ So I was getting this issue about the api not persisting, and after seeing someo
 
 On the local version of the cms, it works but when I login through netlify it doesn't work 🤔
 
-![alt text](FufdP2zaIAAH75J.png#image-styling)
-![alt text](FufdcGmacAEE6t_.png)#image-styling
+![alt text](FufdP2zaIAAH75J.png)
+![alt text](FufdcGmacAEE6t_.png)
 
 me, looking @ docs who kept saying that the error means its a git gateway issue in netlify
 
@@ -133,39 +124,40 @@ me, hour later: "oh...for some reason it didn't automatically update the reposit
 
 I had to disable and re-enable it!🥳
 
-![alt text](Fuja3YyaUAAFmfP.png#image-styling)
-![alt text](Fuja5etaQAEKCJB.png#image-styling)
+![alt text](Fuja3YyaUAAFmfP.png)
+![alt text](Fuja5etaQAEKCJB.png)
 
 issue was because I had renamed the repo, but git gateway doesn't automatically update the repo. Unless you disable and re-enable it
 
 Never has lime green looked so beautiful
 
-![alt text](FujbYjbaIAAyaHh.png#image-styling)
+![alt text](FujbYjbaIAAyaHh.png)
 
 hmm....so its pushing to my github but netlify can't deploy the site with the changes 🤔
 
 think it was caused by this bit i added in when I was trying to debug. going to comment it out and see...
 
-![alt text](Fuje4vracAEW6tq.png#image-styling)
+![alt text](Fuje4vracAEW6tq.png)
 
 ![alt text](FujfaA1aAAAAu68.png#large-image-styling)
 
-![alt text](Fujffz3aYAA1Brz.png#image-styling)
+![alt text](Fujffz3aYAA1Brz.png)
 
 oh whoops, need to git pull before I git push since netlify's cms added those edits to my github (aka not in my local folder/repo yet)!
 
 now for the moment of truth!
 
-![alt text](Fujf1_UaUAERXZL.png#image-styling)
-![alt text](FujgeSEagAAdo5G.png#image-styling)
+![alt text](Fujf1_UaUAERXZL.png)
+![alt text](FujgeSEagAAdo5G.png)
 
 HUZZAH it works!
 
 but I definitely need to change how it handles images later, since how does the heading image get painful at larger screen sizes 😱
 
-![alt text](Fujgwd3acAEg3NI.png#image-styling)
-![alt text](Fujg6TIaUAAZmfq.png#image-styling)
-![alt text](FujhFbvaQAE-y0y.jpg#image-styling)
+![alt text](Fujgwd3acAEg3NI.png)
+
+![alt text](Fujg6TIaUAAZmfq.png)
+![alt text](FujhFbvaQAE-y0y.jpg)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1650531554719068160 9:06 AM · Apr 24, 2023
 
@@ -191,9 +183,9 @@ did npm i gatsby-plugin-postcss
 
 Now tailwindcss works with gatsby! 🥳
 
-![alt text](FukujORaIAQGzbS.png#image-styling)
-![alt text](Fukuw9sacAAFQ09.png#image-styling)
-![alt text](Fuku1oBaEAAaJB-.png#image-styling)
+![alt text](FukujORaIAQGzbS.png)
+![alt text](Fukuw9sacAAFQ09.png)
+![alt text](Fuku1oBaEAAaJB-.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1650902501582053376 9:40 AM · Apr 25, 2023
 
@@ -213,9 +205,9 @@ Also did a tiny bit of walking while waging battle with code
 
 And heres some cute cat pics of ember cause that's defintely what you all are really here for :P
 
-![alt text](Fuk1s-6aUAEv9sr.jpg#image-styling)
-![alt text](Fuk1tjcaIAEoWfT.jpg#image-styling)
-![alt text](Fuk1uGOaYAIkBdB.jpg#image-styling)
+![alt text](Fuk1s-6aUAEv9sr.jpg)
+![alt text](Fuk1tjcaIAEoWfT.jpg)
+![alt text](Fuk1uGOaYAIkBdB.jpg)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1650903177531891712 9:42 AM · Apr 25, 2023
 
@@ -243,8 +235,8 @@ Figured out how to get the background images to behave like this!
 
 Though I may of "cheated" a little by changing the opacity in gimp instead of with css 🤫
 
-![alt text](FwfKwINakAQcd9Q.jpg#image-styling)
-![alt text](FwfKzkNaAAAJOFS.png#image-styling)
-![alt text](FwfLQbqakAEzKkD.png#image-styling)
+![alt text](FwfKwINakAQcd9Q.jpg)
+![alt text](FwfKzkNaAAAJOFS.png)
+![alt text](FwfLQbqakAEzKkD.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1659506883768782854 3:30 AM · May 19, 2023
