@@ -3067,4 +3067,132 @@ Thanks for the heads up friend!
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1646853634100191235 5:31 AM · Apr 14, 2023
 
+---
+
+Got home from work and did a bit of project work.
+
+Guess what, those three buttons on the landing page have finally found their lives purpose! 🥳
+
+Thanks @alexisintech for reminding me! I had half-forgotten about finding a job for those buttons
+
+<video src="images/got_home_from_work.mp4" width="320" height="240" controls></video>
+
+Ended up being a bit interesting since iframes tend to flash white at first.
+
+So I stored the onLoad property in the "loaded" state. And made it so the iframe and button only shows when the iframe is fully loaded
+
+On vercel it still shows a brief flash🤷‍♀️better than it was though
+
+![alt text](Ft1n1aZaUAAH3h8.png)
+
+also I'm still SO in love with modules/react!
+
+It was so satisfying to set up allll the embedding logic in a component, so the index page has the minimal needed information 😊
+
+![alt text](Ft1oVkkakAE9EmH.jpg)
+
+> REPLY
+> Mujibur Rahman @devMujib
+> You can use headless ui, that's Simple and you can easy make
+
+Thanks 😁! I used headless ui for other parts of my app, but for this section I preferred just to use state && my own components ect. And its already done at this point
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1647586882501619713 6:04 AM · Apr 16, 2023
+
+---
+
+stackoverflow.com/questions/71159356/nextauth-throwing-client-fetch-error-error-in-session-callback Found this little tidbit and crossings fingers this will cure the randomly occuring next auth 500 errors!
+
+Basically, I realized jwt and session weren't async and I added extra if statements
+
+![alt text](Ft1vlGgacAIU-H7.png)
+![alt text](Ft1vvtFaEAEW0VN.png)
+![alt text](Ft1vxMaakAEtqyk.jpg)
+
+so far logging in still works, so it seems like those additions didn't break everything at least!
+
+Promising so far but I'm wary to get my hopes up
+
+![Shawn Spencer saying pretty please do the job pretty please do the job from psych GIF](https://media1.tenor.com/m/sC_anMe7FkEAAAAC/shawn-spencer-james-roday.gif)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1647596091125415936 6:41 AM · Apr 16, 2023
+
+---
+
+alright, I need to stop fiddling with the app and finally pass out 😂
+🦎mostly just slept and worked today
+🦎 knocked out a few more hours of project work
+
+Tomorrow:
+🚀work
+🚀anki/banki
+❓improve SEO of pet profile tailor
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1647602496783929344 7:07 AM · Apr 16, 2023
+
+---
+
+wow adding Pet Profile Tailors meta info for SEO took all of 5 minutes, I feel like a goof for not adding this earlier! 😂but thought for sure it'd be more of a pain https://shopify.com/blog/how-to-write-meta-descriptions ah well, alls well that ends well
+
+In the future maybe I'll add some personalization for some pages, but for now this should be good enough! 🎊
+
+![alt text](Ft6FISYaUAAGha1.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1647898116828565507 2:41 AM · Apr 17, 2023
+
+---
+
+🦎finally added a head to pet profile tailor (getting those SEO gains 💪!)
+🦎fixed bug in pet profiles followers list (showed follow button instead of unfollow)
+🦎added most of my recent projects to portfolio
+🦎worked
+🦎did a tiny bit of anki/banki
+
+its 5am, time to sleep! 😴
+
+https://twitter.com/Janetthedev/status/1647947324147265537 5:57 AM · Apr 17, 2023
+
+---
+
+I finished the 1st version of my project Pet Profile Tailor (my "100" hours project for 100devs)! 🎊 https://lnkd.in/gFttmaxh
+
+It empowers animal lovers to help adoption counselors create impactful, fun, and tailor-fitted adoption profiles!
+code: https://lnkd.in/gizc8zPV #100devs
+
+<video src="images/I_finished_the_1st.mp4" width="320" height="240" controls></video>
+
+I worked as an adoption counselor in animal shelters for ~5 years. Although pet profiles are vital to boost adoption rates, there's only so much creativity a person can have at the crack of dawn.
+
+Coffee can only do so much 😛 So I was inspired to create this site!
+
+<video src="images/I_worked_as_an_adoption.mp4" width="320" height="240" controls></video>
+
+After signing up, users can submit new names and descriptions,save favorites and follow other users.
+
+Users can easily search and filter through community submitted names and descriptions.
+
+New pet parents can also use it to brainstorm pet names for their new family member 😁
+
+I just noticed this vid still had the likes number glitch 😂 whoops! thats what I get for using an oldish file
+
+> REPLY
+> Katy Smith @thesewhocan
+> Hi Janet, I saw your 100 hour project -love it! I’d never thought that the adoption counsellors have to make up new names and stories etc for all of the animals! I made a cat name/cat backstory generator at the weekend using OpenAI:
+> https://the-cats-meow.netlify.app
+>
+> If you’re interested in adding something like this to your project just let me know and I can share my GitHub repo with you!
+> ☺️(I love the community/crowdsourcing aspect of your site though!)
+
+!!! So cool to see someone use chatGPT for this! I've been playing around with using chatGPT as a little section to my site so this gives me hope it won't be pain itself to setup
+
+CatPastLives cracks me up, super cute & unique feature 😂
+
+Also may I say, your UI is gorgeous 👌🔥
+
+> REPLY
+> Katy Smith @thesewhocan
+> Thanks Janet! I can’t take any credit for the UI as I just got a bootstrap theme for it (my eye for design is abysmal, but I really loved the colours and buttons on this one! ☺️)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1649658183273828353 11:15 PM · Apr 21, 2023
+
 <video src="images/been_squeezing_in_tiny.mp4" width="320" height="240" controls></video>
