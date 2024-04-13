@@ -55,7 +55,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1598463897299976192 3:
 
 Decent starting progress! Still more content to add and some styling to clean up, but its getting there 🔥
 
-<video src="images/starting_progress.mp4" width="320" height="240" controls></video>
+<video src="https://github.com/JSMarsh813/Reference/blob/main/projects/ppt/images/starting_progress.mp4" width="320" height="240" controls></video>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1598503599058788352 6:25 PM · Dec 1, 2022
 
@@ -2034,7 +2034,9 @@ Found the perfect thread for my issue
 https://stackoverflow.com/questions/72176573/object-object-object-cannot-be-serialized-as-json-please-only-return-js
 
 > REPLY
+>
 > Joe Prisk @jeprisk
+>
 > object Object might be getting logged because console.log returns a string value, you could try console.log(JSON.stringify(data)) to see the full payload
 
 Thanks Joe for taking the time to offer some help!
