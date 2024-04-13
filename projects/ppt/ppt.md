@@ -443,7 +443,9 @@ I may now know more than any sane person needs to know about react-auth hahaha..
 
 12+ hours later 🙃😂
 
-<video autoplay src="images/anime_man_sliding_down_stairs.mp4" title="anime person face down on stairs, sliding down" width="320" height="240" controls></video>
+https://github.com/JSMarsh813/Reference/blob/main/projects/ppt/images/anime_man_sliding_down_stairs.mp4
+
+<video autoplay src="https://github.com/JSMarsh813/Reference/blob/main/projects/ppt/images/anime_man_sliding_down_stairs.mp4" title="anime person face down on stairs, sliding down" width="320" height="240" controls></video>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1607297360580980736 12:48 AM · Dec 26, 2022
 
