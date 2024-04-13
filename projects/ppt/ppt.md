@@ -2348,8 +2348,723 @@ sadly sorting by likes/popularity looks like it'd be more complicated than just 
 
 <video src="images/ended_up_adding_sorting.mp4" width="320" height="240" controls></video>
 
+> Reply
+> User was deleted
+
+Swr complicates things sadly `:(`
+I get chunks of data at a time (because of swr) so it would have to be sorted on mongodb's end so i'm grabbing the most popular posts firsts.
+Looks like aggregation would work but eh saving that for later. Thanks though for the thought!
+
 Twitter Post Link: https://twitter.com/Janetthedev/status/1639096488394641408 7:47 PM · Mar 23, 2023
 
 ---
+
+Felt like i was going a bit crosseyed by the end of it, but now users can sort by the most and least popular posts!
+
+Thanks to the power of mongodb's aggregration 🥳
+now to have a celebratory nap for 2 hours before work
+
+<video src="images/felt_like_i_was_going_a_bit.mp4" width="320" height="240" controls></video>
+
+surprisingly aggregation wasn't too difficult despite lots of troubleshooting.
+
+Found out the hard way you can't pass an object to sort like this =>
+let sortObject = {"\_id": -1}
+{ $sort: sortObject },
+
+Instead you have to:
+let sortObject= {};
+sortObject["_id"] = -1🥴
+
+![alt text](FsA0X3OaQAcesD1.png)
+![alt text](FsA0akzaYAAglsp.png)
+![alt text](FsA0dK2aQAYO5dN.png)
+![alt text](FsA0jjFaQAA1vgq.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1639367607643176960 1:44 PM · Mar 24, 2023
+
+---
+
+Wild how much a few seconds (milliseconds) can change
+
+Although my names page worked locally, when deployed to vercel I kept getting 504 errors (took too long for the api respond)
+SO! I found out the hobby plan vercel will give up and send a 504 if your api is taking too long
+
+So I ended up changing some logic around, and it now FINALLY works on vercel 🥳
+
+Sorting value and property was split on the client side, before being sent to the api
+
+parseInt was added within the aggregation
+
+![alt text](FsFlIsPakAAi1l-.png)
+
+now to add to add the new sorting options to description!
+
+or actually wait, realized i only have 3 hours to try to nap before work 😅
+
+well good luck to tomorrow me!
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1639702046915063808 11:53 AM · Mar 25, 2023
+
+---
+
+I had wondered why swr was throwing 500 errors for the descriptions page, then I realized my butterfingers accidentally deleted a part of the query string! That'll do it 😂
+
+But its working now!
+
+![alt text](FsK6ygnaYAAYBv8.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1640078702280318976 12:50 PM · Mar 26, 2023
+
+---
+
+Community section also uses aggregate sorting now!
+
+ngl feel accomplished because my brain feels like fluff right now 🥴luckily any problems i faced were minor, no way I could of thought through anything major rn
+
+welp time for a nap before work
+
+<video src="images/community_section_also_uses.mp4" width="320" height="240" controls></video>
+
+https://twitter.com/Janetthedev/status/1640082816112402432 1:06 PM · Mar 26, 2023
+
+---
+
+Take that forcedReload whenever an item is edited or deleted! now with the power of swr, I can call mutate() and it'll automatically refresh and show the user the updated data!
+
+![alt text](FsOCEfEaQAAWh4P.png)
+
+Funny how the little things in life get so exciting!
+I was laying in bed on the edge of sleep last night and mentally went !!! when I realized i could FINALLY get rid of that clunky forceReload 🥳
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1640297986268991489 3:20 AM · Mar 27, 2023
+
+---
+
+next share can be great. But even though a press on the enter key correctly sends the user to the right app (email, reddit, ect) its DETERMINED to not show the focus ring
+
+But fear not I managed to make next-share behave with tailwindcss' focus-within option! 😤
+
+<video src="images/next_share_can_be_great.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1640641300994355201 2:05 AM · Mar 28, 2023
+
+---
+
+me: at the stage to just test bugs
+
+also me: decides I should give users the option to add an alt tag when uploading an image for a post
+
+one of these days i'll stop thinking of "little improvements" and just debug
+
+It has begun! Alas going to need to sleep soon 😴
+
+![alt text](FsTG-d7acAIwIJk.jpg)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1640650819333935104 2:43 AM · Mar 28, 2023
+
+---
+
+🍈worked
+🍈did a tiny bit of project work, tomorrow I'm going to edit the email sign in process. Instead of using sendgrid smtp i'm going to switch the web api
+🍅no anki
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1641075135989022720 6:49 AM · Mar 29, 2023
+
+---
+
+Well thats annoying, next auth pushes us to use smtp so I'll probably have to keep that.
+
+BUT even though the smtp sendgrid magic email link works in production, vercels determined to say "the e-mail could not be sent" 🫠
+
+![alt text](FsavHKZaIAAV_Ug.png)
+
+This seemed promising!
+https://vercel.com/guides/can-i-get-a-fixed-ip-address
+turns out vercel can't used a fix IP address. So I added 0.0.0.0 to sendgrid's allowed ips
+
+no dice 😔
+
+alright so found the actual error message in vercel 🧐
+
+```[next-auth][error][SIGNIN_EMAIL_ERROR]
+https://next-auth.js.org/errors#signin_email_error Invalid login: 535 Authentication failed: The provided authorization grant is invalid, expired, or revoked {
+ error: {
+   message: 'Invalid login: 535 Authentication failed: The provided authorization grant is invalid, expired, or revoked',
+   stack: 'Error: Invalid login: 535 Authentication failed: The provided authorization grant is invalid, expired, or revoked\n' +
+     '    at SMTPConnection._formatError (/var/task/node_modules/nodemailer/lib/smtp-connection/index.js:790:19)\n' +
+     '    at SMTPConnection._actionAUTHComplete (/var/task/node_modules/nodemailer/lib/smtp-connection/index.js:1542:34)\n' +
+     '    at SMTPConnection.<anonymous> (/var/task/node_modules/nodemailer/lib/smtp-connection/index.js:546:26)\n' +
+     '    at SMTPConnection._processResponse (/var/task/node_modules/nodemailer/lib/smtp-connection/index.js:953:20)\n' +
+     '    at SMTPConnection._onData (/var/task/ .....
+     )
+ }
+```
+
+![alt text](Fsa0OKIakAISRkD.png)
+
+weird, the database is showing the verification token is created? So thats not the problem
+
+Seems like somehow theres an error with the email?
+
+![alt text](FsbEVSMaUAA-k6j.png)
+
+this gave me pause to double check my form
+
+https://github.com/nextauthjs/next-auth/discussions/4990
+
+and what do you know, it WAS my form. I forgot to set the buttons type to submit! 😂
+
+why where you working locally then friend?!? WELP at least the button has been purified and plays nicely with vercel now
+
+![Womp Womp Gravity Falls GIF](https://media1.tenor.com/m/GbZfwlxfk8UAAAAC/womp-womp-gravity-falls.gif)
+
+Today I committed the cardinal sin of forgetting to put a type on a button. Unforgivable!
+
+may the world one day forgive me like vercel has 😔
+
+![image of a jester sitting in a chair, with the text i'm boo boo the fool as the camera slowly pans in](https://i.kym-cdn.com/entries/icons/original/000/022/477/5ebacf52cd3221a7487b805d0954b422.jpg)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1641191719583776769 2:32 PM · Mar 29, 2023
+
+---
+
+It was a journey of many, many small steps forwards and back. But! victory is mine!😤
+
+I ended up being an overachiever again (suprise suprise). And I really, really wanted to figure out how to personalize the magic login link with next auth & add an image to the email
+
+<video src="images/it_was_a_journey.mp4" width="320" height="240" controls></video>
+
+path.join(process.cwd()) was especially a lil' fun bug to figure out and squish!
+I figured out process.cwd but vercel also required path.join() to work
+three cheers for googling skills && gratitude for those many helpful threads
+
+https://nextjs.org/docs/api-reference/data-fetching/get-static-props#reading-files-use-processcwd
+https://vercel.com/guides/how-can-i-use-files-in-serverless-functions
+
+One thing that was a bummer is I was hoping to make two buttons
+
+Button 1. signs user in and sends them to dashboard
+Button 2. signs user in and redirects to the settings page
+
+seems that next auth only likes one callback for magic links though?
+
+Thought of a workaround but its unweildly and ehh, i really need to get other stuff done 😂
+
+Could of added a Boolean "wantsToResetPassword" property to the user objects in mongo. When the user clicks the forgot password button, it would send a put request.
+
+when the magic link spits them out @ login.Then look at session.user.resetPassword...if false ==> redirect to dashboard. if true, send to settings
+
+When the user goes to the settings page, check if session.user.resetPassword is true. If it is send a put request to change it to false
+
+so. it'd be a lot of tedious code, AND I feel like it should be possible to do this more simply. So in the end I'd be tossing out all that code anyway
+
+but eh as cumbersome as it feels to tell them how to manually reset their password, it works for now 🤷‍♀️
+
+![alt text](FsdDXcKaEAALpUf.png)
+
+thought i was going to get ready for sleep, but ended up adding one more image! 😂
+
+In the animal welfare industry, some users aren't tech literate. So i want to make the experience as painless as possible for them.
+
+![alt text](FsdIbqFaYAA0rb2.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1641349466711281665 12:59 AM · Mar 30, 2023
+
+---
+
+so tomorrow should HOPEFULLY be the day i finish the last bits
+
+mostly fixing some wonky width/margin properties on mobile
+
+pray for me that no other feature occurs to me 😂
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1641363162862882816 1:54 AM · Mar 30, 2023
+
+---
+
+Got lucky today that i was juuuust under the 100 maximum email requests from sendgrid :P.
+
+Nothing like a good ol' debugging/developing party
+
+![alt text](FsdSc7maYAEYFF2.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1641371280917299201 2:26 AM · Mar 30, 2023
+
+---
+
+Even though your first instinct can be to look at the wonky element, usually its because another element later on is stubbornly demanding it be bigger than the screen width allows!
+
+the problem child here was the filtering area demanding that it wanted to be 80px. Not perfect
+
+![alt text](Fsh_AE4agAEQ_Sh.png)
+![alt text](Fsh_jrraAAEoCQ9.png)
+
+but close enough for my needs. Especially since that sliver only shows on super small mobile screens
+
+Made it so the pages where tags and categories can be submitted are currently only submittable for me (my user id)
+
+sooooomething terrible happened on the register page 😂 that image is supposed to be the size of a chicken not a t-rex!
+
+![alt text](FsiBAWVacAE4G5C.jpg)
+
+I realized i had converted it to a NextImage component from an img but hadn't checked on it 🙄ugh
+
+<Image> my nemesis. Luckily flex continues to be my best bro!
+
+![alt text](FsiCg3BaUAAB199.jpg)
+![alt text](FsiCsqeaIAEnq63.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1641702978582380545 12:24 AM · Mar 31, 2023
+
+---
+
+So, I was getting a client side error sometimes on the community page.
+But luckily I'm familiar with this tantrum! It was because these smaller apis still use populate, which needs the user model imported (its greyed out but trust me, its an extremely annoying bug with populate)
+
+![alt text](FsiI8tAaUAApSOu.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1641713303255941120 1:05 AM · Mar 31, 2023
+
+---
+
+so far most things are working but I discovered a tricky little problem! The blank space wasn't escaped as %20, so the twitter share link broke
+hmm 🤔
+
+![alt text](FsiJ5dVacAABucj.jpg)
+![alt text](FsiJ9-HaIAAgqJB.png)
+![alt text](FsiKlPFaAAAyl2N.png)
+![alt text](FsiK-M_aAAAxBUx.png)
+
+twitters share link works properly now! just had to break out my good ol' friend split and join
+
+![alt text](FsiN-wjaAAEfa6h.png)
+![alt text](FsiN5G3acAAaVSQ.png)
+
+Error messages for uses who aren't logged in are showing propertly!
+
+Though I realized I wanted to change the buttons text to "close" when the new post form is opened
+
+![alt text](FsiPNdKaIAIj3Th.png)
+![alt text](FsiP4GzaQAIKgjp.png)
+
+fixed! now the button shows as cancel when the add comment form shows
+
+![alt text](FsiQxxQacAArerE.png)
+![alt text](FsiQzi2aUAAPVg-.png)
+
+Fixed this so both cancel buttons will close the post form!
+
+Had to pass a state update down as a function ect
+
+![alt text](FsiTGgraAAI9x5q.jpg)
+![alt text](FsiTNAUaYAUf6WO.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1641714938988359680 1:11 AM · Mar 31, 2023
+
+---
+
+Fixed a small bit of code that was keeping not-signed-in users from viewing profiles.
+
+Fixed the mage that appears when followers/following is empty 🥳
+
+<video src="images/fixed_a_small_bit_of_code.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1641892584682561537 12:57 PM · Mar 31, 2023
+
+---
+
+Huh weirdly though it works fine locally, the likes button is acting weird in builds
+
+in builds, you can click the likes heart. but if you click a second you get this error. If you click a third time, it works like it should of on that second click?
+"new connection" 🤔strange
+
+![alt text](Fsk4kuIaYAE9gSK.png)
+![alt text](Fsk4sWhaYAsmClw.png)
+![alt text](Fsk4sWhaYAsmClw-1.png)
+
+So turns out, i'm a 🤡! i was TELLING it to disconnect. And turns out disconnect only works in production builds, thus the problem only appearing on builds
+
+Got rid of that and the likes button works with npm run build && vercel
+
+![alt text](Fsk8XwPaYAE7Iw3.png)
+![alt text](Fsk8idBaYAIOZs1.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1641907144395202560 1:55 PM · Mar 31, 2023
+
+---
+
+Fixed another width problem! This time it was the nav bar 🙈
+
+But its nothing "hidden && sm:block" won't fix!
+
+(hidden in tailwind is short for display:none in css. So the logo is hidden until it reaches a small screen width)
+
+<video src="images/fixed_another_width_problem.mp4" width="320" height="240" controls></video>
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1642296941047599104 3:44 PM · Apr 1, 2023
+
+---
+
+Fixed a few issues!
+Adding a comment lead to a 500 error, looked in the code and noticed there was a db.disconnect 🤦‍♀️removing that fixed it.
+
+Realized the like, share and comment button we're accessible so i fixed that with tabindex="0". It looks a bit odd when focused on but eh
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1642775602695643136 11:26 PM · Apr 2, 2023
+
+---
+
+🦠trying to mostly chill as my body fights covid 😤
+🦠played ff14 for the first time in a long while
+🦠caught some accessibility issues and database issues, issues seem to be fixed!
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1642832141628342279 3:11 AM · Apr 3, 2023
+
+---
+
+Nothing like making changes to your local file and getting annoyed/wondering why it isn't showing on the live site 😂took me a minute to realize 🙈
+
+Covid brain is real!
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1643132105088696321 11:03 PM · Apr 3, 2023
+
+---
+
+made a few small changes, like saying if the error response code is 409 directly tell the user that the name already exists, versus the general error message
+
+![alt text](Fs4d-myagAEP2QC.jpg)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1643284064835891201 9:07 AM · Apr 4, 2023
+
+---
+
+Still working out a few bugs but if anyones dying to poke around here ya go! https://pet-profile-tailor.vercel.app
+
+dummy account if anyone wants to use it instead:
+email: test@gmail.com
+pass: testtest
+
+Feel free to poke around but please don't change the email (in settings) because other users need that email to sign in
+
+No biggie I can change it back if you make a goof though
+
+> REPLY
+> Adam Morsa🏕 @RamblingAdam
+> I'm getting an error code 500 when I try to make an account 😿
+
+noooo curses, luckily I was able to catch it in the vercel logs! It seems to be related to mongodb & nextauth, so i changed around the db file.
+
+If you have time, give it another shot?
+
+I need more devices to test with, 3 isn't enough! Running fine here but I don't trust it 😂
+
+> REPLY
+> Adam Morsa🏕 @RamblingAdam
+> Success!
+> ![alt text](FtVUeUEWIAEwsGs.png)
+
+this is EVERYTHING i hoped for in a name with a description! A cute little summary as well as some helpful life tips to help them along their way 10/10 hamster squeaks! 😂
+
+Seriously, words can't do justice to how much this made me laugh. Excellent work friend!
+
+> REPLY
+> Adam Morsa🏕 @RamblingAdam
+> Yay!🐹🤣
+>
+> Notes:
+> -Profile page is a 404 (you're prolly still building it)
+> -The /dashboard route, if not logged in, returns a 500 if not logged in.
+> -Related: Any /_randomtext_ route returns 404. Recommend setting up redirects to the main page if an unknown route is plugged in
+
+Alright so I figured out what happened there! I was a goof and forgot to make it so profilenames are always lowercase! so when the url changed it to lowercase, it could never match the capitalization in the profilename! Should be fixed now 🙏🙇‍♀️
+
+ah! Good idea about the redirect
+
+Turns out next js has custom 500 & 404 pages, so I was able to create customized pages that still have a working nav bar, so users can easily escape the error messages!🥳
+
+You're a real one! Seriously, thanks a mill for testing, the notes and ideas. You're a huge, huge help💕
+
+> REPLY
+> Khanh Tran 🌈 @khanhtncva
+> I love the name "Bilbo Waggins", Janet! 😍
+>
+> By the way, just for your info, there's a 500 error.
+
+hehe thanks! I must admit i shamelessly stole it, its such a fun name!
+
+Boo @ mongodb/mongoose for being a brat, thanks for the heads up! Weirdly that particular error says its connected but mongo says it isn't? But I realized I didn't have an await, so hopefully thats it 🤷‍♀️
+
+![alt text](FtV2OsyaIAEct7A.png)
+
+> REPLY
+> ⚡️Shah⚡️@Shahx95
+> I get a 500 Internal Server Error when i click on the link 😶
+
+huh first time I saw an error for the landing page, but found it in the vercel logs!
+
+Looks to be related to mongodb, so I changed the db file a bit. If you have some free time can you give it another shot?
+
+I need more than 3 devices, its working fine here but I don't trust it😂
+
+> REPLY
+> ⚡️Shah⚡️@Shahx95
+> i was able to login! yay! 😸😸
+
+> REPLY
+> ⚡️Shah⚡️@Shahx95
+> When attempting to set my username (not previously set due to the magic link), I get a 500 error. And when attempting to add a description, it seems to continue forever. Probably because of no username.😄
+
+ah! It feels silly it didn't even occur to me it would try to create a new user if the email didn't already exist/ was already registered versus just throwing an error! Thanks
+
+Edited your profile in mongo so you have all the basic info/username ect now, thanks for your patience!
+
+> REPLY
+> ⚡️Shah⚡️@Shahx95
+> Thanks for the vip access. 😆😸
+
+> Reply
+> Jason Jugo @HondaCivicChan
+> ![alt text](FtKKmSqXwAIXJjX.jpg)
+
+GLORIOUS! I am honored to have such a 11/10 name in the database and you are so right about that.
+
+Honda really aught to be a name of a husky, whoosh there it gooooes
+
+![husky running and doing a roll while running](https://imgix.bustle.com/uploads/image/2019/4/16/4222fff4-0ed8-41e4-97b7-bcf353e5ddb5-giphy.gif)
+
+> Reply
+> Jason Jugo @HondaCivicChan
+> Haha so far the app is awesome! Works well on my end and I can see all the hard work you put in to it! 🔥
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1644477741079887872 4:10 PM · Apr 7, 2023
+
+---
+
+🥝did banki for the first time in a long time!
+🥝bit of project bug testing
+🥝meditated
+🥝played some ff14, read some omniscient reader on webtoon
+🥝and most importantly gave ember some pets😜
+
+![alt text](FtLWhw0agAAaKZ6.jpg)
+![alt text](FtLWiNWaAAA_vqk.jpg)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1644612699962359809 1:06 AM · Apr 8, 2023
+
+---
+
+Alright my first experience of working around existing users!
+
+I discovered a bug where the profile link was using the user's name, instead of profilename🤦
+
+I added profilename to session, but users who have an old session don't have it, so their nav bar freaks out and fails. So
+
+![alt text](FtRnnciagAAV4S6.png)
+
+So i made it so the profile link only shows on the nav bar, if session.user.profilename exists! This way they can still logout if they have an old session
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1645054342821732356 6:21 AM · Apr 9, 2023
+
+---
+
+alright so the error logs I got earlier was basically this and the core issue between them seems to be the mongoserver timing out?
+
+So I switched db files (I had 2 different db files, one simplier and one more complex, no real good reason for it haha). & added extra logic
+
+![alt text](FtRt6ysaIAUB7uA.jpg)
+![alt text](FtRtss_aYAIE0LP.png)
+![alt text](FtRt7QmakAAPI2W.png)
+![alt text](FtRuI6YaAAUzwEA.png)
+
+stackoverflow.com/questions/66231038/mongodb-failed-to-connect-connection-timed-out-connects-via-atlas
+
+added that new bit based on this, heres for hoping that the first fix is miraculously the solution! working on all 3 of my devices but I only saw it pop up once in a blue moon before so 🤷‍♀️
+
+This was the older simplier db file I got rid of. So I basically combined the two
+
+![alt text](FtRvLgsakAEJ1ss.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1645061354473295878 6:49 AM · Apr 9, 2023
+
+---
+
+Well!
+
+thats a weird and new one 🤔either it was freaking out while the page was idling or someone got a weird error when trying it out
+
+All IPs have access so 🤷‍♀️just a weird glitch maybe?
+
+![alt text](FtRxZZAaMAAJJUb.jpg)
+![alt text](FtRxmqragAATlaO.png)
+![alt text](FtRxrpQaYAE5z31.png)
+![alt text](FtRx4B6aQAAYzY2.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1645065281474265089 7:05 AM · Apr 9, 2023
+
+---
+
+nooo the errors still continue (occassionally) 🥲 1st one is strange one! since it says its connected but mongo doesn't see it?
+
+But I realized some of the db.connect()s didn't have await, so hopefully changing it to async await will help...
+
+![alt text](FtV1pDeaUAIie3c.jpg)
+![alt text](FtV1vrCaIAAG8eu.jpg)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1645350753941463040 1:59 AM · Apr 10, 2023
+
+---
+
+Alright so I'm pretty sure the server problem is in here https://github.com/JSMarsh813/PetProfileTailor/blob/main/utils/db.js
+But its frustrating that it very, very rarely occurs for me! Wish it was easier to test for 🥲
+
+with any luck this tiny line on 28 I added will of fixed it, but I doubt it
+
+```
+The error message 2023-04-10T08:06:35.275Z	7d3e76dc-39b2-4d35-a27b-90adfe53ff2d	ERROR	Unhandled Promise Rejection 	{"errorType":"Runtime.UnhandledPromiseRejection","errorMessage":"MongoNetworkTimeoutError: connection timed out","reason":{"errorType":"MongoNetworkTimeoutError","errorMessage":"connection timed out","connectionGeneration":0,"stack":["MongoNetworkTimeoutError: connection timed out","    at connectionFailureError (/var/task/node_modules/mongodb/lib/cmap/connect.js:389:20)","    at TLSSocket.<anonymous> (/var/task/node_modules/mongodb/lib/cmap/connect.js:310:22)","    at Object.onceWrapper (node:events:627:28)","    at TLSSocket.emit (node:events:513:28)","    at TLSSocket.Socket._onTimeout (node:net:550:8)","    at listOnTimeout (node:internal/timers:559:17)","    at processTimers (node:internal/timers:502:7)"]},"promise":{},"stack":["Runtime.UnhandledPromiseRejection: MongoNetworkTimeoutError: connection timed out","    at process.<anonymous> (file:///var/runtime/index.mjs......)]}
+```
+
+I had originally grabbed that code from coding with bashir https://youtube.com/watch?v=3kYkEVIZNZY&t=6964s&ab_channel=CodingwithBasir
+at 1:51:55. But the tutorial is 2 years old, so maybe the codes too old to work properly with the current mongodb ect? 🤷‍♀️
+https://github.com/basir/next-amazona/blob/main/utils/db.js
+
+I could try to use this example from vercel/next js https://github.com/vercel/next.js/blob/canary/examples/with-mongodb/lib/mongodb.ts but I liked how the other one would maintain the connection if one already existed. Versus remaking the connection a ton of times...
+
+Yeah nope that didn't fix it 🥲 didn't have high hopes but ugggh https://github.com/JSMarsh813/PetProfileTailor/blob/main/pages/api/auth/%5B...nextauth%5D.js Doubt next auth itself is the issues, especially since its an await inside an async ... and the db.connect in the utils file has catch blocks... 🥴
+![alt text](FthD_eraQAEd0k_.jpg)
+
+once I wake up I guess my only choice at this point is to post in the 100devs discord and hope really hard that someone can point me in the right direction 🥲
+
+hoping its just my code syntax ect.
+
+I really don't want to update any dependencies if I can avoid it, though maybe its just because my mongodb and/or next auth is slightly older 🤷‍♀️
+
+Its frustrating since it seems most people fixed this issue by making it so all IPs are allowed, but my database is already set up to allow all IPS 🙃
+https://www.mongodb.com/community/forums/t/serverselectiontimeouterror-networktimeout-topology-type-replicasetnoprimary/179979
+
+![alt text](FthIyJiakAEN2tt.png)
+
+Its not my config/env since it usually DOES work?
+
+WELP for better or worse I installed the newest versions of mongodb and mongoose. So far nothings on fire so it didn't seem to do any harm at least 🤷‍♀️
+
+![alt text](FthLKrkaEAAYISA.png)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1646130426493431809 5:37 AM · Apr 12, 2023
+
+---
+
+🐢did overtime for the last two days
+🐢built a custom 404 and 500 pages, got session working on the static pages so the nav works right on those pages
+🐤still fighting with the server error on pet profile tailor, lets see if updating mongodb & mongoose helped
+🦀no anki/banki
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1646173081889820672 8:27 AM · Apr 12, 2023
+
+---
+
+psst can any of you amazing people click around a bit and see if any errors pop up/it redirects you to a 500 page? https://pet-profile-tailor.vercel.app 🥺
+
+Heres a begging shiba ina gif to pay the cute animal picture tax 🙏
+
+Its working fine for 2 of my buddies but don't know if thats because we're all in california 🤔
+Vercel had logged one 500 error, but it didn't effect them so _SHRUG_
+
+![alt text](FtkabFpaIAIKcnp.jpg)
+
+if anyone wants to try logging in the dummy account is
+
+test@gmail.com
+password: testtest
+
+> REPLY
+> Taeho @mcwhopper63
+> awesome job!
+>
+> i used the dummy credentials and haven't come across a 500error. I did find the textArea doesn't clear after hitting the Post Comment button. This is in the Profile page section.
+
+> REPLY
+> Sophie @soph_m_e
+> Cool project! I had a look and uploaded a post and didn’t see any errors or issues, I’m in England
+
+> REPLY
+> Cory N ✨death cab for coding✨ @3MonitorNelson
+> I’m giving it a test and so far so good. Really great work!
+
+> REPLY
+> David Lenh @dlenh425
+> Clicked around and didn't find any error pop-ups. I added Chris P. Bacon as a test. Aside from a pop-up that says name was added successfully, user doesn't get redirected elsewhere; it stays on the page with the form still filled out. Not sure if that was intended :)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1646375985061969920 9:53 PM · Apr 12, 2023
+
+---
+
+Plans for today 🚀
+☄️ Write a letter of rec for one of my buddies
+☄️ Make it so users can't register with the magic link
+☄️ Fight w/ any errors petprofiletailor is still throwing if any
+☄️get back on the anki/banki saddle
+☄️ Some overdue down time w/ ff14 & friends
+
+magic link is fixed! new users will be redirected to the registration page
+
+only con is the registration page requires they add a password, so not ideal for users that will always be signing in with the magic link
+
+🤷‍♀️not important enough to focus on for now though
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1646380095635099648 10:09 PM · Apr 12, 2023
+
+---
+
+Okay looks like I have to create a sign in callback to make sure users can't sign up with the magic link
+
+https://github.com/nextauthjs/next-auth/issues/1229
+
+and if the email doesn't already exist in the database, send them to the registration page 🤔
+
+this is the cutest typo😂
+
+now picturing people having to sing to sign in to their app 🎵 software dev meets musical!
+
+![alt text](FtksnLKaAAAxykH.png)
+
+Alright so the docs are annoying since they ONLY show the properties of Oauth provider and only vaguely hint at one property of the email provider 🙄
+
+luckily i'm stubborn and figured out how to grab the error from the url to piece together the object https://next-auth.js.org/configuration/callbacks#sign-in-callback
+
+![alt text](Ftk6QNaaQAAXlMU.png)
+![alt text](Ftk6D6JaIAADerc.png)
+
+it works locally! Now to deploy and make sure its working on the build version/vercel too
+
+Users who use the magic link will be redirected to the registration page if the email does not exist in the users collection yet 🥳
+
+<video src="images/it_works_locally.mp4" width="320" height="240" controls></video>
+
+So theres 3 properties for the email provider:user, account and email
+
+I need the email they enter, so I can ask my database if the user collection has a document with that email.
+
+So I grabbed user. email . If it doesn't exist (null), they'll be punted to the registration page
+
+![alt text](Ftk9PYQakAAf7Zf.png)
+![alt text](Ftk9LFFaQAAbFae.png)
+
+sweet the fix also works on the deployed version 🥳
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1646395922434375680 11:12 PM · Apr 12, 2023
+
+---
+
+Fixed the error that @Polymath_Jesus found! Turns out I had forgotten to add the edit function for names to the profile page, whoops 😂🤦‍♀️
+
+![alt text](FtrL65qaMAEJjC0.png)
+![alt text](FtrL_r7agAAYvQp.png)
+![alt text](FtrMK4UaUAEyZSv.png)
+![alt text](FtrMK4UaUAEyZSv-1.png)
+
+Thanks for the heads up friend!
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1646853634100191235 5:31 AM · Apr 14, 2023
 
 <video src="images/been_squeezing_in_tiny.mp4" width="320" height="240" controls></video>
