@@ -56,16 +56,38 @@ function duplicateCount(text){
  }
 ```
 
+## add a property to an object
+
+```
+const greetDevelopers = list => list.map(
+  dev => (
+             {...dev,
+             greeting: `Hi ${dev.firstName}, what do you like the most about ${dev.language}?`
+             }
+             )
+);
+```
+
+```
+function greetDevelopers(list) {
+  list.forEach(function(developer) {
+    developer.greeting = `Hi ${developer.firstName}, what do you like the most about ${developer.language}?`;
+  });
+
+  return list;
+}
+```
+
 ## Copy an object, add old object to new one
 
 X let Object1=object2 ==> will point to the same object in the heap
--  so its not copied
-- Object1, object2 variables point to the same object in the heap 
-the heap
-![Alt text](image-25.png)
 
+- so its not copied
+- Object1, object2 variables point to the same object in the heap
+  the heap
+  ![Alt text](image-25.png)
 
-- the following methods will allow the variable to point to a new cloned object in 
+- the following methods will allow the variable to point to a new cloned object in
 
 ![Alt text](image-26.png)
 
@@ -106,7 +128,7 @@ For all these methods Object.defineProperty() is better:
 
 - quietly fails to add the property, no error message
 
-2.   Object.defineProperty(objectToAddTo, propertyToAddOrChange, valueOfProperty)
+2.  Object.defineProperty(objectToAddTo, propertyToAddOrChange, valueOfProperty)
 
 - Adding a NEW property throws error "Uncaught TypeError: Cannot define property age, object is not extensible"
 - you can MODIFY an existing property
@@ -121,14 +143,14 @@ For all these methods Object.defineProperty() is better:
    console.log(makeNonExtensive)
 ```
 
-
 ### Object.preventExtensions(obj)
+
 - stops new properties from entering the object
 - You can CHANGE and DELETE existing properties
 
 ```
    Object.preventExtensions(objectName)
-  ```
+```
 
 ### Object.seal(objectName)
 
@@ -138,21 +160,22 @@ For all these methods Object.defineProperty() is better:
 
 ```
    Object.seal(objectName)
-  ```
+```
 
-to check if an object is sealed: 
- > console.log(Object.isSealed(studentNames))
+to check if an object is sealed:
 
+> console.log(Object.isSealed(studentNames))
 
- ### Object.freeze(objectName)
+### Object.freeze(objectName)
 
 - CANNOT have properties deleted, modified or added
 
 BUT objects nested INSIDE this object:
+
 - CAN have properties deleted, modified or added
 
-to check if an object is frozen: 
- console.log(Object.isFrozen(obj))
+to check if an object is frozen:
+console.log(Object.isFrozen(obj))
 
 ### Deep Freeze Function
 

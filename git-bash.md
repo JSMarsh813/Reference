@@ -132,6 +132,31 @@ as suggested by github
 
 ## Removal & Undoing Changes
 
+### Undo staged file before commit
+
+```
+git reset 6-allocating-hotel-rooms.js
+```
+
+But when you do git status, you will see it's still an untracked file
+![alt text](image-5.png)
+
+```
+git clean -n
+
+```
+
+![alt text](image-6.png)
+clean -n will tell you what git clean would get rid of
+
+```
+git clean -f
+
+```
+
+![alt text](image-7.png)
+will get rid of that untracked file
+
 ### Undo commited snapshot/faulty commit
 
 When you discover a faulty commit, reverting is a safe and easy way to completely remove it from the code base.

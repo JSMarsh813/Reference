@@ -93,6 +93,21 @@ function nbYear(popStart, percent, aug, goalPopulation) {
 }
 ```
 
+## for loop, when you want to stop the loop midway
+
+```
+function removeUrlAnchor(url){
+  let string = ""
+  for(let i = 0; i < url.length; i++){
+    if(url[i] === "#")
+             { break }
+    string += url[i]
+  }
+  return string
+}
+
+```
+
 ## If else and recursion
 
 ```
@@ -223,3 +238,21 @@ info.apply(game,["sega","sonic]) <===PASSING HERE
 ```
 
 ### bind example
+
+### storing and accessing functions stored in an object
+
+```
+function arithmetic(a, b, operator){
+  return ops[operator](a, b);
+}
+
+const ops = {
+  "add"      : (a, b) => a + b,
+  "subtract" : (a, b) => a - b,
+  "multiply" : (a, b) => a * b,
+  "divide"   : (a, b) => a / b
+}
+
+console.log(arithmetic(2,4,"subtract"))
+
+```
