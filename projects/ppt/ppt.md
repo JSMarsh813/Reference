@@ -349,7 +349,31 @@ I just screwed around and what do you know, it actually works!
 
 So the name data is being sent from the server now into the page🎉🎉🍾
 
-![alt text](FjmHMa-UYAE4FZH.png)
+
+```
+Export const getStaticProps = async () => {
+
+let response= await fetch(‘http://localhost:3000/api/name-categories’);
+let nameResponse = await fetch (‘http://localhost:3000/api/individualNames’)
+
+let data = await response.json()
+let nameData= await nameResponse.json()
+
+// console.log(data)
+//getServerSideProps allows us to fetch data from an api 
+//runs only on server side, will never run client side
+// can run server-side code directly in getStaticProps
+
+  return {
+      props: {
+         category: data,
+         nameList: nameData,
+            },
+        }
+}
+```
+
+![alt text](deletemecode.png)
 Twitter Post Link: https://twitter.com/Janetthedev/status/1601460207556567045 10:14 PM · Dec 9, 2022
 
 ---
@@ -369,9 +393,71 @@ I'm proud of my progress especially after working!
 Users can select multiple tags (provided by a list from my server) and they can input a name. Both are saved in the state
 
 ![alt text](Fjq_FSpVQAAiKwa.png)
-![alt text](Fjq_HOSUYAA0U_p.png)
-![alt text](Fjq_VAyUUAEnc_x.png)
-![alt text](Fjq_kT4UUAA_rKI.png)
+![alt text](deleteconsolelog.png)
+```
+console.log Results:
+
+name: l tags: Christmas, Male
+name: le tags: Christmas, Male
+name: leo tags: Christmas, Male
+name: leon tags: Christmas, Male
+
+```
+
+```
+import Select from 'react-select'
+import React, {useState} from 'react';
+
+export const getStaticProps = async () => {
+  let tagList = await fetch('http://localhost:3000/api/individualTags');
+
+  let tagData = await tagList.json()
+
+  return {
+    props:{
+      tagList: tagData,
+    }
+  }
+}
+```
+
+![alt text](deleteCode2.png)
+```
+function AddNewNameWithTags({tagList}) {
+  const [newName,setNewName=useState("")]
+  const [tags,setTags]= useState([])
+
+return (
+  <div style={{width:"700px"}} className="mx-auto mt-4">
+ {/*console.log(tagList[0].individualTag) */}
+ {console.log(`name: ${newName} tags ${tags}`)}
+ 
+ <form>
+     {/* needs label and value for Select to work*/}
+    <input type="text"
+       placeholder="enter a name to add"
+       onChange={(e)=> setNewName(e.target.value)}>
+       </input>
+
+  <Select
+      options={tagList.map((opt,index)=> ({label: opt.individualTag, value:opt.individualTag}))}
+      isMulti
+      isSearchable
+      placeholder="select tags..."
+      onChange={(opt)=>settings(opt.map(tag=>tag.label))}
+       //update STATE of section of object
+      />
+
+      <button className="btn"> Add Name </button>
+      {/* //submit state to server in correct format */}
+      {/* if name already exists, send an error message */}
+  </form>
+  </div>
+ );
+}
+export default AddNewNameWithTags;
+```
+![alt text](Deletecode3.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1601803814935220224 8:59 PM · Dec 10, 2022
 
