@@ -101,9 +101,16 @@ I did a little bit more work on the landing page! Very rough, rough draft done.
 
 The UI adjustments/colors ect are for future me to figure out 😂
 
-![shows the front page, describing how the page will help you find the purrfect name](https://ucarecdn.com/1e9bb232-bf97-4abc-b9b5-470fbdbb7848/20221205frontpagestart1.jpg)
-![showing the second page, describing how it will help you find creative descriptions for pets](https://ucarecdn.com/3cba1715-6790-443c-addb-1db9ff730f74/20221205frontpagestart2.jpg)
-![showing the third page, explaining what a free profile gives you access to](https://ucarecdn.com/7d7f1c9b-c6cd-44f3-97ca-dad140dcb2ac/20221205frontpagestart3.jpg)
+<img alt="shows the front page, describing how the page will help you find the purrfect name"
+src="https://ucarecdn.com/1e9bb232-bf97-4abc-b9b5-470fbdbb7848/-/format/auto/"/>
+
+<img 
+alt="showing the second page, describing how it will help you find creative descriptions for pets"
+src="https://ucarecdn.com/1e9bb232-bf97-4abc-b9b5-470fbdbb7848/-/format/auto/"/>
+
+<img 
+alt="showing the third page, explaining what a free profile gives you access to"
+src="https://ucarecdn.com/7d7f1c9b-c6cd-44f3-97ca-dad140dcb2ac/-/format/auto/"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1599834982406840320 10:35 AM · Dec 5, 2022
 
@@ -197,7 +204,8 @@ I was trying to figure out why the test post request seemed to work, except the 
 
 Turns out the body was showing as "text" instead of "json!" Once I switched it to "json" in postman it worked
 
-![](https://ucarecdn.com/238d3b95-8855-4f16-b1a6-e0042d382f29/20221207postman.jpg)
+<img 
+src="https://ucarecdn.com/238d3b95-8855-4f16-b1a6-e0042d382f29/-/format/auto/"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1600554807059615745 10:16 AM · Dec 7, 2022
 
@@ -247,7 +255,9 @@ SWEET PROGRESS! The toggable accordion panels and checkboxes were made by mappin
 
 I'm so happy🥺
 
-![showing a filter list, there are two categories holiday and gender. the holidays christmas easter and halloween can be selected with a checkbox. the gender selections also have a checkbox](https://ucarecdn.com/e82151d8-889c-45f2-82d9-e80a2819e96a/2022127toggableaccordionfilter.jpg)
+<img
+src="https://ucarecdn.com/e82151d8-889c-45f2-82d9-e80a2819e96a/-/format/auto/"
+alt="showing a filter list, there are two categories holiday and gender. the holidays christmas easter and halloween can be selected with a checkbox. the gender selections also have a checkbox">
 
 ```
    _id: ObjectId('6666666666')
@@ -282,7 +292,9 @@ I made some slow but definite progress!
 
 I can generate a list from the server and also by clicking the checkbox i can store the selected results in an array in the state. And clicking even removes it from the array (after lots of struggle haha)!
 
-![showing the checkboxes clicked, which then store up in the state in the react components section of the developer console](https://ucarecdn.com/a8fd49dd-3e61-4588-bcfe-6d127a3a2ba8/20221209filterprogressstate.png)
+<img
+src="https://ucarecdn.com/a8fd49dd-3e61-4588-bcfe-6d127a3a2ba8/-/format/auto/"
+alt="showing the checkboxes clicked, which then store up in the state in the react components section of the developer console">
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1601132154527703040 12:30 AM · Dec 9, 2022
 
@@ -293,7 +305,9 @@ I want to start with all the names, and then have it look through the array of n
 
 But that's for future me, Sleep time!
 
-![showing mongodb and the two categories for filters holidays and christmas, being stored in two objects. these two objects then link to an array of filters which relate to that category like christmas, easter and halloween](https://ucarecdn.com/53707589-902a-4737-9dc3-3f6aca8eb93b/2022129mongodb.png)
+<img
+src="https://ucarecdn.com/53707589-902a-4737-9dc3-3f6aca8eb93b/-/format/auto/"
+alt="showing mongodb and the two categories for filters holidays and christmas, being stored in two objects. these two objects then link to an array of filters which relate to that category like christmas, easter and halloween">
 
 ```
   let nameList= [
@@ -359,8 +373,13 @@ I realized I didn't show off the end result!
 
 The names (bottom of the screen) render based on what tags are chosen
 
-![when unfiltered all names show, when filtered by male only male names like santa and beans show](https://ucarecdn.com/57c07493-a67e-4c2a-a204-fdd20d66c9e8/20221209nofilteringandfilteringbymale.png)
-![only the name santa shows when filtering by male and christmas](https://ucarecdn.com/92fb5fe1-039b-4421-bb16-925dbb678d74/20221209filteringbymaleandchristmas.png)
+<img
+src="https://ucarecdn.com/57c07493-a67e-4c2a-a204-fdd20d66c9e8/-/format/auto/"
+alt="when unfiltered all names show, when filtered by male only male names like santa and beans show"/>
+
+<img
+src="https://ucarecdn.com/92fb5fe1-039b-4421-bb16-925dbb678d74/-/format/auto/"
+alt="only the name santa shows when filtering by male and christmas"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1601348110080307201 2:48 PM · Dec 9, 2022
 
@@ -434,7 +453,9 @@ I'm proud of my progress especially after working!
 
 Users can select multiple tags (provided by a list from my server) and they can input a name. Both are saved in the state
 
-![screenshot showing that multiple tags can appear in the tag field](2022-12-10-multiple-tags-per-name.png)
+<img
+src="https://ucarecdn.com/7b72b791-6dd3-4cea-bd8a-45e17b0f63e0/-/format/auto/"
+alt="screenshot showing that multiple tags can appear in the tag field"/>
 
 ```
 console.log Results:
@@ -516,7 +537,9 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1601804814643437568 9:
 
 Still need to work on the actual next steps, but progress for now
 
-![screenshot showing progress of name page, its possible to add a name, add tags and to search for a tag. There is also a seciton to add a tag, if the one you need is not there. Though in the future I took this out, to better secure the database](2022-12-10-progress-with-add-name-page.jpg)
+<img
+src="https://ucarecdn.com/2a7849a8-17e8-4625-aa2d-9894d9fdb3f2/-/format/auto/"
+alt="screenshot showing progress of name page, its possible to add a name, add tags and to search for a tag. There is also a seciton to add a tag, if the one you need is not there. Though in the future I took this out, to better secure the database"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1601841303675113477 11:28 PM · Dec 10, 2022
 
@@ -526,7 +549,6 @@ So on one hand: I'm now able to submit form data, which was stored in react stat
 
 However! The filter system is now broken?? 🙃😂
 
-![screenshot of add a name page showing that multiple tags will show up](2022-12-12-add-name-with-tags-working.png)
 Twitter Post Link: https://twitter.com/Janetthedev/status/1602233022513745920 1:24 AM · Dec 12, 2022
 
 ---
@@ -611,7 +633,9 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1605124423060639744 12
 
 making SOME progress with authentication! So far its console.logging correctly, now the real fun begins
 
-![the console log shows the entered email and the entered](2022-12-22-start-of-auth.jpg)
+<img
+src="https://ucarecdn.com/de76653a-ccdb-4b45-9494-61069748b7d1/-/format/auto/"
+alt="the console log shows the entered email and the entered"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1606178963935531008 10:44 PM · Dec 22, 2022
 
@@ -635,7 +659,9 @@ users
 
 ```
 
-![screenshot showing the create account page with name, email, password and confirm password](2022-12-23-create-account-start.png)
+<img
+src="https://ucarecdn.com/61c023cd-4b61-42b4-9914-e7c04cfd61dc/-/format/auto/"
+alt="screenshot showing the create account page with name, email, password and confirm password"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1606216870742200321 1:15 AM · Dec 23, 2022
 
@@ -726,11 +752,13 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1606634202434523136 4:
 
 ---
 
-I FIGURED IT OUT!! GUESS WHAT THE FUCKER WAS?!
+I FIGURED IT OUT!! GUESS WHAT IT WAS?!
 
 the next-auth version broke the app!! 12+ hours of pain and all i needed was "npm install next-auth@4.3.4"😭😂
 
-![man laughing and crying in chair](images/man_laughing.gif)
+<img 
+src="https://ucarecdn.com/a454a49a-fb9a-481b-a01b-60cb9a1b390a/-/format/auto"
+alt="man laughing and crying in chair">
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1607291082706137088 12:23 AM · Dec 26, 2022
 
@@ -740,7 +768,9 @@ I may now know more than any sane person needs to know about react-auth hahaha..
 
 12+ hours later 🙃😂
 
-![](images/anime_man_sliding_down_stairs.gif)
+<img 
+src="https://ucarecdn.com/ec253775-8789-4bc0-97fa-49d251ee3b66/-/format/auto"
+alt="anime man sliding down the stairs facedown">
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1607297360580980736 12:48 AM · Dec 26, 2022
 
@@ -764,7 +794,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1607297985951723521 12
 
 me @ myself when I have a ton of features I need to add to make it a MVP (minimally viable product) but...wanting to focus on the unnecessary features😂
 
-![baby bulldog cutely swatting at camera, stop it! text](https://media.licdn.com/dms/image/C5622AQGm7tW7D8d_1Q/feedshare-shrink_2048_1536/0/1618663630432?e=2147483647&v=beta&t=fB8jCZ_6-_kLqGvRxADZyw88pnlRB-KtptI-gK7sdZ8)
+![baby bulldog cutely swatting at camera, with text that says stop it!](https://media.licdn.com/dms/image/C5622AQGm7tW7D8d_1Q/feedshare-shrink_2048_1536/0/1618663630432?e=2147483647&v=beta&t=fB8jCZ_6-_kLqGvRxADZyw88pnlRB-KtptI-gK7sdZ8)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1607960536897183744 8:44 PM · Dec 27, 2022
 
@@ -793,9 +823,17 @@ Buuut when you're signed in, if you click a heart icon, it will change them ALL 
 
 which makes sense, as I told all the icons to get their color from "likesColor"
 
-![screenshot showing a grey heart next to each name](https://ucarecdn.com/e382ebbc-580d-41b8-8ab3-2792cdce1796/20221227likessystemshowinggreyhearts.png)
-![screenshot showing a red hearts next to each name](https://ucarecdn.com/e94c344f-5c51-4081-ae25-fba1d26829f6/20221227likessystemshowingredhearts.png)
-![showing error you must be signed in to like names](https://ucarecdn.com/070d776b-e8cc-43c3-8101-3f2fb645b573/20221227likessystemshowingyoumustbesignedin.png)
+<img
+src="https://ucarecdn.com/e382ebbc-580d-41b8-8ab3-2792cdce1796/-/format/auto/"
+alt="screenshot showing a grey heart next to each name"/>
+
+<img
+src="https://ucarecdn.com/e94c344f-5c51-4081-ae25-fba1d26829f6/-/format/auto/"
+alt="screenshot showing a red hearts next to each name"/>
+
+<img
+src="https://ucarecdn.com/070d776b-e8cc-43c3-8101-3f2fb645b573/-/format/auto/"
+alt="showing error you must be signed in to like names"/>
 
 ```
 / / ############# LIKES FEATURE ##########/ /
@@ -882,7 +920,9 @@ laughed at myself today, I was wondering why some nav buttons always worked and 
 
 Turns out for some buttons I had linked TO the text, not the button itself😂whoops! Yeah that'd def cause problems haha
 
-![screenshot showing the nav buttons with images](https://ucarecdn.com/20cc68ac-b5c5-4280-87c1-a9d430127f73/20230101showingnavbutton.png)
+<img
+src="https://ucarecdn.com/20cc68ac-b5c5-4280-87c1-a9d430127f73/-/format/auto/"
+alt="screenshot showing the nav buttons with images"/>
 
 ```
 <Menu as "div" className="inline-block text-left">
@@ -912,9 +952,17 @@ Today started like this, and ended like this!
 
 Curious if anyone will remember what my avatar is from👀wink wink nudge nudge. Nothing like starting of the year with a dad joke😉
 
-![purple page showing grey text showing profile information](https://ucarecdn.com/552527a3-4d47-43ea-b48f-f7dcc81a7dd5/20230101profilepagestart.png)
-![profile page now has styling applied to it](https://ucarecdn.com/e01ae077-b784-4fa3-945d-7c4c42300c61/20230101profilepageprogress1.jpg)
-![profile page after a yellow button is clicked, and shows more user information](https://ucarecdn.com/45c7060d-25d0-44b1-8b4d-f06237c9549f/20230101profilepageprogress2.jpg)
+<img
+src="https://ucarecdn.com/552527a3-4d47-43ea-b48f-f7dcc81a7dd5/-/format/auto/"
+alt="purple page showing grey text showing profile information"/>
+
+<img
+src="https://ucarecdn.com/e01ae077-b784-4fa3-945d-7c4c42300c61/-/format/auto/"
+alt="profile page now has styling applied to it"/>
+
+<img
+src="https://ucarecdn.com/45c7060d-25d0-44b1-8b4d-f06237c9549f/-/format/auto/"
+alt="profile page after a yellow button is clicked, and shows more user information"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1609524358372032513 4:18 AM · Jan 1, 2023
 
@@ -932,8 +980,13 @@ return (
 )
 ```
 
-![showing grey area under the purple add name area ](https://ucarecdn.com/3bb30036-b15d-4402-a825-bddeb7399ec0/20230102greyarea.jpg)
-![grey area is gone](https://ucarecdn.com/86ce9c7b-baf8-4e7c-91b0-6f16d5ec6f93/20230102greyareafixed.jpg)
+<img
+src="https://ucarecdn.com/3bb30036-b15d-4402-a825-bddeb7399ec0/-/format/auto/"
+alt="showing grey area under the purple add name area"/>
+
+<img
+src="https://ucarecdn.com/86ce9c7b-baf8-4e7c-91b0-6f16d5ec6f93/-/format/auto/"
+alt="grey area is gone"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1609826417755435009 12:18 AM · Jan 2, 2023
 
@@ -941,9 +994,13 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1609826417755435009 12
 
 Added a toast notification for when someone successfully and unsuccessfully adds a name
 
-![shows a notification that says successfully added name: alfred](https://ucarecdn.com/210f0a40-e682-4c00-a0f3-283477f57259/20230102toastnotifaddedname.png)
+<img
+src="https://ucarecdn.com/210f0a40-e682-4c00-a0f3-283477f57259/-/format/auto/"
+alt="shows a notification that says successfully added name: alfred"/>
 
-![shows a notification that says ruh roh! alfred not added](https://ucarecdn.com/8bbcd176-5e42-403e-82fd-3ff266e633f2/20230102toastnotiffailed.jpg)
+<img
+src="https://ucarecdn.com/8bbcd176-5e42-403e-82fd-3ff266e633f2/-/format/auto/"
+alt="shows a notification that says ruh roh! alfred not added"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1609835034978156544 12:52 AM · Jan 2, 2023
 
@@ -1137,7 +1194,9 @@ Yeah as I figured, I can't access useSession in \_app .js, since \_app .js can't
 
 But confirmed that I got context to work with a normal string `:)`
 
-![screenshot showing "if context works i'll show up :)!"](https://ucarecdn.com/ecea7b43-9544-4f95-a2ac-b063e0748de7/20230102contextworking.jpg)
+<img
+src="https://ucarecdn.com/ecea7b43-9544-4f95-a2ac-b063e0748de7/-/format/auto/"
+alt="screenshot showing if context works i'll show up :)!"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1609902930702000128/photo/1 5:22 AM · Jan 2, 2023
 
