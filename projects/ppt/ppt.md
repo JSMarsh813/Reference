@@ -1,6 +1,21 @@
-Buckle up, this is going to be a long series! I have been posting updates about building Tailored Pet Names since December 2022, but I have just decided to store them all in one (long) blog series.
+<img 
+   class="mx-auto"
+src="https://media.tenor.com/6IHnrDJaPBoAAAAM/adorable-puppy.gif"/>
 
-These updates will be split into many separate blog posts so I don’t accidentally fry your browser with that much content ;)
+Buckle up, this is going to be a long series! I have been posting updates about building Tailored Pet Names since December 2022, but I have just decided to store them all in one (long) informal blog series.
+
+These updates will be split into many separate blog posts so I don’t accidentally fry your browser with that much content 😉
+
+Note: If you notice some extra spaces in the code blocks, you're not seeing things! Alas markdown applies some weird styling in code blocks that couldn't be defeated by:
+
+1. escaping the characters (ex: \ . is not working inside markdown code blocks to escape the periods)
+2. using their html entity codes
+
+so the humble space reigns supreme here to defeat the weird markdown styling
+
+<img src="https://ucarecdn.com/b1d388b5-1bbe-441f-b17d-d77670900a29/-/format/auto/"
+alt="image showing how text was automatically changed to very dark colors and how it was fixed by adding spaces between some elements"
+/>
 
 # What is Tailored Pet Names?
 
@@ -9,6 +24,7 @@ These updates will be split into many separate blog posts so I don’t accidenta
 A Next.js website which allows users to either
 
 1. find the purr-fect name for their pet or
+
 2. help adoption counselors improve pet adoption rates with unique names and/or descriptions!
 
 Users can easily search and filter through community submitted names and descriptions. After signing up, users can save favorites, follow other users, and submit new names and descriptions. In the future, I’m considering allowing users to choose a preferred theme, so they’re not stuck with purple forever.
@@ -75,7 +91,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1598463897299976192 3:
 
 Decent starting progress! Still more content to add and some styling to clean up, but its getting there 🔥
 
-![](https://ucarecdn.com/842e9f1d-8c85-484e-bc5e-091848eb7459/20221201startingprogress.gif)
+![video showing the styled front page](https://ucarecdn.com/842e9f1d-8c85-484e-bc5e-091848eb7459/20221201startingprogress.gif)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1598503599058788352 6:25 PM · Dec 1, 2022
 
@@ -97,7 +113,7 @@ I was struggling this morning to figure out why local images kept appearing brok
 
 After watching this video I realized, I had forgotten for the public folder you don't retype out the whole address!
 https://youtube.com/watch?v=taMJct5oeoI&ab_channel=EsterlingAccime
-It worked once I changed it to "profile.png"Huzzah
+It worked once I changed it to "profile.png" Huzzah
 
 ```
 <img src='../public/profile.png'/>
@@ -131,7 +147,9 @@ I found this tip about removing any space between <Link> and <a> https://stackov
 
 This fixed it! I would of NEVER of guessed 😂
 
-Quotation from the stackOverflow Link: "Are you sure that's how its written in your source file? This error usually happens if you have a space in between <Link> and the <a> tags"
+Quotation from the stackOverflow Link:
+
+> "Are you sure that's how its written in your source file? This error usually happens if you have a space in between <Link> and the <a> tags"
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1600171174670893064 8:51 AM · Dec 6, 2022
 
@@ -141,7 +159,33 @@ I used MongoDB playground to test if a basic read query to my database worked an
 
 first backend step ✅
 
-![](https://ucarecdn.com/449428b5-069a-4533-be74-939eb36f9fdb/2022126mongodbplayground.jpg)
+```
+/ /  MongoDB Playground untitled-1
+
+/ /  select the database to use.
+use('main_site)
+
+db.name_tags.findOne(
+  {
+     "_id":ObjectId("63423dafasf4324")
+  }
+)
+
+```
+
+```
+Playground Result:
+{
+  "_id":{
+    "$oid":"63423dafasf4324"
+  },
+  "tag_name":"male",
+  "categories":[
+    "638f31fasdflkjadsfs"
+  ]
+}
+
+```
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1600199940411572224 10:46 AM · Dec 6, 2022
 
@@ -203,7 +247,7 @@ SWEET PROGRESS! The toggable accordion panels and checkboxes were made by mappin
 
 I'm so happy🥺
 
-![](https://ucarecdn.com/e82151d8-889c-45f2-82d9-e80a2819e96a/2022127toggableaccordionfilter.jpg)
+![showing a filter list, there are two categories holiday and gender. the holidays christmas easter and halloween can be selected with a checkbox. the gender selections also have a checkbox](https://ucarecdn.com/e82151d8-889c-45f2-82d9-e80a2819e96a/2022127toggableaccordionfilter.jpg)
 
 ```
    _id: ObjectId('6666666666')
@@ -238,7 +282,7 @@ I made some slow but definite progress!
 
 I can generate a list from the server and also by clicking the checkbox i can store the selected results in an array in the state. And clicking even removes it from the array (after lots of struggle haha)!
 
-![](https://ucarecdn.com/a8fd49dd-3e61-4588-bcfe-6d127a3a2ba8/20221209filterprogressstate.png)
+![showing the checkboxes clicked, which then store up in the state in the react components section of the developer console](https://ucarecdn.com/a8fd49dd-3e61-4588-bcfe-6d127a3a2ba8/20221209filterprogressstate.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1601132154527703040 12:30 AM · Dec 9, 2022
 
@@ -249,7 +293,7 @@ I want to start with all the names, and then have it look through the array of n
 
 But that's for future me, Sleep time!
 
-![](https://ucarecdn.com/53707589-902a-4737-9dc3-3f6aca8eb93b/2022129mongodb.png)
+![showing mongodb and the two categories for filters holidays and christmas, being stored in two objects. these two objects then link to an array of filters which relate to that category like christmas, easter and halloween](https://ucarecdn.com/53707589-902a-4737-9dc3-3f6aca8eb93b/2022129mongodb.png)
 
 ```
   let nameList= [
@@ -259,15 +303,15 @@ But that's for future me, Sleep time!
 ```
 
 ```
-<div> { nameList .map((name)=>(
+<div> { nameList. map((name)=>(
 
-   //if the name does not have ALL those tags stored in the state, exclude it
-   // name: stanta, with tags christmas, male
-   // tags in filter: christmas, female, so it'd be excluded
+   / /  if the name does not have ALL those tags stored in the state, exclude it
+   / /  name: stanta, with tags christmas, male
+    tags in filter: christmas, female, so it'd be excluded
 
    names.tags.every((element)=>
    tagFilters.includes(element))&&
-   <div key={name .name}>{name .name} </div>>)
+   <div key={name&#46;name}>{name&#46;name} </div>>)
 )}
 </div>
 ```
@@ -280,15 +324,15 @@ Nothing like making a breakthrough while eating some chili! 🎊
 It's a bit embarrassing to admit it took me hours, since the logic ended up being pretty simple. 😅But eh, lots of learning done and success is success ~
 
 ```
-{ nameList .map((name)=>(
+{ nameList. map((name)=>(
 
-  //we want ONe result for each name, so map through names
-     //names ex: beans, santa
-    // then we want to look through EVERY tag filter ONCE
-         //ex: filters: Male and Christmas
-             //does the name have all these tags?
-                 //ex: beans has male, but not christmas, so it'd return false
-                 //while santa would return true, so it's rendered
+  / /  we want ONe result for each name, so map through names
+     / /  names ex: beans, santa
+    / /   then we want to look through EVERY tag filter ONCE
+         / /  ex: filters: Male and Christmas
+             / /  does the name have all these tags?
+                 / /  ex: beans has male, but not christmas, so it'd return false
+                 / /  while santa would return true, so it's rendered
 
     tagsFilters.every((tag)=>
               name.tags.includes(tag)&&
@@ -349,20 +393,19 @@ I just screwed around and what do you know, it actually works!
 
 So the name data is being sent from the server now into the page🎉🎉🍾
 
-
 ```
 Export const getStaticProps = async () => {
 
-let response= await fetch(‘http://localhost:3000/api/name-categories’);
-let nameResponse = await fetch (‘http://localhost:3000/api/individualNames’)
+let response= await fetch(‘http: / /localhost: 3000/api/name-categories’);
+let nameResponse = await fetch (‘http: / /localhost: 3000/api/individualNames’)
 
 let data = await response.json()
 let nameData= await nameResponse.json()
 
-// console.log(data)
-//getServerSideProps allows us to fetch data from an api 
-//runs only on server side, will never run client side
-// can run server-side code directly in getStaticProps
+/ /   console.log(data)
+/ /  getServerSideProps allows us to fetch data from an api
+/ /  runs only on server side, will never run client side
+/ /   can run server-side code directly in getStaticProps
 
   return {
       props: {
@@ -373,7 +416,6 @@ let nameData= await nameResponse.json()
 }
 ```
 
-![alt text](deletemecode.png)
 Twitter Post Link: https://twitter.com/Janetthedev/status/1601460207556567045 10:14 PM · Dec 9, 2022
 
 ---
@@ -392,8 +434,8 @@ I'm proud of my progress especially after working!
 
 Users can select multiple tags (provided by a list from my server) and they can input a name. Both are saved in the state
 
-![alt text](Fjq_FSpVQAAiKwa.png)
-![alt text](deleteconsolelog.png)
+![screenshot showing that multiple tags can appear in the tag field](2022-12-10-multiple-tags-per-name.png)
+
 ```
 console.log Results:
 
@@ -409,7 +451,7 @@ import Select from 'react-select'
 import React, {useState} from 'react';
 
 export const getStaticProps = async () => {
-  let tagList = await fetch('http://localhost:3000/api/individualTags');
+  let tagList = await fetch('http: / /localhost:3000/api/individualTags');
 
   let tagData = await tagList.json()
 
@@ -421,7 +463,6 @@ export const getStaticProps = async () => {
 }
 ```
 
-![alt text](deleteCode2.png)
 ```
 function AddNewNameWithTags({tagList}) {
   const [newName,setNewName=useState("")]
@@ -431,25 +472,25 @@ return (
   <div style={{width:"700px"}} className="mx-auto mt-4">
  {/*console.log(tagList[0].individualTag) */}
  {console.log(`name: ${newName} tags ${tags}`)}
- 
+
  <form>
      {/* needs label and value for Select to work*/}
     <input type="text"
        placeholder="enter a name to add"
-       onChange={(e)=> setNewName(e.target.value)}>
-       </input>
+       onChange={(e)=> setNewName(e.target.value)}></input>
 
   <Select
-      options={tagList.map((opt,index)=> ({label: opt.individualTag, value:opt.individualTag}))}
+      options={tagList. map((opt,index)=> ({label: opt. individualTag, value:opt. individualTag}))}
       isMulti
       isSearchable
       placeholder="select tags..."
-      onChange={(opt)=>settings(opt.map(tag=>tag.label))}
-       //update STATE of section of object
+      onChange={(opt)=>settings(opt. map(tag=>tag.label))}
+
+       / /  update STATE of section of object
       />
 
       <button className="btn"> Add Name </button>
-      {/* //submit state to server in correct format */}
+      {/*  submit state to server in correct format */}
       {/* if name already exists, send an error message */}
   </form>
   </div>
@@ -457,7 +498,6 @@ return (
 }
 export default AddNewNameWithTags;
 ```
-![alt text](Deletecode3.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1601803814935220224 8:59 PM · Dec 10, 2022
 
@@ -476,7 +516,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1601804814643437568 9:
 
 Still need to work on the actual next steps, but progress for now
 
-![alt text](FjriCNmUAAEMASa.jpg)
+![screenshot showing progress of name page, its possible to add a name, add tags and to search for a tag. There is also a seciton to add a tag, if the one you need is not there. Though in the future I took this out, to better secure the database](2022-12-10-progress-with-add-name-page.jpg)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1601841303675113477 11:28 PM · Dec 10, 2022
 
@@ -486,7 +526,7 @@ So on one hand: I'm now able to submit form data, which was stored in react stat
 
 However! The filter system is now broken?? 🙃😂
 
-![alt text](FjxEOHKUoAEfnWz.png)
+![screenshot of add a name page showing that multiple tags will show up](2022-12-12-add-name-with-tags-working.png)
 Twitter Post Link: https://twitter.com/Janetthedev/status/1602233022513745920 1:24 AM · Dec 12, 2022
 
 ---
@@ -515,8 +555,39 @@ Felt like I was going in circles trying to figure out why my TagList prop was wo
 
 Turns out it was the semicolons on line 10 and 11!
 
-![alt text](FkERiTsUoAAOEah.png)
-![alt text](FkERqloVEAAgPJY.png)
+```
+export const getServerSideProps = async () => {
+
+  let tagList = await fetch('http: / /localhost:3000/api/individualTags');
+  let categoryList = await fetch('http: / /localhost:3000/api/name-categories');
+
+        let tagData = await tagList.json()
+        let categoryData = await categoryList.json()
+
+  return {
+    props: {
+      tagList: tagData,
+      categoryList: categoryData,
+    }
+  }
+}
+```
+
+```
+function AddNewNameWithTags({tagList,categoryLIst}){
+
+  return (
+    <div style={{width:"700px"}} className="mx-auto mt-4">
+
+        <NewNameWithTagsData tagList={tagList}/>
+        <AddNewTag categoryList={categoryList}/>
+
+    </div>
+  );
+}
+
+export default AddNewNameWithTags;
+```
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1603582817392201729 6:48 PM · Dec 15, 2022
 
@@ -540,7 +611,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1605124423060639744 12
 
 making SOME progress with authentication! So far its console.logging correctly, now the real fun begins
 
-![alt text](FkpLH4BUYAABwRW.jpg)
+![the console log shows the entered email and the entered](2022-12-22-start-of-auth.jpg)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1606178963935531008 10:44 PM · Dec 22, 2022
 
@@ -550,8 +621,21 @@ Users can now register for accounts!
 
 Now to backtrack and get the sign in to work...
 
-![alt text](FkptZNLVUAAb71-.jpg)
-![alt text](FkptqLYVUAA0W3m.png)
+```
+users
+
+  _id: ObjectId('6354345435')
+  name: "testingredirect"
+  email: "ttt @gmail .com"
+  password: "242423afafasfd3424"
+  image: "https: / / placekitten .com/250/250"
+  createdAt: 2022-12-23T09:05:55.892+00:00
+  updatedAt: 2022-12-23T09:05:55.892+00:00
+  __v: 0
+
+```
+
+![screenshot showing the create account page with name, email, password and confirm password](2022-12-23-create-account-start.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1606216870742200321 1:15 AM · Dec 23, 2022
 
@@ -567,8 +651,39 @@ slowly going through to figure out why the login/sessions is so stubborn 🤔
 
 Confirmed react useForm is working right, so step 1 done
 
-![alt text](FksfoTjUUAEdjUE.jpg)
-![alt text](FksfyAwUAAAQCjY.png)
+```
+console showing:
+
+Object {email: "test@ gmail .com, password: "testtest}
+     email: "test@ gmail .com"
+     password: "testtest"
+ Prototype: Object {....}
+
+```
+
+```
+export default function LoginScreen(){
+    const {data: session} = useSession();
+
+    const router: useRouter();
+    const {redirect} = router.query;
+
+  useEffect(()=> {
+    if (session?.user){
+      router.push(redirect||'/');
+    }
+  }, [router, session, redirect]);
+
+  const {
+    handleSubmit,
+    register,
+    formState: {errors},
+    } = useForm();
+
+const submitHandler = data => console.log(data)
+  ...
+}
+```
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1606412778763603968 2:13 PM · Dec 23, 2022
 
@@ -578,7 +693,19 @@ Been a struggle trying to get this app to work🙃
 Got everything to work except the sessions won't authenticate for some reason?🤔
 I've got a few things to try tomorrow otherwise I'll have to give in and ask on discord
 
-![alt text](FkveumAUAAA9Qju.png)
+```
+console showing:
+
+Object {error: null, status: 200, OK: true, url: "http: / /localhost:3000/api/auth/signin?csrf=true"}
+
+email: kyu1312323@ gmail .com pass:testtest
+session on login.js:[object Object]
+
+Object {data: null, status: "unauthenticated"}
+
+session on _app.js: "undefined"
+
+```
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1606623088648781824 4:09 AM · Dec 24, 2022
 
@@ -625,7 +752,9 @@ sessions are the powerhouse of the applications braincells! basically
 
 "but uh, imagine a website is a doorman where you have to say the right password to get into the club
 
-so you say "let me into the pokemon club", the correct password (usually this is your email and password). The doorman's braincells are a session, he goes ah! You said the right password i'll let you in.
+so you say "let me into the club" and you give the correct password.
+
+The doorman's braincells are a session, he goes ah! You said the right password i'll let you in.
 
 if the doormans braincells are dead, then you can shout the password to him and he'll just blink blankly at you"
 
@@ -664,10 +793,53 @@ Buuut when you're signed in, if you click a heart icon, it will change them ALL 
 
 which makes sense, as I told all the icons to get their color from "likesColor"
 
-![alt text](FlCtRT6acAAwWkp.png)
-![alt text](FlCtUuzagAUKP97.png)
-![alt text](FlCtbCRaAAAB93T.png)
-![alt text](FlCu8d4aUAEODax.png)
+![screenshot showing a grey heart next to each name](https://ucarecdn.com/e382ebbc-580d-41b8-8ab3-2792cdce1796/20221227likessystemshowinggreyhearts.png)
+![screenshot showing a red hearts next to each name](https://ucarecdn.com/e94c344f-5c51-4081-ae25-fba1d26829f6/20221227likessystemshowingredhearts.png)
+![showing error you must be signed in to like names](https://ucarecdn.com/070d776b-e8cc-43c3-8101-3f2fb645b573/20221227likessystemshowingyoumustbesignedin.png)
+
+```
+/ / ############# LIKES FEATURE ##########/ /
+
+const [nameLiked, setNameLiked]=useState(false)
+let likesColor= nameLiked? "red":"grey"
+
+const handleLikes = (e) => {
+
+  {(status==="authenticated")?
+    setNameLiked(!nameLiked):
+
+    toast.error("you must be signed in to use this feature")
+    }
+};
+```
+
+```
+tagFilters.every((tag)=>
+   name.tags.includes(tag)&&
+   <tr key={name._id}>
+        <td className="text-purple-200 border-b-2 border-amber-300 px-4 py-2 text-left font-black">
+       <label>
+
+        <input
+               style={{display:"none}}
+               type="checkbox"
+               checked={nameLiked}
+               onChange={handleLikes}
+               data-name-id={name._id}
+               / / data-amount-of-likes={names.likedby.length}
+               />
+
+         <fontAwesomeIcon
+              icon={faHeart}
+              className="text-4xl"
+              color={likesColor}/>
+                 {name.name.length}
+         </label>
+
+         </td>
+     ......
+   )
+```
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1607977539540221954 9:51 PM · Dec 27, 2022
 
@@ -686,7 +858,21 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1608064097345765376 3:
 
 its not pretty but it works! annnd its 6am 😂
 
-![alt text](FlEdJ3OaYAA_uS6.png)
+```
+export default function Example ({category, nameList, pageProps}){
+
+  const {data: session, status} = useSession()
+
+  let [userId, setUserId]=useState()
+
+  useEffect(()=> {
+    const UserId=localStorage.getItem("session")
+    console.log(userId);
+    setUserId(userId)
+  },[])
+  .......
+}
+```
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1608098676458811393 5:52 AM · Dec 28, 2022
 
@@ -696,8 +882,27 @@ laughed at myself today, I was wondering why some nav buttons always worked and 
 
 Turns out for some buttons I had linked TO the text, not the button itself😂whoops! Yeah that'd def cause problems haha
 
-![alt text](FlYrJ4WacAApd03.png)
-![alt text](FlYrOv4akAA133F.png)
+![screenshot showing the nav buttons with images](https://ucarecdn.com/20cc68ac-b5c5-4280-87c1-a9d430127f73/20230101showingnavbutton.png)
+
+```
+<Menu as "div" className="inline-block text-left">
+
+<Menu.button className="inline-flex px-4 py-2 text-sm font-medium text-white
+
+border-r-4 border r-violet-400
+
+hover:bg-opacity-30 hover:border-b-4 border-b-yellow-400
+focus:outline-none focus-visible:ring-2
+focus-visible:ring-white focus-visible:ring-opacity-75">
+
+<FontAwesomeIcon icon={faIgloo} className="text-xl mr-1 text-violet-100"/>  <====this should be in the Link too
+    <Link href="/"> / /
+
+       <a> Home </a>
+    </Link>
+   <Menu.Button>
+</Menu>
+```
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1609521939307167745 4:08 AM · Jan 1, 2023
 
@@ -707,21 +912,28 @@ Today started like this, and ended like this!
 
 Curious if anyone will remember what my avatar is from👀wink wink nudge nudge. Nothing like starting of the year with a dad joke😉
 
-![alt text](FlYs-yAakAA5hKx.png)
-![alt text](FlYtEE5aEAE07dl.jpg)
-![alt text](FlYtHWLaMAI6qGC.jpg)
+![purple page showing grey text showing profile information](https://ucarecdn.com/552527a3-4d47-43ea-b48f-f7dcc81a7dd5/20230101profilepagestart.png)
+![profile page now has styling applied to it](https://ucarecdn.com/e01ae077-b784-4fa3-945d-7c4c42300c61/20230101profilepageprogress1.jpg)
+![profile page after a yellow button is clicked, and shows more user information](https://ucarecdn.com/45c7060d-25d0-44b1-8b4d-f06237c9549f/20230101profilepageprogress2.jpg)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1609524358372032513 4:18 AM · Jan 1, 2023
 
 ---
 
-gotta love simple fixes!
+You gotta love simple fixes!
 
-Noticed the grey space under some areas, so I simply set the height to the screen height. Fixed! 🎊
+I noticed the grey space under some areas, so I simply set the height to the screen height. Fixed! 🎊
 
-![alt text](FldAFKWacAMJGi2.jpg)
-![alt text](FldAIy8agAQMblf.jpg)
-![alt text](FldAcMjaUAAiioA.png)
+```
+return (
+  <div className="bg-violet-900 h-screen">
+      <Layout> </Layout>
+      .....
+)
+```
+
+![showing grey area under the purple add name area ](https://ucarecdn.com/3bb30036-b15d-4402-a825-bddeb7399ec0/20230102greyarea.jpg)
+![grey area is gone](https://ucarecdn.com/86ce9c7b-baf8-4e7c-91b0-6f16d5ec6f93/20230102greyareafixed.jpg)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1609826417755435009 12:18 AM · Jan 2, 2023
 
@@ -729,11 +941,11 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1609826417755435009 12
 
 Added a toast notification for when someone successfully and unsuccessfully adds a name
 
-![alt text](FldG-2IaEAAwMDg.jpg)
-![alt text](FldHCsTakAArTpW.png)
-![alt text](FldIW2dagAAbX0h.jpg)
+![shows a notification that says successfully added name: alfred](https://ucarecdn.com/210f0a40-e682-4c00-a0f3-283477f57259/20230102toastnotifaddedname.png)
 
-## Twitter Post Link: https://twitter.com/Janetthedev/status/1609835034978156544 12:52 AM · Jan 2, 2023
+![shows a notification that says ruh roh! alfred not added](https://ucarecdn.com/8bbcd176-5e42-403e-82fd-3ff266e633f2/20230102toastnotiffailed.jpg)
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1609835034978156544 12:52 AM · Jan 2, 2023
 
 Biggest issue I'm facing is to be able to access the session.user.\_id, so i can use the unique \_id for mongoDb queries
 
@@ -747,8 +959,56 @@ I currently save the current user's id in localStorage but this is ALSO only cli
 
 Thought over my options, and the best choice seems to be to use contextAPI and getSession (store user id so it can be used throughout the app)
 
-![alt text](FlddOGwacAIO493.png)
-![alt text](FlddokUaUAEj-Jh.png)
+```
+
+export default function LoginScreen(){
+   / / grab data from useSession and rename data to session
+
+  const {data: session} = useSession();
+
+  const router: useRouter();
+  const {redirect} = router.query;
+  / / extract redirect from router.query
+
+  / / import this from line 2/react
+
+  useEffect(()=>{
+    if(session?.user){
+      localStorage.setItem("session",JSON.stringify(session.user._id))
+       / / console.log(session.user._id),
+
+       router.push(redirect || '/');
+    }
+  }, [router, session, redirect]);
+  / / if the session exists, then the user is already signed in. so if this is true, go back to the homepage
+  / / we need to use router (line 8) to redirect our user
+}
+
+```
+
+My Options:
+
+1. When logging in, use the contextAPI with getSession() to save session in a stored state
+
+   when logging out, remove session from stored state
+
+   con: will have to use await to access session data when first adding it to the context api
+
+   pro: won't have to use unstable_getServerSession
+
+2. use unstable_getServerSession with ContextAPI
+
+   Pro: won't need to use await to access session data like we would with getSession() since this is server side not client side
+
+   con: unstable, aka its experimental and may be removed one day
+
+3. use unstable_getServerSession by itself
+
+   con: will have to call it every time its used
+
+   con: unstable aka its experimental and may be removed one day
+
+   pro: won't have to set up contextAPi
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1609858935145795589 2:27 AM · Jan 2, 2023
 
@@ -771,16 +1031,64 @@ Creating the actual context itself seems dead simple! 🥳
 
 But I can feel my brain go numb whenever I try to figure out how to write the provider bit 🥴
 
-![alt text](FldfejXaUAEc_pI.png)
+```
+import React, {useContext, createContext, useState, useEffect} from 'react'
+
+/ /  create context
+const UserSessionContext= createContext(null)
+/ /  https:/ / www. youtube .com/watch?v=t9WmZFnE6Hg&ab_channel=PedroTech
+/ /  6:53 null is good for testing
+
+```
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1609862959135879170 2:43 AM · Jan 2, 2023
 
 ---
 
-huh seems I misunderstood the context API. Seems you have to declare the prop when you wrap something in <context.provider> . And my \_app.js page doesn't have access to session, only its children... so I can't place session in the context store?
+huh seems I misunderstood the context API. Seems you have to declare the prop when you wrap something in < context . provider> . And my \_app.js page doesn't have access to session, only its children... so I can't place session in the context store?
 
-![alt text](Fld_48uakAAnpoQ.png)
-![alt text](Fld_-O8aAAMXFNi.png)
+```
+import UserSessionContext from '../src/context/UserSessionContext';
+
+function MyApp({
+
+  component,
+  pageProps: { session, ...pageProps}
+
+})
+{
+  / / setting up the prop for UserSessionContext, grabbing session information
+  / / ????
+
+    return (
+
+      <SessionProvider session={session}>
+
+      {/* <UserSessionContext.Provider value={sessionInfo}>
+
+         Every context Object comes with a Provider React component
+
+         The Provider component accepts a value prop to be passed to consuming components that are descendants of this Provider,
+
+         in this case ALL components */}
+
+         <Component {...pageProps}/>
+
+         {/* </UserSessionContext.Provider> */}
+      .......
+    )
+}
+```
+
+```
+_app.js
+
+import React, {useContext, creatContext, useState, useEffect} from 'react'
+
+/ /  create context
+
+const UserSessionContext=createContext(null)
+```
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1609896163578372099 4:55 AM · Jan 2, 2023
 
@@ -788,16 +1096,48 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1609896163578372099 4:
 
 hoping someone will see my question on the 100devs discord, looks like I might have to use Next auth's unstable_getServerSession after all? 🥴
 
-![alt text](FleAZBXakAYNrDp.png)
-![alt text](FleAf99aUAMXE0j.png)
+What I submitted:
 
-## Twitter Post Link: https://twitter.com/Janetthedev/status/1609896731600375808 4:57 AM · Jan 2, 2023
+> hi everyone, I need some advice for my next.js project which uses Next auth for authentication.
 
-Yeah as I figured, I can't access useSession in \_app.js, since \_app.js can't be wrapped in a <SessionProvider session={session}> 😭 Still tried anyway for the wild thrill of trying impossible things haha
+> The main problem is that I'm trying to figure out the best way to grab the current user's id from the current session so its available immediately server side. This way I can use it to query my mongoDB database.
+
+Follow up comment from me:
+
+> My thought process:
+
+> So I understand getSession() is client side only, so it would have to wrapped in an await to grab session data. Otherwise it would return null.
+
+> So what is the best way to make it so session data is available RIGHT AWAY, server side, so I can use the current user_id when sending queries to the MongoDb database?
+
+> (my [ ... nextAuth].js is set up so that user_id is included in the returned session object. My session strategy is JWT)
+> https://github.com/JSMarsh813/PetProfileTailor/blob/liking-name-feature/pages/api/auth/%5B...nextauth%5D.js
+
+> For example, on my dashboard page I want to grab the user's id from the current session and then query my mongodb database, so I can grab the users most current information. I would then use that information to fill out the dashboard page (user's likes, user's profile image, user's username, ect).
+
+> Another Example, my app gives users a list of names they can like or dislike. I want to grab the userID to query the MongoDB database to see if the current user already liked a name. And then sent a get or patch request when the user likes or dislikes the name.
+
+> 1. I thought about using react context in \_app.js but I believe session isn't available in \_app.js? Aka only its child components have access to session, so theres no way to set the current session prop for the userSessionContext right?
+
+> 2. use unstable_getServerSession, though I'd rather not center a large part of my app on an experimental feature that could be removed if possible. https://next-auth.js.org/tutorials/securing-pages-and-api-routes#server-side
+
+> 3. Some other method?
+
+> https://www.jmfurlott.com/handling-user-session-react-context/ I had found this, would you all say js cookies with context is a good option to grab user ids?
+
+Twitter Post Link: https://twitter.com/Janetthedev/status/1609896731600375808 4:57 AM · Jan 2, 2023
+
+Yeah as I figured, I can't access useSession in \_app .js, since \_app .js can't be wrapped in a
+
+```
+<SessionProvider session={session}>
+```
+
+😭 Still tried anyway for the wild thrill of trying impossible things haha
 
 But confirmed that I got context to work with a normal string `:)`
 
-![alt text](FleF7V5aUAIXdQl.jpg)
+![screenshot showing "if context works i'll show up :)!"](https://ucarecdn.com/ecea7b43-9544-4f95-a2ac-b063e0748de7/20230102contextworking.jpg)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1609902930702000128/photo/1 5:22 AM · Jan 2, 2023
 
@@ -2914,7 +3254,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1643284064835891201 9:
 Still working out a few bugs but if anyones dying to poke around here ya go! https://pet-profile-tailor.vercel.app
 
 dummy account if anyone wants to use it instead:
-email: test@gmail.com
+email: test@ gmail.com
 pass: testtest
 
 Feel free to poke around but please don't change the email (in settings) because other users need that email to sign in
@@ -3146,7 +3486,7 @@ Vercel had logged one 500 error, but it didn't effect them so _SHRUG_
 
 if anyone wants to try logging in the dummy account is
 
-test@gmail.com
+test@ gmail.com
 password: testtest
 
 > REPLY
