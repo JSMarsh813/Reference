@@ -1210,8 +1210,18 @@ Look at that, ONE beautiful line which secretly carries two reusable components
 nameListing which is inside MainChartComponent = 70ish lines if the comments were taken out)
 🥰🥰🥰
 
-![alt text](FleO6BLakAEbJ5p.png)
-![alt text](FlePh2JacAQInug.png)
+```
+<section className="favoriteNames">
+
+   <h4> Your Favorite Names </h4>
+
+   <MainChartComponent nameList={nameList}/>
+
+</section>
+```
+
+![alt text](deletefavnamescode.png)
+![showing the profile page with all the names shown, and the liked ones have a red heard](2023-01-02-profile-all-names-favs-red-hearts.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1609913421931376641 6:04 AM · Jan 2, 2023
 
@@ -1223,9 +1233,17 @@ Fixed the tags so when they show up there's a ", " between them 😁
 
 Laughed when I tried to do ".split().Join(", ")" before my brain clicked on. Braincell: "aayy this is an array not a string friend `:)`"
 
-![alt text](FleRfXMaYAAxGS3.png)
-![alt text](FleRnE7aYAAmOrK.png)
-![alt text](FleR3v3acAATe0Q.png)
+```
+<td className="border-b-2 border-amber-100 px-4 py-2 text-left fond-medium">{
+  (name.tags)
+        .map(names=>names)
+        .join(", ")}
+</td>
+```
+![the tags christmas and male have no spaces between them](2023-01-02-tag-names-not-seperated.png)
+![the tags christmas and male now have a comma and space between them](2023-01-02-now-tags-have-a-space-between-them.png)
+
+![alt text](deletecodejan2nd.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1609916870056112129 6:17 AM · Jan 2, 2023
 
@@ -1235,7 +1253,7 @@ Success is mine! I could cry with joy and relief 🥺The put request for my like
 
 been slooowly working on it with any spare time I've had this week, and it finally paid off 🔥
 
-<video src="images/success_is_mine.mp4" width="320" height="240" controls></video>
+<video src="images/success_is_mine.mp4" width="320" height="240" alt="showing the user clicking the favorite hearts and the database reflecting the change" controls></video>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1611349214780624897 5:09 AM · Jan 6, 2023
 
@@ -1245,8 +1263,20 @@ For a sec I couldn't figure out why I couldn't get my mobile menu's text to cent
 
 I had forgotten they were flexed, once that was removed it works!
 
-![alt text](Fl4CVLvaUAE1AS6.png)
-![alt text](Fl4CWVJaAAEyLQb.png)
+```
+<Menu.Item as="div">
+    <Link href="/adddescriptions">
+    <button 
+        classname="hover:bg-yellow-500
+                   hover:text-violet-900
+                   
+                   text-white w-full items-centered
+                   group flex <===where the issue was
+                   "
+        ...... 
+```
+![showing a drop down nav bar, only the first 2 items are centered](2023-01-07-showing-the-nav-text-not-centered.png)
+![alt text](deletecodeforbutton.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1611728622100054016 6:17 AM · Jan 7, 2023
 
@@ -1258,10 +1288,66 @@ realized it was because the tagList from the fetch only was grabbed AFTER the se
 
 Once I told it to wait, no more error messages ~
 
-![alt text](Fl7HCfiaEAEMJn2.png)
-![alt text](Fl7HFFyagAAMoip.png)
-![alt text](Fl7HUYnaMAEdQKl.png)
-![alt text](Fl7H0v8acAIVRZj.jpg)
+```
+export const getServerSideProps = async () => {
+
+  let tagList= await fetch('http : / / localhost:3000 /api/individualTags');
+  let categoryList= await fetch ('http : / / localhost:3000 /api/name-categories');
+
+     let tagData= await tagList.json()
+     let categoryData = await categoryList.json()
+
+   return {
+      props: {
+        tagList: tagData, <=== highlighted code
+        categoryList: categoryData
+      },
+   }
+   // and provide the data as props to the page by returning an object from the function
+}
+
+function AddNewNameWithTags({tagList, ccategoryList}){
+   const {data: session, status} = useSession()
+
+   console.log(status)
+   console.log(session)
+
+  return (
+    <div className="bg-violet-900 h-screen text-white">
+    
+       <Layout> </Layout>
+
+      <div style={{width:"700px"}} className="mx-auto mt-4">
+      {/* if not signed in, do not allow them to add names*/}
+
+      {(status!="authenticated")&&<div> To avoid spam, we ask users to sign in to add names </div>}
+      
+      {(status === "authenticated") &&
+       <p> Signed in as {session.user.name} </p>}
+
+       <NewNamesWithTagData tagList={tagList}/>
+      .....
+  )
+}
+```
+> Error Message in console: Warning: Prop `id` did not match. Server: "react-select-14-live-region" client"react-select-3-live=region"
+>span
+>withEmotionCache/<@webpack-internal:///./node_modules/@emotion/react/dist/emotion-element-6a8883da9.browser.esm.js::57-66
+>AllyText
+>LiveRegioin@webpack-internal:///./node_modules/react-select/dist/Select-40119e12.esm.js:122:23
+>div
+>.....
+
+
+![warning that prop id did not match](delete-2023-01-07-error-message.png)
+
+{(status === "aunthenticated") &&
+<p> Signed in as {session.user.name}</p>&&
+<NewNameWithTagsData tagList={tagList} userId={session.user._id}/>}
+![alt text](deletelongcode.png)
+
+![alt text](deletecodeforjan7.png)
+![alt text](deleteitwasjustshowingtherewasnoerror.jpg)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1611945493722181632 8:38 PM · Jan 7, 2023
 
@@ -1272,7 +1358,7 @@ the user who submits the new names id is now added to the name in the database!
 
 Descriptions can now be added as well
 
-<video src="images/the_user_who_submits.mp4" width="320" height="240" controls></video>
+<video src="images/the_user_who_submits.mp4" width="320" height="240" alt="showing that the user gets a notice their name submission succeded and we also see it worked in the database" controls></video>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1611994453430120449 11:53 PM · Jan 7, 2023
 
@@ -1282,16 +1368,77 @@ Is anyone familiar with next Auth sessions for next js? I'm trying to add the pr
 
 Below is my nextauth file, console.log, mongodb data and user model #SoftwareDeveloper #Nextjs #nextauth
 
-![alt text](FmM8zO6agAE8bH0.png)
+![alt text](2023-01-11-next-auth-file.png)
 ![alt text](FmM80x7aMAESMgO.png)
-![alt text](FmM82MsaMAAwp66.png)
+
+```
+ShelterNext>models>user.js>UserSchema
+
+const mongoose = require("mongoose")
+
+const UserSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    unique: false,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  faveNames: {
+    type: Array,
+    default: []
+  },
+  favBehaviors:{
+    type: Array,
+    default: [],
+  },
+  profileImage:{
+    type:String,
+    default:"http://placekitten.com/50/50"
+  }
+
+}, {timeStamps:true})
+
+const User= mongoose.Models.User || mongoose.model('User', UserSchema);
+export default User;
+
+```
+![alt text](deleteschemacode.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1613201046473682947 7:47 AM · Jan 11, 2023
 
 ---
 
 tried this and it didn't work either `:(`
-![alt text](FmM-RiPaEAAT7t7.png)
+
+```
+[...nextAuth].js
+
+provider:[
+  ......
+
+  if (user && bcrypt.js.compareSync(credentials.password, user.password)){
+    const returnedUser= {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      profileimage: user.profileimage,
+    }
+    return Promise.resolve(returnedUser)
+  }
+   throw new Error ('Invallid email or password');
+  ......
+]
+
+```
+![alt text](deletenextauthtext.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1613201592920190979 7:50 AM · Jan 11, 2023
 
@@ -1323,7 +1470,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1614200418107797506 1:
 
 alright so on postman my api, which gives a list of all names the current user liked works, but I'm still trying to get it to work in the actual app...
 
-![alt text](FmVxKVnaYAMnwwd.png)
+![alt text](2023-01-13-postman-works.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1613820757137846275 12:50 AM · Jan 13, 2023
 
@@ -1331,8 +1478,21 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1613820757137846275 12
 
 Got it to work! On the dashboard, now only the current user's favorite names show up!🥳
 
-![alt text](FmV_XbCaEAAKwqZ.png)
-![alt text](FmV_gLCaEAAzALp.png)
+```
+export const getServerSideProps = async (context) -> {
+  .....
+
+  let filteredNames=""
+     if (session){
+         let filteringNames= await fetch(`http : / / localhost: 3000/api/individualnames/namesContainingUserId/${session.user._id}`);
+
+         filterednames = await filteringNames.json
+     }
+}
+```
+
+![alt text](2023-01-13-only-fav-names-showing.png)
+![alt text](deletecodeforfilterednames.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1613836487359098885 1:52 AM · Jan 13, 2023
 
@@ -1342,8 +1502,21 @@ Thanks to @rawandfaraidun (https://twitter.com/rawandfaraidun) I managed to fix 
 
 now when I load session in getServerSideProps with unstable_getServerSession, I can grab the profile image before rendering even starts 🥳
 
-![alt text](FmboL6laAAI-4v2.png)
-![alt text](Fmbov1haYAQRj8C.png)
+
+![showing a comparison of the code before and after](2023-01-14-showing-comparison-in-next-auth.png)
+
+```
+export const getServerSideProps = async (context) =>{
+  let response= await fetch('http : / / localhost: 3000/api/name-categories');
+  let data = await response.json()
+
+  let nameResponse = await fetch('http : / / localhost: 3000/api/individualNames');
+  let nameData = await nameResponse.json()
+
+  const session = await unstable_getServerSession(context.req, context.res, authOptions) <=== highlighted code
+}
+```
+![alt text](delete-code-jan-14th.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1614234032044396544 4:12 AM · Jan 14, 2023
 
@@ -1353,7 +1526,22 @@ Made it so if a user goes to the dashboard when not logged in, they'll be automa
 
 useRouter() is a bit of an odd one, it doesn't work unless I stuff it in a useEffect, because it only works on client side.
 
-![alt text](Fmbpf2AakAABtd8.png)
+```
+function dashboard ({category, nameList, sessionFromServer, favNames}){
+  const [treatBreakdownMenuOpen,setTreatBreakdownOpen]=useState(false)
+  const valuetest= useContext(UserSessionContext);
+
+const router = useRouter();
+
+useEffect(()=> {
+  
+  if(!sessionFromServer){
+    router.push('/login')}
+  }, [router, sessionFromServer]);
+  ......
+}
+```
+![alt text](deleteroutercode.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1614234667666010112 4:15 AM · Jan 14, 2023
 
@@ -1365,7 +1553,32 @@ If they have more points than 40, then it defaults to the "A good Pupper title".
 
 Was confused for a hot sec until I remember to do Math.floor! (so 1.2 ect becomes 1) All those codewars memories are flooding back to me
 
-![alt text](FmbrK9faYAInSYf.png)
+```
+import React from 'react'
+
+function RankNames(points){
+
+  let rankName=""
+  let rankTitlesByPoints={
+    0: "Babiest toe beans",
+    1: "Autodromkatzerl/bumper car tail kitten",
+    2: "The Tinest Woofer"
+    3: "World Class shoe chewer",
+    4: "Baby gate jumper extraordinaire",
+  }
+  let pointsDividedBy10=Math.floor(+Object.values(points)/10)
+
+     rankName= rankTitlesByPoints[pointsDividedBy10]||"A good pupper"
+
+  return (
+      <span className="text-yellow-400">{`${rankName}`}</span>
+  )
+}
+
+export default RankNames
+```
+
+![alt text](deletenamerankcode.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1614236185429250050 4:21 AM · Jan 14, 2023
 
@@ -1373,8 +1586,21 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1614236185429250050 4:
 
 I put the rank names component into the dashboard page. So it automatically adjusts the title, based on the users current number of points (treats)
 
-![alt text](FmbrjQjakAAETcf.jpg)
-![alt text](Fmbr0bPacAE4Gqc.png)
+![showing profile page with their current rank title shown](2023-01-14-showing-profile-with-ranking.jpg)
+
+```
+<section className="userStatsSection pt-4">
+  .....
+  <div>
+      <FontAwesomeIcon icon={faRankingStar} className="text-2xl mr-2 text-yellow-400"/>
+      <section>
+            Current Rank Title:
+              <RankNames points={totalPoints}>
+      </section>
+  </div>
+</section>
+```
+![alt text](deleteCodeForInsertingRank.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1614236826302287872 4:23 AM · Jan 14, 2023
 
@@ -1386,7 +1612,7 @@ However components can't use ServerSideProps, so I'll need to pass them as props
 
 I'll fight with that tomorrow
 
-![alt text](FmbsDMHakAEkFjN.png)
+![alt text](2023-01-14-showing-the-signin-user-and-their-profile-image.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1614238710152957954 4:31 AM · Jan 14, 2023
 
@@ -1396,7 +1622,28 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1614238710152957954 4:
 🙌 did a few small edits
 🙌 Started working on making it possible for users to upload profile images with cloudinary, I got to the highlighted part tonight. Giving my brain a break for now 🥱
 
-![alt text](FmgMWMraEAQnfcI.png)
+![alt text](deletenotesfortasks.png)
+
+PART 1:
+- Allow User to attach a file (DONE)
+        upload preset name + folder name = "profile_images"
+        env file done
+        utils => cloudinary config file done
+        installed datauri and multer
+datauri: will help us convert parsed files (images and videos) to base 64 encodings
+multer: will help us parse the request body
+next-connect: will help us add Multer as a middleware to a router handler
+
+- Upload file to cloudinary
+      in response object, grab public_id
+      let CloudinaryImagePublicId=public_id
+      (can test by having it show up on the front end)
+
+Once it works: PART 2:
+- start a patch/put request to api/uploadProfileImage with the
+    request {uerId, CloudinaryImagePublicId}
+    look in users collection, find one with the current users id
+    user.profileimage ===> replace with CloudinaryImagePublicId
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1614554408490250241 1:25 AM · Jan 15, 2023
 
@@ -1406,7 +1653,7 @@ My intention was to relax but, ended up started on the social area of the app (b
 
 Users can ask the community for suggestions for names, pet descriptions, fundraisers, ect or just show off images of their pets
 
-<video src="images/my_intention_was_to_relax.mp4" width="320" height="240" controls></video>
+<video src="images/2023-01-15-my-intention-was-to-relax.mp4" width="320" height="240" alt="showing a working community page post with an image, title, text and more" controls></video>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1614589714857877509 3:46 AM · Jan 15, 2023
 
@@ -1424,7 +1671,7 @@ users can now upload profile image to cloudinary and have it replace the profile
 Wanted to use the widget but its extra broken for function components rn😅Look at all those error messages in that second sandbox
 https://support.cloudinary.com/hc/en-us/artic
 
-![alt text](FmrB68yakAAdYWr.png)
+![showing a section that lets users upload a profile image but its not very styled currently](2023-01-17-early-profile-image-upload.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615316730309660672 3:54 AM · Jan 17, 2023
 
@@ -1432,19 +1679,19 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1615316730309660672 3:
 
 Temporarily have a cool cat😎😼as a profile picture, eventually I'll go back to the turtle duck!
 
-![alt text](FmrEo1AaMAAxep6.jpg)
+![profile image of a cat on a skateboard with the text bye over it](2023-01-17-cat-profile-image.jpg)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615320136805937155 4:08 AM · Jan 17, 2023
 
 ---
 
-Was confused why I had 2 toast containers for a moment, then remembered there was another in the nav bar!
+I was confused why I had 2 toast containers for a moment, then remembered there was another in the nav bar!
 
 so I got rid of the one in the nav bar for now. Phew, nice easy fix.
 
-![alt text](FmrF2jsaMAAB6zS.png)
+![showing two notifs pop up that say profile image uploaded successfully](2023-01-17-showing-two-notifs-profile-image-uploaded-successfully.png)
 
-![alt text](FmrF4l8aUAchB6B.png)
+![alt text](delete-just-showing-that-theres-only-one-notif-now.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615321177769259009 4:12 AM · Jan 17, 2023
 
@@ -1452,7 +1699,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1615321177769259009 4:
 
 time to de-uglyify this bad boy and reword some things (uploading avatar section)
 
-![alt text](Fmtd_BPacAABhAa.png)
+![showing profile settings page but its not styled much](2023-01-17-showing-profile-settings-page-not-styled.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615488312789340161 3:16 PM · Jan 17, 2023
 
