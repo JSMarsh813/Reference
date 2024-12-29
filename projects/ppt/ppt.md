@@ -1701,7 +1701,10 @@ My intention was to relax but, ended up started on the social area of the app (b
 
 Users can ask the community for suggestions for names, pet descriptions, fundraisers, ect or just show off images of their pets
 
-<video src="images/2023-01-15-my-intention-was-to-relax.mp4" width="320" height="240" alt="showing a working community page post with an image, title, text and more" controls></video>
+
+<iframe width="320" height="240" 
+alt="showing a working community page post with an image, title, text and more"
+src="images/2023-01-15-my-intention-was-to-relax.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1614589714857877509 3:46 AM · Jan 15, 2023
 
@@ -1716,18 +1719,18 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1614973965583421440 5:
 
 users can now upload profile image to cloudinary and have it replace the profile image in their mongoDB user document!
 
-Wanted to use the widget but its extra broken for function components rn😅Look at all those error messages in that second sandbox
+I wanted to use the widget but its extra broken for function components rn😅Look at all those error messages in that second sandbox
 https://support.cloudinary.com/hc/en-us/artic
 
-![showing a section that lets users upload a profile image but its not very styled currently](2023-01-17-early-profile-image-upload.png)
+<img src="2023-01-17-early-profile-image-upload.png" alt="showing a section that lets users upload a profile image but its not very styled currently"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615316730309660672 3:54 AM · Jan 17, 2023
 
 ---
 
-Temporarily have a cool cat😎😼as a profile picture, eventually I'll go back to the turtle duck!
+I temporarily have a cool cat😎😼as a profile picture, eventually I'll go back to the turtle duck!
 
-![profile image of a cat on a skateboard with the text bye over it](2023-01-17-cat-profile-image.jpg)
+<img src="2023-01-17-cat-profile-image.jpg" alt="profile image of a cat on a skateboard with the text bye over it"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615320136805937155 4:08 AM · Jan 17, 2023
 
@@ -1737,9 +1740,7 @@ I was confused why I had 2 toast containers for a moment, then remembered there 
 
 so I got rid of the one in the nav bar for now. Phew, nice easy fix.
 
-![showing two notifs pop up that say profile image uploaded successfully](2023-01-17-showing-two-notifs-profile-image-uploaded-successfully.png)
-
-![alt text](delete-just-showing-that-theres-only-one-notif-now.png)
+<img src="2023-01-17-showing-two-notifs-profile-image-uploaded-successfully.png" alt="showing two notifs pop up that say profile image uploaded successfully"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615321177769259009 4:12 AM · Jan 17, 2023
 
@@ -1747,33 +1748,43 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1615321177769259009 4:
 
 time to de-uglyify this bad boy and reword some things (uploading avatar section)
 
-![showing profile settings page but its not styled much](2023-01-17-showing-profile-settings-page-not-styled.png)
-
+<img src="2023-01-17-showing-profile-settings-page-not-styled.png" alt="showing profile settings page but its not styled much"/>
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615488312789340161 3:16 PM · Jan 17, 2023
 
 ---
 
 When styling I found out file input is a bit picky, it needs to be onCHANGE not onCLICK. If its switched to onClick, clicking it will do nothing (it will give back undefined)
 
-![alt text](FmtxqB5acAA5M9x.png)
+```
+<input
+  onChange={handleImageAttachment}
+  accept=".jpg, .png, .jpeg, .gif"
+  className="fileinput mb-4"
+  type="file">
+</input>
+```
+![alt text](deletecodeforjan17th.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615510358525120512 4:44 PM · Jan 17, 2023
 
 ---
 
-Looks MUCH better!
+It looks MUCH better!
 
-Also used state to decide when the upload button is disabled and what it looks like
+I also used state to decide when the upload button is disabled and what it looks like
 
-<video src="images/looks_much_better.mp4" width="320" height="240" controls></video>
+
+<iframe src="images/2023-01-17-looks_much_better.mp4" width="320" height="240" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615527956180504577 5:54 PM · Jan 17, 2023
 
 ---
 
-Added a quick image too ~
 
-![alt text](FmuLExPaMAA7J_j.jpg)
+I added a quick image to this page too ~
+
+<img src="2023-01-17-added-image-to-update-profile-page.jpg" alt="showing update profile page with an image on top with a dog with sunglasses" >
+
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615537955862609922 6:33 PM · Jan 17, 2023
 
@@ -1785,7 +1796,8 @@ I made a toggle button so the user can get rid of the filter menu if they want!
 
 (I'll be changing that banner later, the text on top of the image is mild torture for the eyes rn, but eh, future me will take care of that 😂)
 
-<video src="images/future_users_on_smaller.mp4" width="320" height="240" controls></video>
+
+<iframe src="images/2023-01-17-future-users-on-smaller.mp4" width="320" height="240" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615546973695934464 7:09 PM · Jan 17, 2023
 
@@ -1795,7 +1807,7 @@ aaah so satisfying, its the little things in life ☺️
 
 I imported a component and replaced all the class= with className= with one simple button click!
 
-![alt text](Fmux-Z4agAUXpoY.png)
+<img src="2023-01-2023-replaced-class-with-classname.png" alt="showing the popup that lets us enter text to find, and then the second line is text we replace it with"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615580915241226240 9:24 PM · Jan 17, 2023
 
@@ -1805,7 +1817,9 @@ Made progress on the front-end side of things on the community area!
 
 Was struggling to get the buttons to center until I stumbled across a tip online to use text-center on its parent component
 
-<video src="images/made_progress_on_the_frontend.mp4" width="320" height="240" controls></video>
+
+<iframe src="images/2023-01-18-made-progress-on-the-frontend.mp4" width="320" height="240" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615678479303077888 3:52 AM · Jan 18, 2023
 
@@ -1821,7 +1835,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1615683520839716864 4:
 
 Fixed the full reload bug! the page's function component needed to be capitalized😂🤦‍♀️
 
-Also fixed mobile view for the posts page! One of the components had been set to width max instead of width full.
+Also I fixed mobile view for the posts page! One of the components had been set to width max instead of width full.
 
 <video src="images/fixed_the_full_reload_bug.mp4" width="320" height="240" controls></video>
 
