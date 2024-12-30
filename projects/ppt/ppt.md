@@ -4,6 +4,8 @@ src="https://media.tenor.com/6IHnrDJaPBoAAAAM/adorable-puppy.gif"/>
 
 Buckle up, this is going to be a long series! I have been posting updates about building Tailored Pet Names since December 2022, but I have just decided to store them all in one (long) informal blog series.
 
+I'm hoping this will also inspire other devs to journal their progress with their projects. Feel free to post a link to your journals in the comments!
+
 These updates will be split into many separate blog posts so I don’t accidentally fry your browser with that much content 😉
 
 Note: If you notice some extra spaces in the code blocks, you're not seeing things! Alas markdown applies some weird styling in code blocks that couldn't be defeated by:
@@ -32,7 +34,7 @@ Users can easily search and filter through community submitted names and descrip
 **Technology**: Next.js, React, Next-Auth, JavaScript, TailwindCSS, MongoDB, Mongoose, Cloudinary, Node /Mailer, SendGrid, SWR, resend, react-mail, CSS, HTML5
 
 <iframe width="560" height="315" 
-src="https://ucarecdn.com/9ef4046c-0dd2-4915-8e63-33536c72ac39/petProfileTailor.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+src="https://ucarecdn.com/9ef4046c-0dd2-4915-8e63-33536c72ac39/petProfileTailor.mp4" title="showing the front page, fetch names, fetch descriptions names work and sorting works" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Thread for my project progress!
 
@@ -1260,7 +1262,7 @@ Success is mine! I could cry with joy and relief 🥺The put request for my like
 
 I've been slooowly working on it with any spare time I've had this week, and it finally paid off 🔥
 
-<iframe src="https://ucarecdn.com/66de41b9-11d5-4fee-8480-0d10fc9e2b66/20230106successismineclickinghearts.mp4" width="320" height="240" alt="showing the user clicking the favorite hearts and the database reflecting the change" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe src="https://ucarecdn.com/66de41b9-11d5-4fee-8480-0d10fc9e2b66/20230106successismineclickinghearts.mp4" width="320" height="240" title="showing the user clicking the favorite hearts and the database reflecting the change" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1611349214780624897 5:09 AM · Jan 6, 2023
 
@@ -1371,7 +1373,7 @@ the user who submits the new names id is now added to the name in the database!
 
 Descriptions can now be added as well
 
-<iframe src="https://ucarecdn.com/b14676ee-8062-4897-9ecd-379a87cc2f1f/20230107theuserwhosubmitsnewnames.mp4" width="320" height="240" alt="showing that the user gets a notice their name submission succeded and we also see it worked in the database" 
+<iframe src="https://ucarecdn.com/b14676ee-8062-4897-9ecd-379a87cc2f1f/20230107theuserwhosubmitsnewnames.mp4" width="320" height="240" title="showing that the user gets a notice their name submission succeded and we also see it worked in the database" 
 frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1611994453430120449 11:53 PM · Jan 7, 2023
@@ -1596,11 +1598,11 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1614234667666010112 4:
 
 ---
 
-Finished my component with the rank titles!
+I finished my component with the rank titles!
 
 If they have more points than 40, then it defaults to the "A good Pupper title".
 
-I was confused for a hot sec until I remember to do Math.floor! (so 1.2 ect becomes 1) All those codewars memories are flooding back to me
+I was confused for a hot sec until I remember to do Math.floor! (so 1.2 becomes 1, ect) All those codewars memories are flooding back to me
 
 ```
 import React from 'react'
@@ -1667,22 +1669,32 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1614238710152957954 4:
 ---
 
 🙌 fixed the header so it grabs session from serversideprops
+
 🙌 did a few small edits
+
 🙌 Started working on making it possible for users to upload profile images with cloudinary, I got to the highlighted part tonight. Giving my brain a break for now 🥱
 
 PART 1:
 
 - Allow User to attach a file (DONE)
+
   upload preset name + folder name = "profile_images"
   env file done
+
   utils => cloudinary config file done
+
   installed datauri and multer
+
   datauri: will help us convert parsed files (images and videos) to base 64 encodings
+
   multer: will help us parse the request body
+
   next-connect: will help us add Multer as a middleware to a router handler
 
 - Upload file to cloudinary
+
   in response object, grab public_id
+
   let CloudinaryImagePublicId=public_id
   (can test by having it show up on the front end)
 
@@ -1690,57 +1702,59 @@ Once it works: PART 2:
 
 - start a patch/put request to api/uploadProfileImage with the
   request {uerId, CloudinaryImagePublicId}
+
   look in users collection, find one with the current users id
+
   user.profileimage ===> replace with CloudinaryImagePublicId
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1614554408490250241 1:25 AM · Jan 15, 2023
 
 ---
 
-My intention was to relax but, ended up started on the social area of the app (batsignal/playyard) 😂
+My intention was to relax but, I ended up started on the social area of the app (batsignal/playyard) 😂
 
 Users can ask the community for suggestions for names, pet descriptions, fundraisers, ect or just show off images of their pets
 
-
-<iframe width="320" height="240" 
-alt="showing a working community page post with an image, title, text and more"
-src="images/2023-01-15-my-intention-was-to-relax.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="640" height="480" 
+title="showing a working community page post with an image, title, text and more"
+src="https://ucarecdn.com/0eb47d13-3102-49ae-92ba-4227c650fabe/20230115myintentionwastorelax.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1614589714857877509 3:46 AM · Jan 15, 2023
 
 ---
 
 🐤worked a tiny bit on integrating cloudinary
+
 🐤Started on the filtering system for the posts
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1614973965583421440 5:12 AM · Jan 16, 2023
 
 ---
 
-users can now upload profile image to cloudinary and have it replace the profile image in their mongoDB user document!
+Users can now upload profile image to cloudinary and have it replace the profile image in their mongoDB user document!
 
-I wanted to use the widget but its extra broken for function components rn😅Look at all those error messages in that second sandbox
+I wanted to use the widget but its extra broken for function components rn 😅 Look at all those error messages in that second sandbox
 https://support.cloudinary.com/hc/en-us/artic
 
-<img src="2023-01-17-early-profile-image-upload.png" alt="showing a section that lets users upload a profile image but its not very styled currently"/>
+<img src="https://ucarecdn.com/9e7f69cf-c5a7-4091-81cd-25a6cf76f14e/-/format/auto/" alt="showing a section that lets users upload a profile image but its not very styled currently"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615316730309660672 3:54 AM · Jan 17, 2023
 
 ---
 
-I temporarily have a cool cat😎😼as a profile picture, eventually I'll go back to the turtle duck!
+I temporarily have a cool cat 😎😼 as a profile picture, eventually I'll go back to the turtle duck!
 
-<img src="2023-01-17-cat-profile-image.jpg" alt="profile image of a cat on a skateboard with the text bye over it"/>
+<img src="https://ucarecdn.com/6ffb771b-54e1-483a-907e-9c84f4b58dd6/-/format/auto/" alt="profile image of a cat on a skateboard with the text bye over it"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615320136805937155 4:08 AM · Jan 17, 2023
 
 ---
 
-I was confused why I had 2 toast containers for a moment, then remembered there was another in the nav bar!
+I was confused why I had 2 toast containers for a moment, then I remembered there was another in the nav bar!
 
 so I got rid of the one in the nav bar for now. Phew, nice easy fix.
 
-<img src="2023-01-17-showing-two-notifs-profile-image-uploaded-successfully.png" alt="showing two notifs pop up that say profile image uploaded successfully"/>
+<img src="https://ucarecdn.com/c22b6144-20f9-4b9e-abf6-b48d2e343eaa/-/format/auto/" alt="showing two notifs pop up that say profile image uploaded successfully"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615321177769259009 4:12 AM · Jan 17, 2023
 
@@ -1748,12 +1762,13 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1615321177769259009 4:
 
 time to de-uglyify this bad boy and reword some things (uploading avatar section)
 
-<img src="2023-01-17-showing-profile-settings-page-not-styled.png" alt="showing profile settings page but its not styled much"/>
+<img src="https://ucarecdn.com/73424412-ac61-4d4f-8d88-0b4b94fa44f2/-/format/auto/" alt="showing profile settings page but its not styled much"/>
+
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615488312789340161 3:16 PM · Jan 17, 2023
 
 ---
 
-When styling I found out file input is a bit picky, it needs to be onCHANGE not onCLICK. If its switched to onClick, clicking it will do nothing (it will give back undefined)
+When styling I found out that file input is a bit picky, it needs to be onCHANGE not onCLICK. If its switched to onClick, clicking it will do nothing (it will give back undefined)
 
 ```
 <input
@@ -1763,7 +1778,6 @@ When styling I found out file input is a bit picky, it needs to be onCHANGE not 
   type="file">
 </input>
 ```
-![alt text](deletecodeforjan17th.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615510358525120512 4:44 PM · Jan 17, 2023
 
@@ -1773,18 +1787,15 @@ It looks MUCH better!
 
 I also used state to decide when the upload button is disabled and what it looks like
 
-
-<iframe src="images/2023-01-17-looks_much_better.mp4" width="320" height="240" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe src="https://ucarecdn.com/6a9aba2a-5e31-4c10-b271-0a21aefd300e/20230117looks_much_better.mp4" width="640" height="480" title="the update profile page is now styled and works" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615527956180504577 5:54 PM · Jan 17, 2023
 
 ---
 
-
 I added a quick image to this page too ~
 
-<img src="2023-01-17-added-image-to-update-profile-page.jpg" alt="showing update profile page with an image on top with a dog with sunglasses" >
-
+<img src="https://ucarecdn.com/260e0ae0-2fcf-45fe-9387-07a43149d874/-/format/auto/" alt="showing update profile page with an image on top with a dog with sunglasses" />
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615537955862609922 6:33 PM · Jan 17, 2023
 
@@ -1796,8 +1807,7 @@ I made a toggle button so the user can get rid of the filter menu if they want!
 
 (I'll be changing that banner later, the text on top of the image is mild torture for the eyes rn, but eh, future me will take care of that 😂)
 
-
-<iframe src="images/2023-01-17-future-users-on-smaller.mp4" width="320" height="240" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe src="https://ucarecdn.com/d44ed53e-09b3-4594-97f4-d3f817998198/20230117futureusersonsmaller.mp4"  width="640" height="480" title="showing the toggle filter menu works" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615546973695934464 7:09 PM · Jan 17, 2023
 
@@ -1807,19 +1817,17 @@ aaah so satisfying, its the little things in life ☺️
 
 I imported a component and replaced all the class= with className= with one simple button click!
 
-<img src="2023-01-2023-replaced-class-with-classname.png" alt="showing the popup that lets us enter text to find, and then the second line is text we replace it with"/>
+<img src="https://ucarecdn.com/f3e00f79-2ea0-48c5-8c5c-a3ce02123e87/-/format/auto/" alt="showing the popup that lets us enter text to find, and then the second line is text we replace it with"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615580915241226240 9:24 PM · Jan 17, 2023
 
 ---
 
-Made progress on the front-end side of things on the community area!
+I made progress on the front-end side of things in the community area!
 
-Was struggling to get the buttons to center until I stumbled across a tip online to use text-center on its parent component
+I was struggling to get the buttons to center until I stumbled across a tip online to use text-center on its parent component
 
-
-<iframe src="images/2023-01-18-made-progress-on-the-frontend.mp4" width="320" height="240" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
+<iframe src="https://ucarecdn.com/f86c6be1-0c41-40a9-b867-2e4d2bc3f13f/20230118madeprogressonthefrontend.mp4"  width="640" height="480" title="showing the community areas filter, post and comment settings all work" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615678479303077888 3:52 AM · Jan 18, 2023
 
@@ -1827,71 +1835,98 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1615678479303077888 3:
 
 two of my pages keep making fast refresh do a full reload... not looking forward to debugging that ugh
 
-![a charmander surrounded by 2 bushes, when he uses a waterbucket to put out the fire in one bush the other one catches fire because of his tail](https://tenor.com/view/debugging-is-like-debuggining-charmander-charmander-putting-out-fire-pokemon-gif-16297751)
+![a gif charmander surrounded by 2 bushes, when he uses a waterbucket to put out the fire in one bush the other one catches fire because of his tail](https://ucarecdn.com/de82ae28-15ce-4524-b06e-8322b316bff5/20230118charmanderdebug.gif)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615683520839716864 4:12 AM · Jan 18, 2023
 
 ---
 
-Fixed the full reload bug! the page's function component needed to be capitalized😂🤦‍♀️
+I fixed the full reload bug! the page's function component needed to be capitalized😂🤦‍♀️
 
 Also I fixed mobile view for the posts page! One of the components had been set to width max instead of width full.
 
-<video src="images/fixed_the_full_reload_bug.mp4" width="320" height="240" controls></video>
-
-Twitter Post Link: https://twitter.com/Janetthedev/status/1615902005570203648 6:40 PM · Jan 18, 2023
+<iframe title="showing the community page working"  width="640" height="480" src="https://ucarecdn.com/57fdef2a-ba83-4b2c-bd60-cbcc0423fdf2/20230118fixedthefullreloadbug.mp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe
 
 ---
 
-Added a footer, which decided to float on one of my pages!
+I added a footer, which decided to float on one of my pages!
 🤪
-Found out it was because one of the divs was set to h-screen, so it wasn't resizing to the content. Even though visually it had looked fine.
+
+I found out it was because one of the divs was set to h-screen, so it wasn't resizing to the content. Even though visually it had looked fine.
 
 Removing that height fixed it!💪
 
-![alt text](Fmzhzw9agAA9Ke4.png)
-![alt text](Fmzh1kCaMAY5WTM.png)
-![alt text](Fmzh3rwaAAEfRC8.png)
-![alt text](Fmzh6_xacAAqeii.png)
+<img src="https://ucarecdn.com/be0061f2-8040-4bd8-bb40-64215ccce73f/-/format/auto/" alt="the footer is floating over the list of names"/>
+
+```
+<div className="grow bg-darkPuple rounded-box place-items-center
+h-screen"<===the problem area>
+
+{/* button that toggles the filter div */}
+
+<GeneralButton
+   text="Toggle Filter Menu"
+   onClick={()=>SetIsOpen(!isOpen)}/>
+```
+
+<img src="https://ucarecdn.com/157d71da-1b0b-4a27-8693-d0c05e60bebe/-/format/auto/" alt="using inspector to see that the flexed div ends where the footer starts at"/>
+
+<img src="https://ucarecdn.com/e8b6e414-8630-4c89-b8f6-3a7185cdc391/-/format/auto/" alt="the footer is now at the bottom of the page"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1615914868472942597 7:31 PM · Jan 18, 2023
 
 ---
 
-Got most of the post upload bits done!
+I got most of the post upload bits done!
 
 - Model created,
+
 - states created to store values,
+
 - attached state to form behavior,
+
 - finished cloudinary upload logic,
 
 now to finish the logic for uploading the new post to mongoDB
 
-<video src="images/got_most_of_the_upload_bits.mp4" width="320" height="240" controls></video>
+<iframe width="560" height="315" src="https://ucarecdn.com/297f005a-6b40-4f32-8633-a46d38b38f86/20230119gotmostoftheuploadbits.mp4" title="tested submission for posts and the state is properly updating" width="320" height="240" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1616007573588828161 1:40 AM · Jan 19, 2023
 
 ---
 
-Spent a good chunk of time dealing w/ the insurance but I made progress!
+I spent a good chunk of time dealing w/ my car insurance (I got rear ended, flipped, and my car was totaled. Though I was very lucky and I walked away unharmed). But I made progress!
 
 🐶Did some form validation,
+
 🐶hid the ugly file input field (input is now the image icon),
+
 🐶clear the image when clicking the x,
+
 🐶storing URL.createObjectURL in state to preview image
 
-<video src="images/spent_a_good_chunk.mp4" width="320" height="240" controls></video>
+<iframe src="https://ucarecdn.com/ec7ed5c6-6a86-4076-9537-6c556246a096/20230119Ispentagoodchunk.mp4" width="640" height="480" frameborder="0" title="testing community page, post uploads work" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1616311858511896576 9:49 PM · Jan 19, 2023
 
 ---
 
-Small thing, added a little bit of drop shadow to the x font awesome icon!
+Did a small thing, I added a little bit of drop shadow to the x font awesome icon!
 
 That way its still possible to see even if someone uploads a bright image
 
-![alt text](Fm5n5P7aUAEHW7t.png)
-![alt text](Fm5oAlkaMAA8eZy.png)
+<img src="https://ucarecdn.com/4951421a-56bf-43a4-880c-d17be110f423/-/format/auto/" alt="the x circle icon has a drop shadow now, so its easy to see even against a bright background"/>
+
+```
+<img
+  className="max-h-96 object-scale-down mx-auto block"
+  src={imagePreview}/>
+    <FontAwesomeIcon
+      icon=={faCircleMark}
+      onClick={()=>setImagePreview("")}
+      className="text-3xl text-yellow-300 mr-2 absolute top-1 right-1 justify-center drop-shadow-md"/>
+
+```
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1616346190836301824 12:05 AM · Jan 20, 2023
 
@@ -1899,7 +1934,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1616346190836301824 12
 
 Here's a quick overview of what i've done so far for my 100 hours project! beware theres some glitches 😂esp on the add name page rn
 
-<video src="images/heres_a_quick_overview.mp4" width="320" height="240" controls></video>
+<iframe src="https://ucarecdn.com/4d8e5703-e0af-4eda-82a8-d9093254fdd6/20230121heresaquickoverview.mp4" title="video giving a quick overview of all the pages I've worked on" width="640" height="480"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1617016132120244229 8:27 PM · Jan 21, 2023
 
@@ -1907,10 +1942,14 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1617016132120244229 8:
 
 I'm tired enough I was looking at this for a solid minute going ??? what error?
 
-then laughed when I realized I basically told JS to do "function function" . Double raiiiiinbow javascript edition 🌈
+then I laughed when I realized I basically told JS to do "function function" . Double raiiiiinbow javascript edition 🌈
 
-![alt text](FnDYiUHacAAaYJt.png)
-![alt text](FnDYkOxaYAEPuPZ.png)
+```
+const uploadPostToSever = function () => {{
+  console.log("hello from callback")
+  }
+}
+```
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1617030775949656064 9:25 PM · Jan 21, 2023
 
@@ -1920,7 +1959,12 @@ Success is mine!! I got my onclick function to run two functions. AND the second
 
 Here i was thinking I had to do .then(), ect, when just doing this works:
 
-![alt text](FnDf5qvaAAIqXRf.png)
+```
+const handlePostCreate = () =>
+{handleImageUpload();
+   uploadPostToServer();
+}
+```
 
 nevermind, once I json.Stringified the object i realized it was coming back as empty. So the second function isn't waiting on the first to finish :(
 
@@ -1928,7 +1972,21 @@ makes sense, as this isn't a proper callback but hoped it'd be this easy. Oh wel
 
 Figured it out. So in the function that creates the new post, I had it await for cloudinarys message to return so we got the url for the image from cloudinary, and then it continues the rest of the function
 
-![alt text](FnD3V97aUAIHkZL.png)
+```
+const handlePostCreate = async () => {
+  if(!desciption) {
+    toast.error(`Ruh Roh! A description is required`)
+    return}
+
+  if (tagList.length==0){
+    toast.error(`Ruh Roh! At least one tag is required`)
+    return}
+
+    await handleImageUpload().then(
+      console.log(`hello from callback ${JSON.stringify(image)}`))
+}
+
+```
 
 when I'm not wiped I'll work on making the actual api for sending the post request ect, but hey its still progress!
 
@@ -1937,37 +1995,153 @@ ngl i was stressing about how to make it /wait/ and for it to not freak out if t
 nevermind I spoke too soon 🥲, looks like it ISN'T waiting to get data for that function to run. I have to click it twice for it to work
 I'm using async await and then so i'm not sure why its not waiting for handleImageUpload() to finish running before the console.log goes off??
 
-![alt text](FnD6oBraAAIaVLs.png)
-![alt text](FnD669yaAAUGdKQ.png)
+console is showing :
 
-stackoverflow.com/questions/55960027/await-doesnt-wait
+> hello from callback []
+
+> hello from callback "https : / / res. cloudinary .com/adfafasf/image/upload/v167423423947/posts/tfearafioijasf.jpg"
+
+```
+const handlePostCreate = async () => {
+  if(!description) {
+    toast.error(`Ruh Roh! A description is required`)
+    return}
+
+    if (tagList.length==0) {toast.error(`Ruh Roh! At least one tag is required`)
+    return}
+
+    await handleImageUpload().then(console.log(`hello from callback ${JSON.stringify(image)}`)
+    )
+  .....
+}
+
+```
 
 I've tried both after the function and within a .then() statement 🥲 why code won't you just work on the first click please
 
-![alt text](FnD8UefaAAM5uE5.png)
+stackoverflow.com/questions/55960027/await-doesnt-wait
 
-![alt text](FnD8UefaAAM5uE5-1.png)
+<img src="https://ucarecdn.com/3a373cc6-3fa6-4bef-8eef-fe65ffe387b9/-/format/auto/"
+alt="screenshot of a stackoverflow thread which says anything you want to be waiting until after the f1() executes must be either a inside the f2() function after the await or b executed within a then callback attached to the promise"/>
 
-Thought maybe adding this would work, but no dice 😭at this rate might just have to try the 100devs help channel
+I thought maybe adding this would work, but no dice 😭at this rate might just have to try the 100devs help channel
 
-![alt text](FnD9lZFagAIAWs2.png)
+```
+await handleImageUpload().then(()=> console.log(`hello from callback ${JSON.stingify(image)}`)
+)
+```
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1617038809212018688 9:57 PM · Jan 21, 2023
 
 ---
 
 Alright so I posted this in the 100devs discord but wanted to ask here juuuust in case someone can figure out what I'm doing wrong 🥲
+
 is it maybe correctly waiting for the handleImageUpload function, but since state variables are async maybe the image variable hasn't updated?
 
-![alt text](FnIEYGOaEAE2vkd.jpg)
-![alt text](FnIEw8MaMAAFN_e.png)
+<img src="https://ucarecdn.com/8aa05435-a356-4bae-82bc-dd0041f396e1/20230122100devshelpfiguringouthandleimageuploadasync.jpg" alt=""/>
 
-A-HA! my hunch was right! shoutout to breakpoint in 100 devs for being a hero 🎉 highlighted what I needed to change
+This is what I posted on the 100devs discord
 
-![alt text](FnIPxu1agAE5tZ5.jpg)
-![alt text](FnIQAxwaEAQ5fNx.png)
-![alt text](FnIQImracAAsbgP.png)
-![alt text](FnIQSS7aMAEWWSr.jpg)
+> Hello all! So I'm trying to let the user upload a post, but the issue i'm having is that the handlePostCreate function isn't waiting for the variable that has the image from cloudinary to update 😦
+
+> When I click post, the first time I get "Hello from callback []"
+
+> But the second time I click it, it works as intended "Hello from callback "https : / / ....."
+
+> When the user clicks the post button:
+
+> 1. handlePostCreate fires
+
+> 2. inside this function, it calls the handleImageUpload function (uploading the attached image to cloudinary). Which places the cloudinary url in the image variable
+
+> 3. THEN, the console.log fires with the image variable from state inside of it. Which it does but...it isn't waiting for the image variable to update
+
+> I don't think it matters but I'm using nextJS
+
+RESPONSE FROM GRIFN
+
+> You need to also await the .json() method as it returns a Promise
+
+> You can just use await instead of chaining then on your Promises.
+
+```
+const response = await fetch(...);
+const data = await response.json();
+let imageFromCloudinary = data.secure_url;
+
+```
+
+MY RESPONSE
+
+> tried that but no luck 😦 is it maybe correctly waiting for the handleImageUpload function, but since state variables are async maybe the image variable in state hasn't updated??🥴
+
+```
+const response = await fetch ("https : / / api. cloudinary .com/v1_1/deadfafd/image/upload",{
+  method: 'POST'
+  body: formData,
+})
+const data = await response.json();
+
+let imageFromCloudinary = data.secure_url
+
+setImage(imageFromCloudinary)
+setImageToCloudinary(")
+
+```
+
+RESPONSE FROM GRIFN
+
+> Ah I see you are trying to log the image now. Yeah, the state won't have updated yet at that point. After updating your state you can return the image from the function then console.log that.
+
+```
+
+const response = await fetch(...);
+const data = await response.json();
+let imageFromCloudinary = data.secure_url;
+setImage(imageFromCloudinary);
+return imageFromCloudinary;
+
+```
+
+```
+handleImageToUpload.then((image) => console.log(image))
+
+```
+
+MY RESPONSE
+
+> Thank you a million times over! That was it!!! You saved me hours of fighting with this, thank you thank you ❤️ I appreciate you so much
+
+A-HA! my hunch was right! shoutout to grifn in 100 devs for being a hero 🎉 I highlighted what I needed to change
+
+```
+const handleImageUpload = async () =>{
+
+  if (imageToCloudinary!=""){
+
+    const formData= new FormData();
+    formData.append('file',imageToCloudinary);
+    formData.append('upload_preset',"db015fmb");
+
+    const response = await fetch ("https : / / api . cloudinary. com/v1_1/afdafasfd/image/upload", {
+          method: 'POST',
+          body: formData,
+    })
+    const data = await response.json();
+
+    let imageFromCloudinary = data.secure_url
+
+    setImage(imageFromCloudinary)
+    setImageToCloudinary("")
+    return imageFromCloudinary <=== return imageFromCloudinary was the added code that fixed the bug
+
+      }
+}
+
+```
+
+<img src="https://ucarecdn.com/44f79f40-878b-41d2-a0f2-421a9d977231/20230122showingimageuploadworking.jpg" alt="showing that image upload works"/>
 
 100 devs is the best community i swear 😭🙏i would of been fighting this for HOURS.
 
@@ -2005,29 +2179,50 @@ I thought i'd have to use the timestamps but here they mentioned the ids could b
 
 https://mongodb.com/community/forums/t/sorting-with-mongoose-find/158594
 
-![alt text](FnUZrBuacAUYhkJ.png)
-![alt text](FnUbMJQaMAAiry6.png)
+```
+export default async function handler(req,res){
+  const {method} = req;
 
-I found out why .sort({ \_id:-1}) worked to get the most recent documents!
+  dbConnect() / / from config/mongo.js
+
+  if(method ==="GET"){
+      try {
+        const individualPosts= await individualPosts.find()
+        .sort({_id:-1}); <=== highlighted code
+        res.status(200).json(individualPosts);
+      }
+      catch (err){
+        res.status(500).json(err)
+      }
+      .....
+  }
+}
+```
 
 I found out why .sort({ \_id:-1}) worked to get the most recent documents!
 
 Turns out each ObjectID in mongoDB contains a 4 byte timestamp! 🤯
 https://www.mongodb.com/docs/manual/reference/bson-types/#std-label-objectid
 
-![alt text](FnUb7KkaAAAOWqg.png)
+> From a screenshot from a page talking about ObjectId
+
+> ObjectId
+
+> ObjectIds are small, likely unique, fast to generate, and ordered. ObjectId values are 12 bytes in length, consisting of:
+
+> - a 4-byte timestamp, representing the ObjectId's creation, measured in seconds since the Unix Epoch.
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1618229992416251905 4:51 AM · Jan 25, 2023
 
 ---
 
-Been working on my project in little bits of time but its been adding up!
+I've been working on my project in little bits of time but its been adding up!
 
 1. Filtering now works
 2. Edited my api so the newest posts show first
 3. Each post has the users id. So EACH post COMPONENT calls an api, finds a user w/ that id & grabs the posters username and picture
 
-<video src="images/been_working_on_my_project.mp4" width="320" height="240" controls></video>
+<iframe src="https://ucarecdn.com/33b84c11-5bed-496b-a2af-d2a81eff7035/20230125beenworkingonmyproject.mp4" width="640" height="480" title="progress on community page, filtering works and comments are loading" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1618233433662316551 5:04 AM · Jan 25, 2023
 
