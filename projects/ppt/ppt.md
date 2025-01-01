@@ -2270,7 +2270,17 @@ Janet(she/her) | ghiblimagic
 
 Funnily enough I stumped across a simple solution
 
-![alt text](FnczqgdaAAAoD3i.png)
+```
+/ / ##### FORMATTING DATE ######
+
+const dateFormatter = new Intl.dateTimeFormat(undefined,{dateStyle: "medium",
+timeStyle: "short",
+})
+
+let formattedPostDate= dateFormatter.format(Date.parse(postDate))
+
+```
+![alt text](deletedaaate.png)
 
 @58:00 he goes over managing the time https://youtube.com/watch?v=lyNetvEfvT0&ab_channel=WebDevSimplified
 
@@ -2300,9 +2310,73 @@ Found out how to link two mongoDB collections and WOW, its SO much easier!
 
 So now when I grab post data, and it automatically knows to look at the user collection and grab the data for that userID!🎉🎉🎉
 
-![alt text](FndE-hVaAAARSRZ.png)
-![alt text](FndFRnWaYAE5X2f.png)
-![alt text](FndFaFXaQAcrrfg.png)
+```
+const mongoose = require("mongoose")
+
+const PostSchema = new mongoose.Schema({
+  image: {
+    type: Array,
+    required: false,
+    unique: false,
+  },
+  title: {
+    type: String,
+    required: false,
+    unique: false,
+  },
+  description: {
+    type: String,
+    required: true,
+    unique: false,
+  },
+  createdby: { <===highlighted code
+    type: String,
+    required: true,
+    ref: 'User'
+  },
+  ....
+})
+```
+![alt text](deletecoooode.png)
+
+```
+export default async function handler (req,res){
+   const {method} = req;
+
+   dbConnect() / / from config/mongo.js
+
+   if (method === "GET"){
+    try {
+      const individualPosts = await individualPosts.find()
+      .populate({path:"createdby", select:["name","profilename","profileimage"]}) <=== highlighted code
+      .sort({_id:-1});
+      / / this way we get the most recent posts first, we use id since mongoDB's objectID has a 4 byte timestamp naturally built in 
+      res.status(200).json(individualPosts)
+    }
+    catch (err){
+      res.status(500).json(err);
+    }
+    .....
+   }
+}
+```
+![alt text](deletepopulate.png)
+
+console.log 
+
+> this is post list 
+
+> [{"_id":"342424saf",
+
+>"image:[],
+
+> "title":"Test",
+
+> description:"testy test", 
+
+> "createdby":{"_id":"5354feffds", "name": "GhibliM", "profileimage":"https : / / res.cloudinary. com/dueafafaf/image/upload/v2324234/profileimage/g2fasfasf.jpg","profilename":"ghiblimagic"}}]
+
+![alt text](<deeelllte console.png>)
 
 now i can delete that extra api I made, where i had the userID as an end point to grab all their data from the database 😁
 
@@ -2326,8 +2400,52 @@ FINALLY figured out how to get populate to work with an array of objectIds
 
 I had to change the formatting a bit and change up the type 🥳
 
-![alt text](FngPg8MaYAAfVit.png)
-![alt text](FngPtnHaEAERTPg.png)
+```
+const mongoose = require("mongoose");
+
+const PostSchema = new mongoose.Schema({
+  image: {
+     type:Array,
+     required: false,
+     unique: false,
+  },
+  title: {
+    type: String,
+    required: false,
+    unique: false,
+  },
+  description: {
+    type: String,
+    required: true,
+    unique: false,
+  },
+  createdBy:{
+    type: String,
+    required: true,
+    ref: 'User',
+  },
+  comments:{
+    type: Array,
+    ref: "BatSignalComment",
+  }, <===highlighted code
+ ......
+
+},{timestamps: true})
+
+const Post = mongoose.models.posts | | mongoose.model("Posts",postSchema);
+export default Post
+```
+changed the highlighted code to
+
+```
+
+comments: [{
+   type: Schema.Types.ObjectId,
+   ref: 'BatSignalComment',
+}]
+```
+![alt text](deletehighlightedcode.png)
+![alt text](deleteschemacode.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1619061498365751296
 
@@ -2339,7 +2457,7 @@ so I either need to find a way to tell mongoose, hey if theres no object id in t
 
 populate works fine when every post has comments though! So for now, I figured out the api logic for adding comments, and replies to comments ect, not letting replies nest too far ect ect
 
-![alt text](Fnja2yAacAAeNYg.png)
+![showing a nested comment thread](2023-01-28-progress-on-comments.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1619284632775823360 2:41 AM · Jan 28, 2023
 
@@ -2347,7 +2465,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1619284632775823360 2:
 
 Made some progress with profile pages today! 🔥🔥🔥 now its 5am time to sleep
 
-![alt text](FnpJ5-9aIAAbIfg.jpg)
+![showing a styled profile page with all names showing instead of just liked names](2023-01-29-profile-page-progress.jpg)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1619688376101376003 5:26 AM · Jan 29, 2023
 
@@ -2359,19 +2477,33 @@ Made the grid layout change depending on screen size, so it doesn't get jumbled 
 
 Took a hot minute but figured out how to force a 404 if I get nothing back from the api! 😤
 
-<video src="images/progress_instead_of_using_ids.mp4" width="320" height="240" controls></video>
+<video src="images/2023-01-30-progress-instead-of-using-ids.mp4" width="320" height="240" controls></video>
 
 For nextjs, the key was to return notFound: true if the .find() from the api returns [] (aka it found nothing)
 
-![alt text](Fntyb8OaEAEgV91.png)
+```
+let userResponse = await fetch ('http : / / localhost: 3000/api/user/getASpecificUserByProfileName/'+id)
+let userData = await userResponse.json()
+
+/ / Highlighted code below this / /
+if (!userData.length)(
+  return{
+    notFound: true,
+  }
+) 
+else {
+  ....
+}
+```
+![alt text](deletemorecode.png)
 
 I also created the pages for individual posts! The likes feature ect also works here.
 
-<video src="images/I_also_created_the_pages.mp4" width="320" height="240" controls></video>
+<video src="images/2023-01-30-I-also-created-the-pages.mp4" width="320" height="240" controls></video>
 
 Start of the dynamic page for individual names, also redirects to 404 is the name is not found
 
-![alt text](Fnt5MpKagAEwP2R.jpg)
+![showing a page with just one individual name](2023-01-30-dynamic-name-page.jpg)
 
 When findById() finds nothing the redirect to 404 works now, but required slightly different wording
 
@@ -2379,8 +2511,20 @@ https://stackoverflow.com/questions/45172700/what-does-mongoose-return-when-a-fi
 
 This thread was a gift🙏
 
-![alt text](Fnt6J2JaUAE6aoF.png)
+![alt text](deletemoooorecoooode.png)
 
+```
+let postResponse = await fetch('http : / / localhost: 3000/api/individualposts/getASpecificPost/'+id)
+
+let postData = await postResponse.json()
+
+/ / highlighted code below / / 
+if (!postData){
+  return {
+    notFound: true,
+  }
+}
+```
 Twitter Post Link: https://twitter.com/Janetthedev/status/1620014287468265472 3:01 AM · Jan 30, 2023
 
 ---
@@ -2397,7 +2541,7 @@ I worked on the front end bit of editing posts! I was dreading doing this and ye
 
 partly because I've never messed with modals before. But I'm proud of my progress so far!
 
-<video src="images/worked_on_the_front_end.mp4" width="320" height="240" controls></video>
+<video src="images/2023-01-31-I-worked-on-the-front-end.mp4" width="320" height="240" controls></video>
 
 What I"m especially proud of is the tags! They look simple but they kept appearing blank (aka text wasn't showing)
 
@@ -2405,9 +2549,46 @@ I Was about to give up and make the user manually reenter the tags, when I reali
 
 The tags were showing up fine in react state,...
 
-![alt text](Fnym1OUaQAAGFnN.png)
-![alt text](FnynGViaEAEBEv4.png)
-![alt text](Fnync1EakAEJ9hr.png)
+```
+export default function EditPost({setShowEditPage,sessionFromServer,tagListProp,post}){
+  / / data for posts in mongoDB
+  const [image, seetImage]= useState()
+  const [title, setTitle]=useState(post.title)
+  const [description, setDescription]= useState(post.description);
+
+  / / highlighted code below
+  const [tagList, setTags]=useState(post.tagList);
+  / / tagList: ["bugs","general chat"]
+ ....
+}
+```
+![alt text](moooorecode.png)
+
+```
+<Select
+    value={tagList.map(tag=>
+    ({label:tag, value:tag}))}    
+    ......
+    />
+ 
+```
+![alt text](ddeeeelete.png)
+
+developer console react components screen
+
+>hooks
+
+> ...
+
+> state: ["name suggestions","fundraising ideas", "photogra..."]
+
+> 0: "name suggestions"
+
+> 1: "fundraising ideas"
+
+> 2: "photography ideas"
+
+![alt text](deletereactcomponents.png)
 
 So since they were appearing fine in the state, I knew there was something making the text not appear to the user.
 
@@ -2425,7 +2606,7 @@ maybe using a button and state, so when the button is clicked, the next 10 or so
 
 🥴or maybe pagination...?
 
-<video src="images/progress_on_the_profile.mp4" width="320" height="240" controls></video>
+<video src="images/2023-01-31-progress-on-the-profile.mp4" width="320" height="240" controls></video>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1620358163601186817 1:47 AM · Jan 31, 2023
 
@@ -2437,7 +2618,7 @@ All the links now work and they all play nice on mobile now
 
 (I feel like I should add some silly effect/pic if someone clicks the impactful, fun, or tailor-fitted buttons 🤔)
 
-<video src="images/forgot_to_post_I.mp4" width="320" height="240" controls></video>
+<video src="images/2023-01-31-forgot-to-post-I.mp4" width="320" height="240" controls></video>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1620360251081109504 1:56 AM · Jan 31, 2023
 
@@ -2475,10 +2656,12 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1620366164445794307 2:
 ---
 
 ☘️did a tiiiny bit of walking while coding
+
 ☘️worked on 100 hours project, probably too much tbh i felt the edges of burnout
+
 🦀no anki/banki
 
-![alt text](FnzcmzUaEAUFOBL.jpg)
+![showing treadmill, walked for 84 minutes and .9 miles](2023-01-31-treadmill.jpg)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1620412529704058881 5:23 AM · Jan 31, 2023
 
@@ -2490,7 +2673,7 @@ Fixed some pages so the profile image and profile name shows
 
 And got the backend logic for editing posts to work 🥳
 
-![alt text](Fn6me1xacAAv8eO.jpg)
+![showing the profile image and name showing at the top right corner](2023-02-01-showing-profile-image-and-name.jpg)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1620916187441025024 2:45 PM · Feb 1, 2023
 
@@ -2500,7 +2683,7 @@ Wanted to add this on to the last post, but twitters vertical scroll bar is brok
 
 But anyway, users can now edit posts!
 
-<video src="images/wanted_to_add_this_on.mp4" width="320" height="240" controls></video>
+<video src="images/2023-02-01-wanted-to-add-this-on.mp4" width="320" height="240" controls></video>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1620919536483696641 2:58 PM · Feb 1, 2023
 
@@ -2520,9 +2703,9 @@ Users can now sign in with magic links through their email 🪄
 
 Shame that for forgot passwords I can't just tell it, hey do this same exact thing, but redirect them to reset password page instead of the dashboard 🙃
 
-![alt text](FoSMYfUakAAXgty.jpg)
+!["showing the login page"](2023-02-06-showing-login-page.jpg)
 
-Could just tell users in the email, hey if you want to reset your password go to your edit profile page after logging in with the magic link.
+I could just tell users in the email, hey if you want to reset your password go to your edit profile page after logging in with the magic link.
 
 But alas that won't look as good as a direct link, curses 😂
 
@@ -2534,6 +2717,7 @@ But eh, I decided screw it. Users can use the magic link to login and go to edit
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1622576945774088194 4:44 AM · Feb 6, 2023
 
+/ / left off here
 <video src="images/" width="320" height="240" controls></video>
 
 ---
