@@ -2280,6 +2280,7 @@ timeStyle: "short",
 let formattedPostDate= dateFormatter.format(Date.parse(postDate))
 
 ```
+
 ![alt text](deletedaaate.png)
 
 @58:00 he goes over managing the time https://youtube.com/watch?v=lyNetvEfvT0&ab_channel=WebDevSimplified
@@ -2337,6 +2338,7 @@ const PostSchema = new mongoose.Schema({
   ....
 })
 ```
+
 ![alt text](deletecoooode.png)
 
 ```
@@ -2350,7 +2352,7 @@ export default async function handler (req,res){
       const individualPosts = await individualPosts.find()
       .populate({path:"createdby", select:["name","profilename","profileimage"]}) <=== highlighted code
       .sort({_id:-1});
-      / / this way we get the most recent posts first, we use id since mongoDB's objectID has a 4 byte timestamp naturally built in 
+      / / this way we get the most recent posts first, we use id since mongoDB's objectID has a 4 byte timestamp naturally built in
       res.status(200).json(individualPosts)
     }
     catch (err){
@@ -2360,21 +2362,22 @@ export default async function handler (req,res){
    }
 }
 ```
+
 ![alt text](deletepopulate.png)
 
-console.log 
+console.log
 
-> this is post list 
+> this is post list
 
-> [{"_id":"342424saf",
+> [{"\_id":"342424saf",
 
->"image:[],
+> "image:[],
 
 > "title":"Test",
 
-> description:"testy test", 
+> description:"testy test",
 
-> "createdby":{"_id":"5354feffds", "name": "GhibliM", "profileimage":"https : / / res.cloudinary. com/dueafafaf/image/upload/v2324234/profileimage/g2fasfasf.jpg","profilename":"ghiblimagic"}}]
+> "createdby":{"\_id":"5354feffds", "name": "GhibliM", "profileimage":"https : / / res.cloudinary. com/dueafafaf/image/upload/v2324234/profileimage/g2fasfasf.jpg","profilename":"ghiblimagic"}}]
 
 ![alt text](<deeelllte console.png>)
 
@@ -2435,6 +2438,7 @@ const PostSchema = new mongoose.Schema({
 const Post = mongoose.models.posts | | mongoose.model("Posts",postSchema);
 export default Post
 ```
+
 changed the highlighted code to
 
 ```
@@ -2444,6 +2448,7 @@ comments: [{
    ref: 'BatSignalComment',
 }]
 ```
+
 ![alt text](deletehighlightedcode.png)
 ![alt text](deleteschemacode.png)
 
@@ -2490,11 +2495,12 @@ if (!userData.length)(
   return{
     notFound: true,
   }
-) 
+)
 else {
   ....
 }
 ```
+
 ![alt text](deletemorecode.png)
 
 I also created the pages for individual posts! The likes feature ect also works here.
@@ -2518,13 +2524,14 @@ let postResponse = await fetch('http : / / localhost: 3000/api/individualposts/g
 
 let postData = await postResponse.json()
 
-/ / highlighted code below / / 
+/ / highlighted code below / /
 if (!postData){
   return {
     notFound: true,
   }
 }
 ```
+
 Twitter Post Link: https://twitter.com/Janetthedev/status/1620014287468265472 3:01 AM · Jan 30, 2023
 
 ---
@@ -2562,21 +2569,23 @@ export default function EditPost({setShowEditPage,sessionFromServer,tagListProp,
  ....
 }
 ```
+
 ![alt text](moooorecode.png)
 
 ```
 <Select
     value={tagList.map(tag=>
-    ({label:tag, value:tag}))}    
+    ({label:tag, value:tag}))}
     ......
     />
- 
+
 ```
+
 ![alt text](ddeeeelete.png)
 
 developer console react components screen
 
->hooks
+> hooks
 
 > ...
 
@@ -2757,9 +2766,9 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1622931386033389569 4:
 My Reply:
 Oh hey! a pain i know all too well :D we're twinsies in suffering! Here's how I bound cloudinary's power to my will in my project
 
-![alt text](FobrjeRagAIHFac.png)
-![alt text](FobrtyzaEAEsvRo.png)
-![alt text](FobrwbLaYAAK4Ai.jpg)
+<img alt="" src="2023-02-08-cloudinary-part-1.png">
+<img alt="" src="2023-02-08-cloudinary-part-2.png">
+<img alt="" src="2023-02-08-cloudinary-part-3.pn">
 
 the general code https://github.com/JSMarsh813/PetProfileTailor/blob/adding-edit-and-deletion-capabilities-to-comments-and-names/components/AddingNewData/AddPost.js  
 my api https://github.com/JSMarsh813/Pet
@@ -2770,23 +2779,23 @@ My Reply: For my app, I just stored the url in a variable because its all I need
 But most people do end up using the public_id from my understanding.
 You could have imagefromcloudinary store the entire data object, then take use the keys "url" and "public_id" to take out what you need
 
-![alt text](FohMevIaYAA-tow.png)
+![alt text](2023-02-08-cloudinary-part-4.png)
 
 ---
 
-Finished adding the deletion option for names! And had a 🤯 moment and realized I could easily turn it into a reusable component for all items.
+I finished adding the deletion option for names! And had a 🤯 moment and realized I could easily turn it into a reusable component for all items.
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1623288655564648448 3:52 AM · Feb 8, 2023
 
 ---
 
-Was having a hell of a time updating my data for filtering names. Ex: Category: "Gender" Tags: Unisex, male, female.
+I was having a hell of a time updating my data for filtering names. Ex: Category: "Gender" Tags: Unisex, male, female.
 
 So I wanted to split it into 2 collections, a category and a tags collection
 
 So the category populate tags based on their objectID. But no matter how I tried
 
-![alt text](Fo2SpCPaIAAYKvT.jpg)
+![alt text](2023-02-13-mongodb-part1.jpg)
 
 mongodb REFUSED to work with the individual tags collection. Yet It worked with the user collection easily!
 So created a new model and it works🤷‍♀️
@@ -2795,7 +2804,7 @@ maybe since I didn't use a plural name ("NameTag" not "NameTags")?
 
 I had tried every casing w/ the old model so it shouldn't be that
 
-![alt text](Fo2UQitaQAA3yOf.jpg)
+![alt text](2023-02-13-mongodb-part2.jpg)
 
 Annnndd after killing and restarting the development server it now doesn't work 😂(smiling face with tears)
 
@@ -2806,7 +2815,7 @@ Glad my paranoia paid off I i did this before posting this update on linkedin
 It was working again when I briefly switched to the user model, then back to the NameTag model .... but once I killed and restarted the development server its returning {} when populate is run. Aka not working
 WELP time to sleep. I'm now more confused than ever (smiling face with tears)
 
-![alt text](Fo2g1G-aMAEkWrX.png)
+![alt text](2023-02-13-mongodb-part3.jpg)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1625116999729942528 4:57 AM · Feb 13, 2023
 
@@ -2822,23 +2831,23 @@ the last few days at work have been busy, so not much time for much, other than 
 
 Posted this to the 100devs discord, hopefully someone will have an idea why mongoose's populate() is being so funky 🥴
 
-"Hey everyone o/ happy valentines day! Speaking of valentines, I'll love you forever if you manage to help me solve this annoying mystery ;). Corny jokes aside, I've tried messing with mongoose's populate for hours but I'm having no luck. I'm trying to populate my namecategories collection's TAGS property, with TAGS from my tags collection.
+> "Hey everyone o/ happy valentines day! Speaking of valentines, I'll love you forever if you manage to help me solve this annoying mystery ;). Corny jokes aside, I've tried messing with mongoose's populate for hours but I'm having no luck. I'm trying to populate my namecategories collection's TAGS property, with TAGS from my tags collection.
 
-However, it seems like something must be wrong with the tags collection, because populate works perfectly with my users collection, but returns an empty object when I use my tags collection???
+> However, it seems like something must be wrong with the tags collection, because populate works perfectly with my users collection, but returns an empty object when I use my tags collection???
 
-Tried:
+> I Tried:
 
-1. dropping collections for name categories and tags in mongodb and recreating them by creating new apis and new models, and submitting the new data to the api.
+> 1.  dropping collections for name categories and tags in mongodb and recreating them by creating new apis and new models, and submitting the new data to the api.
 
-2. Dropping the tags collection and trying different names for the tags collection (NameTags, IndividualTags)
+> 2.  Dropping the tags collection and trying different names for the tags collection (NameTags, IndividualTags)
 
-3. adjusting wording in the models, ect
+> 3.  adjusting wording in the models, ect
 
-Its so weird that it works perfectly with the users collection but it hates any version of the tags collection I've tried?"
+> Its so weird that it works perfectly with the users collection but it hates any version of the tags collection I've tried?"
 
-![alt text](Fo8qgMDaMAAKTNJ.jpg)
-![alt text](Fo8qjZ3aAAABcXK.jpg)
-![alt text](Fo8ql8waAAUDcAk.jpg)
+![alt text](2023-02-14-100devs-mongodb-part-1.jpg)
+![alt text](2023-02-14-100devs-mongodb-part-2.jpg)
+![alt text](2023-02-14-100devs-mongodb-part-3.jpg)
 
 I could return to the old school route of manually typing the tags to the collection in mongodb.
 
@@ -2856,13 +2865,21 @@ So I ended up using this as an alternative, since it was easier to switch betwee
 
 Thanks though for the suggestion
 
-![alt text](Fo9UwaXaIAARnRP.png)
+```
+await category.find()
+  .populate({path:"tags",
+             model: "Tag"})
+res.status(200).json(category)
+
+```
+
+![alt text](deletecode.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1625564893570306048
 
 ---
 
-Thiiink i figured out the issue with populate! looks like it might be a nextjs specific bug, I'll mess around with it more tomorrow to confirm then i'll reply to everyone and post about it
+I thiiink I figured out the issue with populate! It looks like it might be a nextjs specific bug, I'll mess around with it more tomorrow to confirm then i'll reply to everyone and post about it
 
 In the meantime, HUGE thanks to everyone who passed around my question and offered ideas!
 
@@ -2884,17 +2901,17 @@ Victory is mine! Found out why populate wasn't working in next js! 😤
 
 I had to import the model we're using to populate the objectId (nametags in the case)! 🤷
 
-Wrote it out in detail here if you're curious
+I wrote it out in detail here if you're curious
 
 https://dev.to/janetthedev/using-mongooses-populate-in-nextjs-4jof
 
 ---
 
-started working on descriptions! I've got the models set up and the basic apis
+I started working on descriptions! I've got the models set up and the basic apis
 
 tomorrow I've got some errands to run then I can maybe work on the fetchdescriptions page
 
-![alt text](FpKhaNlaEAAHykp.jpg)
+![alt text](2023-02-17-desciption-page.jpg)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1626539978149994496 3:12 AM · Feb 17, 2023
 
@@ -2904,8 +2921,27 @@ Huh, I finished the description area in a day 😳?! Wow, All the CRUD features 
 
 welp time to review the to-do list again
 
-![alt text](FpPIdJBX0AEF6wJ.jpg)
-![alt text](FpPIzJkXwAcwyPA.png)
+![alt text](2023-02-18-fetch-descriptions-done.jpg)
+
+fix erros from
+
+1. nametag model ===> renaming nametag to tag
+
+2. category model === name to category
+
+-shares
+
+possibly:
+
+- followers and following
+
+- add tags to existing names
+
+- followers and follwing (will be shown on seperate pages like on twitter)
+
+add comments to names
+
+![alt text](delete-notes.png)
 
 Okay so next I'll focus on
 
@@ -2927,7 +2963,7 @@ Finished the individual pages for descriptions!
 
 Now that its 4am 🤪time to sleep and get ready for a week of work
 
-![alt text](FpP-tjWWcAA-fBi.jpg)
+![alt text](2023-02-18-individual-description-page.jpg)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1626924140274888710 4:38 AM · Feb 18, 2023
 
@@ -2939,20 +2975,51 @@ I already had the individual pages set up, so I just had to follow the instructi
 
 https://medium.com/nerd-for-tech/how-to-add-copy-to-clipboard-functionality-in-a-reactjs-app-45404413fdb2
 
-<video src="images/huh_lettings_users_share_links.mp4" width="320" height="240" controls></video>
+<video src="images/2023-02-19-huh-letting-users-share-links.mp4" width="320" height="240" controls></video>
 
 I still have to add a toastify popup that says its copied to clipboard.
 
 And I want the share links section to pop up when the share button is clicked, but good progress for now!
 
-![alt text](FpVDzCEaMAEUhM1.png)
-![alt text](FpVD5ehaAAAWx7O.png)
+```
+{/ * SHARING OPTIONS SCREEN * /}
+
+<section>
+
+  <button
+   onClick={()=>{
+    navigator.clipboard.writeText(textForShare);
+   }}>
+
+    <FontAwesomeIcon
+     icon={faLink}
+     className="mr-2"/>
+          Copy Link
+
+  </button>
+</section>
+```
+
+![alt text](deleteeeeecode.png)
+
+```
+function BatsignalPost({
+    className,
+    sessionFromServer,
+    post
+    / / commentList,
+    tagListProp,
+})
+ let textForShare=`http : / / localhost: 3000/posts/${post._id}
+```
+
+![alt text](deeeeeeeletemorecode.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1627281310212575233 4:17 AM · Feb 19, 2023
 
 ---
 
-Did some more work on the shares area!
+I did some more work on the shares area!
 
 Ended up not adding facebook messenger since the appID ect process was starting to be a pain, and I don't think it would add much value anyway 🤷‍♀️
 
@@ -2972,17 +3039,20 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1628733325950214144 4:
 
 ---
 
-Started to add a function to let a users check if a name exists before trying to add it
+I started to add a function to let a users check if a name exists before trying to add it
+
 But its almost 5am! time to sleep and battle with it again tomorrow😴
 
-![alt text](FppvKx1aQAEypmL.png)
+![alt text](2023-02-23-check-if-name-exists.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1628736548668866560 4:40 AM · Feb 23, 2023
 
 ---
 
 🐍Did lots of project work, I feel like i'm getting SO close to finishing the mvp! So its hard to take breaks but I know I will need to soon, before I go cross eyed/lost my sanity 🥴
+
 🦀 didn't work out
+
 🦀 didn't do anki/banki
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1628736974235521025 4:42 AM · Feb 23, 2023
@@ -2992,7 +3062,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1628736974235521025 4:
 Funny how its the small features that end up being a pain 😂
 but I'm victorious! The check if a name exists feature now works!
 
-<video src="images/funny_how_its_the_small.mp4" width="620" controls></video>
+<video src="images/2023-02-23-funny-how-its-the-small.mp4" width="620" controls></video>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1628980564744364032 8:50 PM · Feb 23, 2023
 
