@@ -78,16 +78,55 @@ Huh weirdly though it works fine locally, the likes button is acting weird in bu
 in builds, you can click the likes heart. but if you click a second you get this error. If you click a third time, it works like it should of on that second click?
 "new connection" 🤔strange
 
-![alt text](Fsk4kuIaYAE9gSK.png)
-![alt text](Fsk4sWhaYAsmClw.png)
-![alt text](Fsk4sWhaYAsmClw-1.png)
+> mongodb+srv : / / blllllannkkk net/pet_profile
+> new connection
+> typeError: Cannot read properties of undefined 
+> (reading '0')
+>  at Object.connect (D: \ janet\tech-magic\.....)
+
+> already connected
+> this is to update name {
+
+}
+![alt text](delllleettee.png)
+![alt text](dellletealreadyconnected.png)
+![alt text](deeeleteduplicateddddd.png)
 
 So turns out, i'm a 🤡! i was TELLING it to disconnect. And turns out disconnect only works in production builds, thus the problem only appearing on builds
 
 Got rid of that and the likes button works with npm run build && vercel
 
-![alt text](Fsk8XwPaYAE7Iw3.png)
-![alt text](Fsk8idBaYAIOZs1.png)
+```
+await db.connect();
+const toUpdateName = await Names.findById(nameId);
+console.log(`this is to update name ${toUpdateName}`);
+toUpdateName.likedby.includes(user)
+    ? (toUpdateName.likedby = toUpdateName.likedby.filter((userinlikedby)=> userinlikedby != user
+    ))
+    : (toUpdateName.likedby = toUpdateName.likedby.concat(user));
+
+await toUpdateName.save();
+    / / await db.disconnect(); <=== highlighted code
+res.send({
+    message:"Names likes updated",
+});
+```
+
+![alt text](dellletedhighlightedcode.png)
+
+```
+async function disconnect (){
+    if (connection.isConnected){
+        if(process.env.NODE_ENV === "production"){
+            await mongoose.disconnect();
+            connection.isConnected = false;
+        } else {
+            console.log("not disconnected");
+        }
+    }
+}
+```
+![alt text](dellllletteemorecode.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1641907144395202560 1:55 PM · Mar 31, 2023
 
@@ -99,14 +138,15 @@ But its nothing "hidden && sm:block" won't fix!
 
 (hidden in tailwind is short for display:none in css. So the logo is hidden until it reaches a small screen width)
 
-<video src="images/fixed_another_width_problem.mp4" width="320" height="240" controls></video>
+<video src="images/2023-04-01-fixed-another-width-problem.mp4" width="320" height="240" controls></video>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1642296941047599104 3:44 PM · Apr 1, 2023
 
 ---
 
 Fixed a few issues!
-Adding a comment lead to a 500 error, looked in the code and noticed there was a db.disconnect 🤦‍♀️removing that fixed it.
+
+Adding a comment lead to a 500 error, I looked in the code and noticed there was a db.disconnect 🤦‍♀️removing that fixed it.
 
 Realized the like, share and comment button we're accessible so i fixed that with tabindex="0". It looks a bit odd when focused on but eh
 
@@ -115,7 +155,9 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1642775602695643136 11
 ---
 
 🦠trying to mostly chill as my body fights covid 😤
+
 🦠played ff14 for the first time in a long while
+
 🦠caught some accessibility issues and database issues, issues seem to be fixed!
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1642832141628342279 3:11 AM · Apr 3, 2023
@@ -130,9 +172,9 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1643132105088696321 11
 
 ---
 
-made a few small changes, like saying if the error response code is 409 directly tell the user that the name already exists, versus the general error message
+I made a few small changes, like saying if the error response code is 409 let's directly tell the user that the name already exists, versus the general error message
 
-![alt text](Fs4d-myagAEP2QC.jpg)
+![alt text](2023-04-04-409-error.jpg)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1643284064835891201 9:07 AM · Apr 4, 2023
 
