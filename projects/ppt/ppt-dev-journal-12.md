@@ -80,9 +80,9 @@ in builds, you can click the likes heart. but if you click a second you get this
 
 > mongodb+srv : / / blllllannkkk net/pet_profile
 > new connection
-> typeError: Cannot read properties of undefined 
+> typeError: Cannot read properties of undefined
 > (reading '0')
->  at Object.connect (D: \ janet\tech-magic\.....)
+> at Object.connect (D: \ janet\tech-magic\.....)
 
 > already connected
 > this is to update name {
@@ -92,7 +92,7 @@ in builds, you can click the likes heart. but if you click a second you get this
 ![alt text](dellletealreadyconnected.png)
 ![alt text](deeeleteduplicateddddd.png)
 
-So turns out, i'm a 🤡! i was TELLING it to disconnect. And turns out disconnect only works in production builds, thus the problem only appearing on builds
+So it turns out, i'm a 🤡! i was TELLING it to disconnect. And turns out disconnect only works in production builds, thus the problem only appearing on builds
 
 Got rid of that and the likes button works with npm run build && vercel
 
@@ -126,6 +126,7 @@ async function disconnect (){
     }
 }
 ```
+
 ![alt text](dellllletteemorecode.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1641907144395202560 1:55 PM · Mar 31, 2023
@@ -203,7 +204,7 @@ I need more devices to test with, 3 isn't enough! Running fine here but I don't 
 > REPLY
 > Adam Morsa🏕 @RamblingAdam
 > Success!
-> ![alt text](FtVUeUEWIAEwsGs.png)
+> ![alt text](2023-04-07-adam-hamlet-name.png)
 
 this is EVERYTHING i hoped for in a name with a description! A cute little summary as well as some helpful life tips to help them along their way 10/10 hamster squeaks! 😂
 
@@ -236,7 +237,12 @@ hehe thanks! I must admit i shamelessly stole it, its such a fun name!
 
 Boo @ mongodb/mongoose for being a brat, thanks for the heads up! Weirdly that particular error says its connected but mongo says it isn't? But I realized I didn't have an await, so hopefully thats it 🤷‍♀️
 
-![alt text](FtV2OsyaIAEct7A.png)
+> new connection
+> mongodb_srv(deletedstring)pet_profile_tailor?retryWrites=true&w=majority
+> already connected
+> MongoNotConnectedError: Client must be connected before running operations at executeOperationAsync
+> (/var/task/node_modules/mongoose/node_modules/mongodb/lib/operations/execute_operation.js:24:19)
+> ![alt text](deeelllletemorecode.png)
 
 > REPLY
 > ⚡️Shah⚡️@Shahx95
@@ -266,7 +272,7 @@ Edited your profile in mongo so you have all the basic info/username ect now, th
 
 > Reply
 > Jason Jugo @HondaCivicChan
-> ![alt text](FtKKmSqXwAIXJjX.jpg)
+> ![alt text](2023-04-07-honda-name.jpg)
 
 GLORIOUS! I am honored to have such a 11/10 name in the database and you are so right about that.
 
@@ -283,25 +289,46 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1644477741079887872 4:
 ---
 
 🥝did banki for the first time in a long time!
+
 🥝bit of project bug testing
+
 🥝meditated
+
 🥝played some ff14, read some omniscient reader on webtoon
+
 🥝and most importantly gave ember some pets😜
 
-![alt text](FtLWhw0agAAaKZ6.jpg)
-![alt text](FtLWiNWaAAA_vqk.jpg)
+![alt text](2023-04-08-ember-1.jpg)
+![alt text](2023-04-08-ember-2.jpg)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1644612699962359809 1:06 AM · Apr 8, 2023
 
 ---
 
-Alright my first experience of working around existing users!
+Alright so this is my first experience of working around existing users!
 
 I discovered a bug where the profile link was using the user's name, instead of profilename🤦
 
 I added profilename to session, but users who have an old session don't have it, so their nav bar freaks out and fails. So
 
-![alt text](FtRnnciagAAV4S6.png)
+```
+{sessionFromServer.user.profilename && (
+    <Menu.Item>
+    {({active})=> (
+        <MyLink
+           href={`${
+            process.env.NEXT.PUBLIC_BASE_FETCH_URL
+           }/profile/${sessionFromServer.user.profilename.toLowerCase()}`}
+           active={active}
+        >
+            Profile
+        </MyLink>
+    )}
+    </Menu.Item>
+)}
+```
+
+![alt text](dellleteprofilebugcode.png)
 
 So i made it so the profile link only shows on the nav bar, if session.user.profilename exists! This way they can still logout if they have an old session
 
@@ -311,12 +338,12 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1645054342821732356 6:
 
 alright so the error logs I got earlier was basically this and the core issue between them seems to be the mongoserver timing out?
 
-So I switched db files (I had 2 different db files, one simplier and one more complex, no real good reason for it haha). & added extra logic
+So I switched db files (I had 2 different db files, one simplier and one more complex, no real good reason for it haha). & I added extra logic
 
-![alt text](FtRt6ysaIAUB7uA.jpg)
-![alt text](FtRtss_aYAIE0LP.png)
-![alt text](FtRt7QmakAAPI2W.png)
-![alt text](FtRuI6YaAAUzwEA.png)
+![alt text](2023-04-09-errors.jpg)
+![alt text](2023-04-09-mongonetworktimeout.png)
+![alt text](2023-04-09-server-selection-timeout.png)
+![alt text](2023-04-09-code-highlighted.png)
 
 stackoverflow.com/questions/66231038/mongodb-failed-to-connect-connection-timed-out-connects-via-atlas
 
@@ -324,7 +351,30 @@ added that new bit based on this, heres for hoping that the first fix is miracul
 
 This was the older simplier db file I got rid of. So I basically combined the two
 
-![alt text](FtRvLgsakAEJ1ss.png)
+```
+import mongoose from "mongoose"
+
+/ / process.env.MONGODB_URI gives us access to our query string password
+
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGODB_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+
+        console.log(`MongoDB connected: ${conn.connection.host});
+    } catch (err) {
+        console.error(err);
+        process.exit(1);
+    }
+};
+
+modules.exports = connectDB;
+
+```
+
+![alt text](delllletteecode.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1645061354473295878 6:49 AM · Apr 9, 2023
 
@@ -336,10 +386,37 @@ thats a weird and new one 🤔either it was freaking out while the page was idli
 
 All IPs have access so 🤷‍♀️just a weird glitch maybe?
 
-![alt text](FtRxZZAaMAAJJUb.jpg)
-![alt text](FtRxmqragAATlaO.png)
-![alt text](FtRxrpQaYAE5z31.png)
-![alt text](FtRx4B6aQAAYzY2.png)
+![alt text](2024-04-09-vercel-error.jpg)
+
+Log showed:
+
+> " 2023-04-09T13:55:03:677z f8aafafsafd-adfasfdsf-afdafsd ERROR
+> MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an AP that
+> isn't whitelisted. Make sure your current IP address is on your Atlas Cluster's IP whitelist
+
+![alt text](deeelletewhitelisterror.png)
+
+Log also showed:
+
+> {..
+> {...,
+> stale: false,
+> compatible: true,
+> heartbeatFrequencyMS: 10000,
+> localTheresholdMS: 15,
+> setName: 'atlas-afdasfasfd-shard-0',
+> maxElectionId: null,
+> maxSetVersion: null,
+> commonWireVersion: 0,
+> logicalSessionTimeoutMinutes: null
+> },
+> code: undefined
+> }
+> RequestId: c2d234wffdafd-afdasfd-2334asf-43434-2434 Error: Runtime exited with error: exit status 2 Runtime.ExitError
+
+![alt text](delllletestale.png)
+
+![alt text](2023-04-09-network-access.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1645065281474265089 7:05 AM · Apr 9, 2023
 
@@ -349,8 +426,22 @@ nooo the errors still continue (occassionally) 🥲 1st one is strange one! sinc
 
 But I realized some of the db.connect()s didn't have await, so hopefully changing it to async await will help...
 
-![alt text](FtV1pDeaUAIie3c.jpg)
-![alt text](FtV1vrCaIAAG8eu.jpg)
+log showed:
+
+> already connected
+> MongoNotConnectedError: Client must be connected before running operations at executeOperationAsynce
+
+![alt text](dellletelog.jpg)
+
+log also showed:
+
+> Unhandled Promise Rejection
+>
+> {"errorType":"Runtime.UnhandledPromiseRejection",
+> "errorMessage":"MongoNetworkTimeoutError: connection timed out",
+> ....}
+
+![alt text](delllleteunhandledpromiserejection.jpg)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1645350753941463040 1:59 AM · Apr 10, 2023
 

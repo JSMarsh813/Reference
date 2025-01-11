@@ -120,29 +120,78 @@ this is the cutest typo😂
 
 now picturing people having to sing to sign in to their app 🎵 software dev meets musical!
 
-![alt text](FtksnLKaAAAxykH.png)
+![alt text](2023-04-12-sing-in-callback.png)
 
 Alright so the docs are annoying since they ONLY show the properties of Oauth provider and only vaguely hint at one property of the email provider 🙄
 
 luckily i'm stubborn and figured out how to grab the error from the url to piece together the object https://next-auth.js.org/configuration/callbacks#sign-in-callback
 
-![alt text](Ftk6QNaaQAAXlMU.png)
-![alt text](Ftk6D6JaIAADerc.png)
+```
+{"user":
+    {"id": "fakeemail@gmail.com",
+    "email":"fakeemails@gmail.com",
+    "emailVerified":null},
+"account":
+    {"providerAccountId":"fakeemail@gmail.com",
+    "userId:"fakeemail@gmail.com",
+    "type":"email",
+    "provider":"email"},
+"email":
+    {"verificationRequest":true}
+}
+```
+
+![alt text](eeellletecode.png)
+![alt text](2023-04-12-auth-error-message.png)
 
 it works locally! Now to deploy and make sure its working on the build version/vercel too
 
 Users who use the magic link will be redirected to the registration page if the email does not exist in the users collection yet 🥳
 
-<video src="images/it_works_locally.mp4" width="320" height="240" controls></video>
+<video src="images/2023-04-12-it-works-locally.mp4" width="320" height="240" controls></video>
 
 So theres 3 properties for the email provider:user, account and email
+
+```
+{"user":
+    {"id": "fakeemail@gmail.com",
+    "email":"fakeemails@gmail.com",
+    "emailVerified":null},
+"account":
+    {"providerAccountId":"fakeemail@gmail.com",
+    "userId:"fakeemail@gmail.com",
+    "type":"email",
+    "provider":"email"},
+"email":
+    {"verificationRequest":true}
+}
+```
 
 I need the email they enter, so I can ask my database if the user collection has a document with that email.
 
 So I grabbed user. email . If it doesn't exist (null), they'll be punted to the registration page
 
-![alt text](Ftk9PYQakAAf7Zf.png)
-![alt text](Ftk9LFFaQAAbFae.png)
+```
+callbacks: {
+    async signIn({user, account, email}){
+        console.log(JSON.stringify(user.email));
+        await db.connect();
+        const userExists = await User.findOne({
+            email: user.email,
+        });
+        console.log(userExists);
+        if (userExists){
+            return true;
+        } else {
+            return "/regiser";
+        }
+    },
+    .....
+}
+```
+
+![alt text](deletetttttf.png)
+![alt text](deletedupp.png)
 
 sweet the fix also works on the deployed version 🥳
 
@@ -152,10 +201,30 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1646395922434375680 11
 
 Fixed the error that @Polymath_Jesus found! Turns out I had forgotten to add the edit function for names to the profile page, whoops 😂🤦‍♀️
 
-![alt text](FtrL65qaMAEJjC0.png)
-![alt text](FtrL_r7agAAYvQp.png)
-![alt text](FtrMK4UaUAEyZSv.png)
-![alt text](FtrMK4UaUAEyZSv-1.png)
+![alt text](2023-04-14-successfully-edited-name.png)
+
+> there was an error when sending your edits TypeError: setEditedFunction is not a function
+
+![alt text](deellleteapr14.png)
+
+```
+<section className="">
+    {nameList.map((name)=> {
+        return (
+            <NameListingsAsSections
+                name={name}
+                key={name._id}
+                sessionFromServer={sessionFromServer}
+                taglist={nameTagList}
+                setNameEditedFunction={setNameEditedFunction}
+                />
+        );
+    })}
+</section>
+```
+
+![alt text](deelletecodddee.png)
+![alt text](deleteduuuplicate.png)
 
 Thanks for the heads up friend!
 
@@ -169,7 +238,7 @@ Guess what, those three buttons on the landing page have finally found their liv
 
 Thanks @alexisintech for reminding me! I had half-forgotten about finding a job for those buttons
 
-<video src="images/got_home_from_work.mp4" width="320" height="240" controls></video>
+<video src="images/2023-04-16-got-home-from-work.mp4" width="320" height="240" controls></video>
 
 Ended up being a bit interesting since iframes tend to flash white at first.
 
@@ -177,13 +246,70 @@ So I stored the onLoad property in the "loaded" state. And made it so the iframe
 
 On vercel it still shows a brief flash🤷‍♀️better than it was though
 
-![alt text](Ft1n1aZaUAAH3h8.png)
+```
+...
+const [loaded, setLoaded]= useState(false);
+
+return (
+    <div ....>
+
+    <iframe
+        className={`mx-auto aspect-video w-11/12 lg:w-7/12 ${styling} ${
+            loaded? "block" : "hidden"
+        }`}
+        width="mx-auto"
+        scr={`https://www.youtube-nocookie.com/embed/${embedId}`}
+        title={`${title}`}
+        allow="web-share"
+        onLoad={()=>setLoaded(true)}
+        allowFullScreen
+        ></iframe>
+    </div>
+)
+```
+
+![alt text](deletecoooddee.png)
 
 also I'm still SO in love with modules/react!
 
 It was so satisfying to set up allll the embedding logic in a component, so the index page has the minimal needed information 😊
 
-![alt text](Ft1oVkkakAE9EmH.jpg)
+```
+{ImpactfulClicked && (
+    <div className="relative">
+        <YouTubeEmbed
+            embedId="y4randomnumbers">
+            styling="aspect-video"
+            title="fishtopher the cat gets adopted after going viral"
+            showVideoFUnction={()=>updateImpactfulState()}
+            key="y4randomnumbers"/>
+    </div>
+)}
+
+{funClicked && (
+    <div className="relative">
+        <YouTubeEmbed
+            embedId="k4randomnumbers">
+            styling="aspect-video"
+            title="Woman writes hilariously honest adoption post for her wild foster dog | The Dodo Adopt me!"
+            showVideoFUnction={()=>updateFunState()}
+            key="k4randomnumbers"/>
+    </div>
+)}
+
+{tailorClicked && (
+    <div className="relative">
+        <YouTubeEmbed
+            embedId="a4randomnumbers"">
+            styling="aspect-video"
+            title="Woman's brutally honest pet adoption ad goes Viral"
+            showVideoFUnction={()=>updateTailorState()}
+            key="a4randomnumbers""/>
+    </div>
+)}
+```
+
+![alt text](deellletecode.jpg)
 
 > REPLY
 > Mujibur Rahman @devMujib
@@ -199,9 +325,9 @@ stackoverflow.com/questions/71159356/nextauth-throwing-client-fetch-error-error-
 
 Basically, I realized jwt and session weren't async and I added extra if statements
 
-![alt text](Ft1vlGgacAIU-H7.png)
-![alt text](Ft1vvtFaEAEW0VN.png)
-![alt text](Ft1vxMaakAEtqyk.jpg)
+![alt text](2023-04-16-differences.png)
+![alt text](2023-04-16-error.png)
+![alt text](2023-04-16-vercel-error.jpg)
 
 so far logging in still works, so it seems like those additions didn't break everything at least!
 
@@ -214,12 +340,17 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1647596091125415936 6:
 ---
 
 alright, I need to stop fiddling with the app and finally pass out 😂
+
 🦎mostly just slept and worked today
+
 🦎 knocked out a few more hours of project work
 
 Tomorrow:
+
 🚀work
+
 🚀anki/banki
+
 ❓improve SEO of pet profile tailor
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1647602496783929344 7:07 AM · Apr 16, 2023
@@ -230,16 +361,43 @@ wow adding Pet Profile Tailors meta info for SEO took all of 5 minutes, I feel l
 
 In the future maybe I'll add some personalization for some pages, but for now this should be good enough! 🎊
 
-![alt text](Ft6FISYaUAAGha1.png)
+```
+function MyApp({ Component, pageProps: {session, ...pageProps} }){
+    return (
+        <SessionFromProvider
+            session={session}
+            limit={1}
+        >
+
+          <Head>
+            <title>
+                Improve Adoption Rates by Creating Impactful, Fun, and Tailor-FItted Pet Adoption Profiles!
+            </title>
+            <meta
+                name="Pet Profile Tailor"
+                content="Pet profile tailor is a community powered assistant which helps you fid the perfect pet name or create pet profiles which are impactful, fun, and tailor fitted. Animal welfare professionals can use the community submitted names or descriptions to create engaging pet profiles to improve adoptions rates!"
+                />
+          </Head>
+          <Component {...pageProps}/>
+          <ToastContainer/>
+    )
+}
+```
+
+![alt text](deleteapr17.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1647898116828565507 2:41 AM · Apr 17, 2023
 
 ---
 
 🦎finally added a head to pet profile tailor (getting those SEO gains 💪!)
+
 🦎fixed bug in pet profiles followers list (showed follow button instead of unfollow)
+
 🦎added most of my recent projects to portfolio
+
 🦎worked
+
 🦎did a tiny bit of anki/banki
 
 its 5am, time to sleep! 😴
@@ -253,13 +411,13 @@ I finished the 1st version of my project Pet Profile Tailor (my "100" hours proj
 It empowers animal lovers to help adoption counselors create impactful, fun, and tailor-fitted adoption profiles!
 code: https://lnkd.in/gizc8zPV #100devs
 
-<video src="images/I_finished_the_1st.mp4" width="320" height="240" controls></video>
+<video src="images/2023-04-21-I-finished-the-1st.mp4" width="320" height="240" controls></video>
 
 I worked as an adoption counselor in animal shelters for ~5 years. Although pet profiles are vital to boost adoption rates, there's only so much creativity a person can have at the crack of dawn.
 
 Coffee can only do so much 😛 So I was inspired to create this site!
 
-<video src="images/I_worked_as_an_adoption.mp4" width="320" height="240" controls></video>
+<video src="images/2023-04-21-I-worked-as-an-adoption.mp4" width="320" height="240" controls></video>
 
 After signing up, users can submit new names and descriptions,save favorites and follow other users.
 
