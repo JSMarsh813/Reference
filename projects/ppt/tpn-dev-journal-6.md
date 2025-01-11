@@ -1,4 +1,6 @@
-I made it so if a user goes to the dashboard when not logged in, they'll be automatically redirected to the login page.
+# Letting Users Fling Profile Images up to the Cloud(inary database)
+
+Now if a user goes to the dashboard when not logged in, they'll be automatically redirected to the login page.
 
 useRouter() is a bit of an odd one, it doesn't work unless I stuff it in a useEffect, because it only works on client side.
 
@@ -22,7 +24,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1614234667666010112 4:
 
 ---
 
-I finished my component with the rank titles!
+I finished my component that has the rank titles!
 
 If they have more points than 40, then it defaults to the "A good Pupper title".
 
@@ -96,13 +98,14 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1614238710152957954 4:
 
 🙌 did a few small edits
 
-🙌 Started working on making it possible for users to upload profile images with cloudinary, I got to the highlighted part tonight. Giving my brain a break for now 🥱
+🙌 Started working on making it possible for users to upload profile images with cloudinary, I got to the highlighted part tonight. I'm giving my brain a break for now 🥱
 
 PART 1:
 
 - Allow User to attach a file (DONE)
 
   upload preset name + folder name = "profile_images"
+
   env file done
 
   utils => cloudinary config file done
@@ -157,7 +160,9 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1614973965583421440 5:
 
 Users can now upload profile image to cloudinary and have it replace the profile image in their mongoDB user document!
 
-I wanted to use the widget but its extra broken for function components rn 😅 Look at all those error messages in that second sandbox
+I wanted to use the widget but its extra broken for function components rn 😅
+
+Look at all those error messages in that second sandbox
 https://support.cloudinary.com/hc/en-us/artic
 
 <img src="https://ucarecdn.com/9e7f69cf-c5a7-4091-81cd-25a6cf76f14e/-/format/auto/" alt="showing a section that lets users upload a profile image but its not very styled currently"/>
@@ -192,7 +197,9 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1615488312789340161 3:
 
 ---
 
-When styling I found out that file input is a bit picky, it needs to be onCHANGE not onCLICK. If its switched to onClick, clicking it will do nothing (it will give back undefined)
+When styling I found out that file input is a bit picky, it needs to be onCHANGE not onCLICK.
+
+If its switched to onClick, clicking it will do nothing (it will give back undefined)
 
 ```
 <input
