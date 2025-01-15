@@ -304,7 +304,7 @@ I finished the name categories and name tags!😤🔥 one step closer!
 
 now to do the same for the descriptions, and then its time to deploy and test everything again 😁
 
-<video src="images/finished_the_name_categories.mp4" width="720"  controls></video>
+<video src="images/2023-03-03-finished-the-name-categories.mp4" width="720"  controls></video>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1631653284170842119 5:50 AM · Mar 3, 2023
 

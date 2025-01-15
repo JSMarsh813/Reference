@@ -1,4 +1,8 @@
-Made some progress with profile pages today! 🔥🔥🔥 now its 5am time to sleep
+# Let's Keep a Low "Profile" 👀
+
+I made some progress with profile pages today! 🔥🔥🔥
+
+now its 5am, so it's time to sleep
 
 ![showing a styled profile page with all names showing instead of just liked names](2023-01-29-profile-page-progress.jpg)
 
@@ -8,9 +12,9 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1619688376101376003 5:
 
 Progress! Instead of using ids, i let users look up profiles by unique profilenames
 
-Made the grid layout change depending on screen size, so it doesn't get jumbled on small screens 🥴
+I made the grid layout change depending on screen size, so it doesn't get jumbled on small screens 🥴
 
-Took a hot minute but figured out how to force a 404 if I get nothing back from the api! 😤
+It took a hot minute but figured out how to force a 404 if I get nothing back from the api! 😤
 
 <video src="images/2023-01-30-progress-instead-of-using-ids.mp4" width="320" height="240" controls></video>
 
@@ -20,7 +24,6 @@ For nextjs, the key was to return notFound: true if the .find() from the api ret
 let userResponse = await fetch ('http : / / localhost: 3000/api/user/getASpecificUserByProfileName/'+id)
 let userData = await userResponse.json()
 
-/ / Highlighted code below this / /
 if (!userData.length)(
   return{
     notFound: true,
@@ -31,30 +34,25 @@ else {
 }
 ```
 
-![alt text](deletemorecode.png)
-
 I also created the pages for individual posts! The likes feature ect also works here.
 
 <video src="images/2023-01-30-I-also-created-the-pages.mp4" width="320" height="240" controls></video>
 
-Start of the dynamic page for individual names, also redirects to 404 is the name is not found
+This is the start of the dynamic page for individual names, and it also redirects to 404 is the name is not found
 
 ![showing a page with just one individual name](2023-01-30-dynamic-name-page.jpg)
 
-When findById() finds nothing the redirect to 404 works now, but required slightly different wording
-
-https://stackoverflow.com/questions/45172700/what-does-mongoose-return-when-a-find-query-is-empty
+When findById() finds nothing the redirect to 404 works now, but it required slightly different wording
 
 This thread was a gift🙏
 
-![alt text](deletemoooorecoooode.png)
+https://stackoverflow.com/questions/45172700/what-does-mongoose-return-when-a-find-query-is-empty
 
 ```
 let postResponse = await fetch('http : / / localhost: 3000/api/individualposts/getASpecificPost/'+id)
 
 let postData = await postResponse.json()
 
-/ / highlighted code below / /
 if (!postData){
   return {
     notFound: true,
@@ -66,17 +64,17 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1620014287468265472 3:
 
 ---
 
-Big thing left is the lost password function. users can already reset their password if they're logged in, but I'll have to somehow email them a link so they can edit it
+The big thing left is the lost password function. Users can already reset their password if they're logged in, but I'll have to somehow email them a link so they can edit it
 
-guessing I'll end up using nodemailer & setting up nextjs email provider? But ugh, not looking forward to it
+I'm guessing I'll end up using nodemailer & setting up nextjs email provider? But ugh, I'm not looking forward to it
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1620043436832473090 4:57 AM · Jan 30, 2023
 
 ---
 
-I worked on the front end bit of editing posts! I was dreading doing this and yeah it's taken hours 🥲
+I worked on the front end bit of editing posts! I was dreading doing this and yeah it's taken hours 🙃
 
-partly because I've never messed with modals before. But I'm proud of my progress so far!
+it's partly because I've never messed with modals before. But I'm proud of my progress so far!
 
 <video src="images/2023-01-31-I-worked-on-the-front-end.mp4" width="320" height="240" controls></video>
 
@@ -89,7 +87,7 @@ The tags were showing up fine in react state,...
 ```
 export default function EditPost({setShowEditPage,sessionFromServer,tagListProp,post}){
   / / data for posts in mongoDB
-  const [image, seetImage]= useState()
+  const [image, setImage]= useState()
   const [title, setTitle]=useState(post.title)
   const [description, setDescription]= useState(post.description);
 
@@ -100,8 +98,6 @@ export default function EditPost({setShowEditPage,sessionFromServer,tagListProp,
 }
 ```
 
-![alt text](moooorecode.png)
-
 ```
 <Select
     value={tagList.map(tag=>
@@ -111,23 +107,19 @@ export default function EditPost({setShowEditPage,sessionFromServer,tagListProp,
 
 ```
 
-![alt text](ddeeeelete.png)
-
-developer console react components screen
+developer console ==> react components screen
 
 > hooks
-
+>
 > ...
-
+>
 > state: ["name suggestions","fundraising ideas", "photogra..."]
-
+>
 > 0: "name suggestions"
-
+>
 > 1: "fundraising ideas"
-
+>
 > 2: "photography ideas"
-
-![alt text](deletereactcomponents.png)
 
 So since they were appearing fine in the state, I knew there was something making the text not appear to the user.
 
@@ -151,7 +143,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1620358163601186817 1:
 
 ---
 
-Forgot to post, I fixed up the front page the other day as an excuse to avoid apis for a bit 😂
+I forgot to post, I fixed up the front page the other day as an excuse to avoid apis for a bit 😂
 
 All the links now work and they all play nice on mobile now
 
@@ -163,9 +155,10 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1620360251081109504 1:
 
 ---
 
-Still a good chunk left, but getting there!
+Still a good chunk left, but I'm getting there!
 
-Though I'll be working lots this week so RIP productivity 🥲
+Though I'll be working lots this week so RIP productivity
+
 But! On the other hand, I was feeling the early signs of burnout so it's probably for the best I'm forced away from the computer
 
 - pagination/endless scroll/ect?
@@ -206,11 +199,11 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1620412529704058881 5:
 
 ---
 
-Did a tiny bit before work!
+I did a tiny bit before work!
 
-Fixed some pages so the profile image and profile name shows
+I fixed some pages so the profile image and profile name shows
 
-And got the backend logic for editing posts to work 🥳
+And I got the backend logic for editing posts to work 🥳
 
 ![showing the profile image and name showing at the top right corner](2023-02-01-showing-profile-image-and-name.jpg)
 
@@ -218,7 +211,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1620916187441025024 2:
 
 ---
 
-Wanted to add this on to the last post, but twitters vertical scroll bar is broken/unresponsive??😂
+I wanted to add this on to the last post, but twitters vertical scroll bar is broken/unresponsive??😂
 
 But anyway, users can now edit posts!
 
@@ -238,7 +231,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1622455963038150657 8:
 
 Worked more on my "100" hours project!
 
-Users can now sign in with magic links through their email 🪄
+Users can now sign in with magic links through their email!
 
 Shame that for forgot passwords I can't just tell it, hey do this same exact thing, but redirect them to reset password page instead of the dashboard 🙃
 
@@ -256,9 +249,6 @@ But eh, I decided screw it. Users can use the magic link to login and go to edit
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1622576945774088194 4:44 AM · Feb 6, 2023
 
-/ / left off here
-<video src="images/" width="320" height="240" controls></video>
-
 ---
 
 Narrowing down what things have to "actually" be done to make the mvp version of the project
@@ -267,11 +257,15 @@ Narrowing down what things have to "actually" be done to make the mvp version of
 - adding descriptions category (frontend, backend/api, individual pages, adding to profile page + dashboard)
 - grabbing actual numbers for "treat" points for dashboard and profile
 - shares
+
   Possibly:
+
 - followers and following
 - add tags to existing names
 
-Just thinking about writing out the reset password logic and page felt like death, so screw it 😂for now, users can just use the magic password link and manually go to the edit profile page to reset the password
+Just thinking about writing out the reset password logic and page felt like death, so screw it 😂
+
+for now, users can just use the magic password link and manually go to the edit profile page to reset the password
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1622929366559899648 4:04 AM · Feb 7, 2023
 

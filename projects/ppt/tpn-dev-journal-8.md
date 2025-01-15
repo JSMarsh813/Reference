@@ -1,3 +1,5 @@
+# It's "Time" to Get Wild! Let's Unlock Sorting, Format Dates and Link Mongodb Collections
+
 Getting the newest posts to show up first was easier than I thought!
 
 I just had to add a sort({\_id:-1})
@@ -28,15 +30,15 @@ export default async function handler(req,res){
 
 I found out why .sort({ \_id:-1}) worked to get the most recent documents!
 
-Turns out each ObjectID in mongoDB contains a 4 byte timestamp! 🤯
+It turns out each ObjectID in mongoDB contains a 4 byte timestamp! 🤯
 https://www.mongodb.com/docs/manual/reference/bson-types/#std-label-objectid
 
 From a screenshot from a page talking about ObjectId:
 
 > ObjectId
-
+>
 > ObjectIds are small, likely unique, fast to generate, and ordered. ObjectId values are 12 bytes in length, consisting of:
-
+>
 > - a 4-byte timestamp, representing the ObjectId's creation, measured in seconds since the Unix Epoch.
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1618229992416251905 4:51 AM · Jan 25, 2023
@@ -49,7 +51,7 @@ I've been working on my project in little bits of time but its been adding up!
 
 2. Edited my api so the newest posts show first
 
-3. Each post has the users id. So EACH post COMPONENT calls an api, finds a user w/ that id & grabs the posters username and picture
+3. Each post has the users id. So EACH post COMPONENT calls an api. The api then finds a user w/ that id & grabs the posters username and picture
 
 <iframe src="https://ucarecdn.com/33b84c11-5bed-496b-a2af-d2a81eff7035/20230125beenworkingonmyproject.mp4" width="640" height="480" title="progress on community page, filtering works and comments are loading" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe
 
@@ -94,8 +96,9 @@ REPLY
 >
 > It took a bit to get to my solution, as I had to really get down in the weeds of playing with Date objects. But it works for my project and I understand Date objects a bit better than when I started out. Happy to help if you still need it.
 
-Janet(she/her) | ghiblimagic
-@JessePence5 @skadadark amused that both of my fav jesses came rushing to my aid to fight time itself, I can now confirm jesse is clearly the name of time lords! Thanks both for sharing the gems of your deep dives 🙏
+MY REPLY
+
+@JessePence5 @skadadark I'm amused that both of my fav jesses came rushing to my aid to fight time itself, I can now confirm jesse is clearly the name of time lords! Thanks both for sharing the gems of your deep dives 🙏
 
 Funnily enough I stumped across a simple solution
 
@@ -127,8 +130,10 @@ REPLY
 ---
 
 alright I want to keep going but its 5am I really need to go to bed 😂
+
 🐍 did some anki during work breaks
-🐍 worked on my project when I got home, figured out a part that made me nervous: making an api that lets me grab user info from the database within a component!💪
+
+🐍 worked on my project when I got home, I figured out a part that made me nervous: making an api that lets me grab user info from the database within a component!💪
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1618236190339256320 5:15 AM · Jan 25, 2023
 
@@ -168,8 +173,6 @@ const PostSchema = new mongoose.Schema({
 })
 ```
 
-![alt text](deletecoooode.png)
-
 ```
 export default async function handler (req,res){
    const {method} = req;
@@ -192,20 +195,18 @@ export default async function handler (req,res){
 }
 ```
 
-![alt text](deletepopulate.png)
-
 console.log
 
 > this is post list
-
+>
 > [{"\_id":"342424saf",
-
+>
 > "image:[],
-
+>
 > "title":"Test",
-
+>
 > description:"testy test",
-
+>
 > "createdby":{"\_id":"5354feffds", "name": "GhibliM", "profileimage":"https : / / res.cloudinary. com/dueafafaf/image/upload/v2324234/profileimage/g2fasfasf.jpg","profilename":"ghiblimagic"}}]
 
 ![alt text](<deeelllte console.png>)
@@ -228,7 +229,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1618886932158889985
 
 ---
 
-FINALLY figured out how to get populate to work with an array of objectIds
+I FINALLY figured out how to get populate to work with an array of objectIds
 
 I had to change the formatting a bit and change up the type 🥳
 
@@ -259,7 +260,7 @@ const PostSchema = new mongoose.Schema({
   comments:{
     type: Array,
     ref: "BatSignalComment",
-  }, <===highlighted code
+  }, <===============highlighted code
  ......
 
 },{timestamps: true})
@@ -277,9 +278,6 @@ comments: [{
    ref: 'BatSignalComment',
 }]
 ```
-
-![alt text](deletehighlightedcode.png)
-![alt text](deleteschemacode.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1619061498365751296
 
