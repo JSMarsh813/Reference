@@ -1,15 +1,21 @@
+#
+
 Fixed a thing!
 
-My text was coming back correctly with its formatting information (/n) but it wasn't showing in the browser.
+My text was coming back correctly with its formatting information (ex: /n) but it wasn't showing in the browser.
 
-After a decent amount of googling (it was weirdly hard to find the right words!), I figured out it was a html thing and was able to fix it w/ tailwindcss
+After a decent amount of googling (it was weirdly hard to find the right words!), I figured out it was a html thing and I was able to fix it w/ tailwindcss
 
-![alt text](2023-03-05-part-1-n.png)
+the logged description
+> {
+   description: 'although he's ten, he will probably live at least another 10 years out of pure spite and hatred for everyone.\n' + "don't get us wrong, good things can come from link too. for example, you can go ahead and cancel your ring subscription because as soon as people hear this demonic entity coming from inside your house, they will run away in fear. If you don't like having people coming over, hes perfect for you. no one will want to come over.}
+>
+
 
 ```
 { */ ##### description SECTION ##### */ }
 
-<div className="whitespace-pre-line> <====hihglighted code
+<div className="whitespace-pre-line> <====highlighted code
     <span className="text-amber-300 font-bold">
     Description: </span>
     {description.description}{""}
@@ -17,9 +23,9 @@ After a decent amount of googling (it was weirdly hard to find the right words!)
 
 ```
 
-![alt text](deeeletemarch5.png)
-![alt text](2023-03-05-part-2.png)
-![alt text](2023-03-05-part-3.png)
+![showing a lot of text with no space](2023-03-05-smashed-paragraph.png)
+
+![showing a lot of text, with spaces aka paragraphs](2023-03-05-fixed.png)
 
 Heres some of the links that helped me figure out how to handle getting the /n formatting to show ! https://stackoverflow.com/questions/29608841/how-do-i-store-display-paragraphs-with-mongodb
 
@@ -27,20 +33,21 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1632383852491702272 6:
 
 ---
 
-Moved the edit/delete buttons around to things mesh better. Figured I'd rather have them arranged like a spaced out triangle, so its a little harder to accidentally click on the wrong button.
+I moved the edit/delete buttons around to things mesh better. I figured I'd rather have them arranged like a spaced out triangle, so its a little harder to accidentally click on the wrong button.
 
-![alt text](deeelllteduplicate.png)
-![alt text](2023-03-05-icons-moved.jpg)
+![edit icon is to the left, share button is up, delete button is to the right, to make a triangle shape](2023-03-05-icons-moved.jpg)
 
-changed the text to be a slightly more subtle yellow, so hopefully it looks sliiiightly better
-![alt text](2023-03-05-subtle-yellow.png)
+changed the text to be a slightly more subtle yellow, so it hopefully looks sliiiightly better
+
+![](2023-03-05-subtle-yellow.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1632387814049587206 6:29 AM · Mar 5, 2023
 
 ---
 
-🐸did some project work when I got home, ended up deciding to redo the layout for descriptions since I'm going to allow longer descriptions
-I'm soooo close to finishing the 1st version of the site, I wish I had more time to work on it uuuggh 🥲
+🐸did some project work when I got home, I ended up deciding to redo the layout for descriptions since I'm going to allow longer descriptions.
+I'm soooo close to finishing the 1st version of the site, I wish I had more time to work on it uuuggh 
+
 🌶️no anki/banki
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1632390735092928512 6:40 AM · Mar 5, 2023
@@ -48,19 +55,21 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1632390735092928512 6:
 ---
 
 🐊Worked (got my 2nd break/anki time today! huzzah)
-🐊did a TINY bit of project work (just changing the visuals a little bit). Alas, as much as I want to work on it more I've got to sleep 🥲
 
-![alt text](2023-03-06-visual-changes.png)
+🐊did a TINY bit of project work (just changing the visuals a little bit). Alas, as much as I want to work on it more I've got to sleep
 
-Did another small visual adjustment, was a bit of a pain to get the flex to do exactly what I wanted. But I was victorious in the end! 🔥
+![add a little purple background box to the interactive buttons for description listings. So it pops out more against the dark purple background of the rest of the description](2023-03-06-visual-changes.png)
 
-![alt text](2023-03-06-visual-changes-2.png)
+Did another small visual adjustment, it was a bit of a pain to get the flex to do exactly what I wanted. But I was victorious in the end! 🔥
+
+![for the user information, originally the username and profile name show on one line. Now, the username shows on top of the profile name](2023-03-06-visual-changes-2.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1632693995875995649 2:45 AM · Mar 6, 2023
 
 ---
 
 🐸did anki during work breaks today and yesterday
+
 🐸did a little bit of project work before going into work at 8pm
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1633463441003511812 5:43 AM · Mar 8, 2023
@@ -75,11 +84,11 @@ https://twitter.com/Janetthedev/status/1633733753301512192 11:37 PM · Mar 8, 20
 
 ---
 
-Did more project work! Decided instead of saving the tag directly ex: "dog". I'm saving the tag ids to the listings, and then using a populate to get all the information.
+Did more project work! I decided instead of saving the tag directly ex: "dog". I'm saving the tag ids to the listings, and then using a populate to get all the information.
 
 This way if the tags change, the filter option will still work, since the tags will update automatically
 
-![alt text](2023-03-09-tags.png)
+![](2023-03-09-tags.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1633818776260218883 5:15 AM · Mar 9, 2023
 
@@ -206,8 +215,11 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1634567376040787968 6:
 ---
 
 🐢fixed share links so they no longer use localhost but instead grab the correct url from the env
+
 🐢fixed next image issues
+
 🐢improved filtering, so it doesn't flash at the user. Ended up being a dead simple fix that hit me as a random epiphany while showering
+
 🐢changed headers!
 
 ![alt text](2023-03-12-part-1.jpg)

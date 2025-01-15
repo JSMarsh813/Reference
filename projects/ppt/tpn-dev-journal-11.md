@@ -1,16 +1,18 @@
-I started to add a function to let a users check if a name exists before trying to add it
+# Checking if a Name Exists & Lets "Tag" Up Some Categories
 
-But its almost 5am! time to sleep and battle with it again tomorrow😴
+I started to add a function that would let users check if a name exists, before trying to add a new name
 
-![alt text](2023-02-23-check-if-name-exists.png)
+But its almost 5 am! time to sleep and battle with it again tomorrow😴
+
+![picture of add a name page with a check if a name exists input field](2023-02-23-check-if-name-exists.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1628736548668866560 4:40 AM · Feb 23, 2023
 
 ---
 
-🐍Did lots of project work, I feel like i'm getting SO close to finishing the mvp! So its hard to take breaks but I know I will need to soon, before I go cross eyed/lost my sanity 🥴
+🐍Did lots of project work, I feel like i'm getting SO close to finishing the mvp! So its hard to take breaks but I know I will need to soon, before I go cross eyed/lose my sanity 🥴
 
-🦀 didn't work out
+🦀 didn't work out today
 
 🦀 didn't do anki/banki
 
@@ -19,19 +21,23 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1628736974235521025 4:
 ---
 
 Funny how its the small features that end up being a pain 😂
+
 but I'm victorious! The check if a name exists feature now works!
 
-<video src="images/2023-02-23-funny-how-its-the-small.mp4" width="620" controls></video>
+<video src="images/2023-02-23-funny-how-its-the-small.mp4" alt="showing that when the name doesn't exist, it says the name doesn't exist. When it does exist, it says it exists and shows a link to the names page" width="620" controls></video>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1628980564744364032 8:50 PM · Feb 23, 2023
 
 ---
 
-I figured out how to push object ids into a documents comments array in mongodb!
+I figured out how to 
 
-buuut then I remembered that .populate will fail since some of my name documents arrays will be empty 🥲
+- grab a newly created comment's id, 
+- and push it into something's comments array in mongoDB!
 
-So I have to scrap it, well learned something new anyway
+buuut then I remembered that .populate will fail since some of the names arrays will be empty :(
+
+So I have to scrap it, well I learned something new anyway
 
 ```
 import db from '../../../../utils/db'
@@ -44,6 +50,7 @@ export default async function handler(req,res){
   await db.connect();
 
   if (method ==="PUT"){
+
     console.log(`this is req body ${JSON.stringify(req.body)}`)
 
   const {
@@ -54,7 +61,8 @@ export default async function handler(req,res){
   try {
     const toUpdateName = await Name.findOneAndUpdate(
       {"_id":nameid},
-       {$push: {comments: commentid}})
+       {$push: {comments: commentid}}) <===where we're pushing comment ids into comment arrays
+
       console.log(toUpdateName)
 
     await toUpdateName.save();
@@ -73,13 +81,13 @@ export default async function handler(req,res){
 }
 ```
 
-![alt text](deeelllletecode.png)
-
 So I'll end up doing the same workaround as I did for the posts page.
 
-So the namelisting will call on an api to fetch all comments with that have its nameid, on rendering (thus the useEffect)
+So when the name renders on the page, namelisting will call on an api to fetch all comments that have that name's id (since we do it on rendering, we'll use useEffect)
 
+```
 const handleFetchPosts = async () => {
+
 const response = await fetch('http : / / localhost: 3000/api/individualbatsignalcomments/commentscontainingpostid/'+postId)
 
 const data= await response.json()
@@ -90,23 +98,22 @@ setPostsCommentsFromFetch(data)
 }
 
 useEffect(()=>{
-handleFetchPosts();
-})
-
-![alt text](deletemoooorecode.png)
+  handleFetchPosts();
+},[])
+```
 
 sweet so the fetch in each component is working, now I just have to map through them and display them
 
-![alt text](2024-02-24-comments-part-1.png)
+![showing 2 names: urianger and nova with their descriptions loaded](2024-02-24-comments-part-1.png)
 
 Alright so now each one shows!
 
 Phew that's enough for tonight. Later I'll just need to make it possible for users to reply to the comment for the name, like I did for posts, and it'll be done
 
-![alt text](2024-02-24-comments-part-2.png)
+![showing comments with the user name, date posted and the text tessst](2024-02-24-comments-part-2.png)
 
 > REPLY mattie.eth @EthMattie
-
+>
 > You should consider using a code formatter. There is a vscode extension called prettier which will format your code and give consistent style and spacing.
 
 Thanks mattie! Its funny I've heard of prettier in passing but for some reason I thought it was more involved to implement? I was surprised how easy it looks to get set up
@@ -123,11 +130,11 @@ After that, I'll probably wait until I've done most of the "future" features bef
 
 Leftover Tasks
 
-1. Finishing comment feature for names
+1. Finishing the comment feature for names
 
-2. Improve validation (description can include only so many letters, so no clowns can upload the bee movie script ect :P)
+2. Improve validation (ex: descriptions can have only so many letters, so no clowns can upload the bee movie script ect :P)
 
-3. Checking if things are working, minor changes such as text sizes ect
+3. Checking if things are working, ex: minor changes such as text sizes ect
 
 4. Fix nav/clean up code
 
@@ -141,7 +148,7 @@ FUTURE
 
 2. add comments to descriptions
 
-3. Notification feature
+3. Notifications feature
 
 4. Advanced name search (begins with, contains, ends with)
 
@@ -161,7 +168,9 @@ Potential Future ideas:
 
 3. Add a "cookies" feature, where users can send virtual cookies as a special thank you. For example, if a user used a specific name they can send the user that created that description a cookie.
 
-4. how to get involved and or/other tips. Example: explaining what goes on with fostering. Letting users find shelters with unique programs like doggydayout programs (can take specific shelter pets out in the community, to help them get adopted)
+4. how to get involved and or/other tips. 
+
+Example: explaining what goes on with fostering. Letting users find shelters with unique programs like doggydayout programs (people can take specific shelter pets out in the community, to help them get adopted)
 
 5. helpful sites/resources
 
@@ -179,17 +188,19 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1629111664477106176 5:
 
 🐍some anki at work, slooowly catching back up!
 
-🐍 some more project work, I realized I have to adjust my models property names so I can reuse some components. They're basically the same but /one/ property is named slightly differently so its screwing up the components ugh
+🐍 some more project work, I realized I have to adjust my model's property names so I can reuse some components. They're basically the same but /one/ property is named slightly differently so its screwing up the components ugh
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1629503290034778112 7:27 AM · Feb 25, 2023
 
 ---
 
-🥲 Lost 2nd/anki break again but on the flip side, i'll probably get killer tips
+🦀 Lost 2nd/anki break again but on the flip side, i'll probably get killer tips
 
-🐸did some more project when I got home, the comment section seems to be fixed! 🎊Just scared to say its fixed in case the code hears me and decides to mess up again :P
+🐸 did some more project when I got home, the comment section seems to be fixed!
 
-🐸went to gym before work
+🎊 scared to say its fixed in case the code hears me and decides to mess up again :P
+
+🐸 went to the gym before work
 
 Twitter Post Link https://twitter.com/Janetthedev/status/1630176312433463298 4:01 AM · Feb 27, 2023
 
@@ -211,7 +222,7 @@ Thanks sephiroth for helping me test out some validation!
 
 no army of sephiroth mimics in this database, there can only be one (sorry @ kadaj, Loz, and Yazoo)
 
-![alt text](2023-02-28-sephiroth-validation.png)
+![shows an error "ruh roh! sephiroth not added"](2023-02-28-sephiroth-validation.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1630669601498624000 12:41 PM · Feb 28, 2023
 
@@ -219,7 +230,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1630669601498624000 12
 
 Users can now check if a profile name exists!🥳
 
-<video src="images/03-01-2023-users-can-now-check.mp4" width="520" controls></video>
+<video alt="shows a user looking up a name Jan, and is warned the name already exists. However Jane gives a message that success this name does not exist " src="images/03-01-2023-users-can-now-check.mp4" width="520" controls></video>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1631084438229757952 4:10 PM · Mar 1, 2023
 
@@ -229,7 +240,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1631084438229757952 4:
 
 🐊worked on the project, buttons are now all in the BUTTON folder, ect. Sadly VSC is glitchy with updating the routes, so I had to manually update most of the paths, ugh
 
-🐻keep falling asleep, body how about we not be a bear 😂?
+🐻I keep falling asleep, body how about we not be a bear 😂?
 
 getting close! What's left:
 
@@ -249,19 +260,21 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1631224685492080640 1:
 
 Prettiers pretty simple to set up but I liked the little snippets he mentioned here https://youtube.com/watch?v=DqfQ4DPnRqI&ab_channel=WebDevSimplified
 
-SO grateful for prettier, it would of been a nightmare to manually go through and clean up the formatting
+I'm SO grateful for prettier, it would of been a nightmare to manually go through and clean up the formatting
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1631225524130291713 1:30 AM · Mar 2, 2023
 
 ---
 
-switching to a new database was easy as I hoped! 😁
+Switching to a new database was easy as I hoped! 😁
 
-So now I'm making the official categories and tags. I tried to condense things into as few categories while also not adding too many tags to any one category
+So now I'm making the official categories and tags.
 
-![alt text](2023-03-03-part-1.jpg)
+I tried to condense things into as few categories as possible, while also not adding too many tags to any one category
 
-I ended up spoiling myself by creating a page just for me, where I can create a name tag, and then add it to several categories, that way I don't have to copy and paste ids manually!
+![showing a list of categories such as species, gender, size, color, age, ect](2023-03-03-part-1.jpg)
+
+I ended up spoiling myself by creating a page just for me, where I can create a name tag, and then add it to several categories. That way I don't have to copy and paste ids manually!
 
 ```
 
@@ -271,8 +284,13 @@ export default async function handler(req,res){
 
     dbConnect();
 
-    if (method === "PUT"){
+    if (method === "PUT"){      
         try {
+
+/ / for a specific tag, add it to it to several categories (ex: for "one eye" tag, add it to 2 categories:
+ 1. Other physical traits and 
+ 2. medical  )
+
             const category = await Category.updateMany(
                 {
                     _id:{ $in: categoriesToUpdate.map(
@@ -289,12 +307,13 @@ export default async function handler(req,res){
 
 ```
 
-![alt text](marcodetodelete.png)
-![alt text](2023-03-03-part-2.png)
+note: for the image below, the label "Tags" should be "categories"
+
+![showing the extra large tag being entered, and in the tags field has the tag "size"](2023-03-03-part-2.png)
 
 I'm still torn on whether to eventually allow for users to access this page, if they have very high levels of points and opt into it.
 
-But eh, I'm not expecting this site to go viral or anything so telling myself to put that off for maybe the future
+But eh, I'm not expecting this site to go viral or anything so I'm telling myself to put that off for maybe the future
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1631607836097789953 2:49 AM · Mar 3, 2023
 
@@ -304,7 +323,7 @@ I finished the name categories and name tags!😤🔥 one step closer!
 
 now to do the same for the descriptions, and then its time to deploy and test everything again 😁
 
-<video src="images/2023-03-03-finished-the-name-categories.mp4" width="720"  controls></video>
+<video alt="clicking on categories and showing all the tags associated with them" src="images/2023-03-03-finished-the-name-categories.mp4" width="720"  controls></video>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1631653284170842119 5:50 AM · Mar 3, 2023
 
