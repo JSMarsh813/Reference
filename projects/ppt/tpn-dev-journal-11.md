@@ -30,9 +30,9 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1628980564744364032 8:
 
 ---
 
-I figured out how to 
+I figured out how to
 
-- grab a newly created comment's id, 
+- grab a newly created comment's id,
 - and push it into something's comments array in mongoDB!
 
 buuut then I remembered that .populate will fail since some of the names arrays will be empty :(
@@ -168,7 +168,7 @@ Potential Future ideas:
 
 3. Add a "cookies" feature, where users can send virtual cookies as a special thank you. For example, if a user used a specific name they can send the user that created that description a cookie.
 
-4. how to get involved and or/other tips. 
+4. how to get involved and or/other tips.
 
 Example: explaining what goes on with fostering. Letting users find shelters with unique programs like doggydayout programs (people can take specific shelter pets out in the community, to help them get adopted)
 
@@ -284,11 +284,11 @@ export default async function handler(req,res){
 
     dbConnect();
 
-    if (method === "PUT"){      
+    if (method === "PUT"){
         try {
 
 / / for a specific tag, add it to it to several categories (ex: for "one eye" tag, add it to 2 categories:
- 1. Other physical traits and 
+ 1. Other physical traits and
  2. medical  )
 
             const category = await Category.updateMany(

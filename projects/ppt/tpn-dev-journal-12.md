@@ -1,16 +1,16 @@
-#
+# Taming Newlines & Uncovering the good ol' JSON.Parse(JSON.Stringify()) Hack
 
 Fixed a thing!
 
-My text was coming back correctly with its formatting information (ex: /n) but it wasn't showing in the browser.
+My text was coming back correctly with its formatting information (ex: /n) but the text wasn't showing in the browser.
 
 After a decent amount of googling (it was weirdly hard to find the right words!), I figured out it was a html thing and I was able to fix it w/ tailwindcss
 
-the logged description
-> {
-   description: 'although he's ten, he will probably live at least another 10 years out of pure spite and hatred for everyone.\n' + "don't get us wrong, good things can come from link too. for example, you can go ahead and cancel your ring subscription because as soon as people hear this demonic entity coming from inside your house, they will run away in fear. If you don't like having people coming over, hes perfect for you. no one will want to come over.}
->
+https://tailwindcss.com/docs/whitespace#pre-line
 
+Below is the logged description object in the terminal:
+
+> { description: 'although he's ten, he will probably live at least another 10 years out of pure spite and hatred for everyone.\n' + "don't get us wrong, good things can come from link too. for example, you can go ahead and cancel your ring subscription because as soon as people hear this demonic entity coming from inside your house, they will run away in fear. If you don't like having people coming over, hes perfect for you. no one will want to come over.}
 
 ```
 { */ ##### description SECTION ##### */ }
@@ -29,6 +29,15 @@ the logged description
 
 Heres some of the links that helped me figure out how to handle getting the /n formatting to show ! https://stackoverflow.com/questions/29608841/how-do-i-store-display-paragraphs-with-mongodb
 
+The important snippet:
+
+> That isn't a problem with MongoDB, but you found out how HTML works :)
+>
+> When you submit a textarea, all newlines are simply newline characters sent to the server (\n or \r\n). They are stored in the database as is.
+> However, in HTML newlines are ignored and considered like spaces, when representing text (unless you wrap that in a < pre >< / pre> block).
+>
+> The solution is to replace all \n with < br /> tags.
+
 Twitter Post Link: https://twitter.com/Janetthedev/status/1632383852491702272 6:13 AM · Mar 5, 2023
 
 ---
@@ -46,7 +55,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1632387814049587206 6:
 ---
 
 🐸did some project work when I got home, I ended up deciding to redo the layout for descriptions since I'm going to allow longer descriptions.
-I'm soooo close to finishing the 1st version of the site, I wish I had more time to work on it uuuggh 
+I'm soooo close to finishing the 1st version of the site, I wish I had more time to work on it uuuggh
 
 🌶️no anki/banki
 
@@ -95,15 +104,23 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1633818776260218883 5:
 ---
 
 🐸Did more project work (slowly, very slowly inching closer) 🐌
+
 🐸Played a little bit of ff14
+
 🌶️no anki
+
 🐸caught up on sleep
 
 tomorrow:
+
 💫fix name/description listing deletion
+
 💫fix description edit button
+
 💫take the inspiration menu option off the nav, since I combined that idea with the description section
+
 💫play some ff14
+
 ❓ gym/walk on treadmill?
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1633819699975954433 5:19 AM · Mar 9, 2023
@@ -117,26 +134,55 @@ https://nextjs.org/docs/messages/client-side-exception-occurred
 
 I'll fight with it tomorrow
 
-![alt text](2023-03-10-error-part-1.png)
-![alt text](2023-03-10-error-part-2.png)
+Error from vercel:
+
+> Application Error: a client-side exception has occurred (see the browser console for more information)
+
+Console errors:
+
+![image of the console showing the error TypeError r is not a function](2023-03-10-error.png)
+
+---
 
 uh the profile page is working now suddenly? still no luck with the dashboard though hmmm
 
-or it was working, went i went back to it again, the profile page flashes and then that error message appears (smiling face with a tear)😂
+or it was working, went i went back to it again, the profile page flashes and then that error message appears 🙃
 
-even though getServerSideProps is working fine on other pages, I have a feeling this is because I was naughty and basically calling the internal api 🙈
+even though getServerSideProps is working fine on other pages, I have a feeling this is because I was naughty and I was basically calling the internal api 🙈
 
-Tomorrow I'll copy over the parts of the api i need, like the documentation says to, and see if it likes that better
+Tomorrow I'll copy over the parts of the api I need, like the documentation says to, and see if it likes that better
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1634173205991813126 4:43 AM · Mar 10, 2023
 
 ---
 
-Slowly but surely making progress on debugging my next.js app!🫠
-Moved the api logic into the getServerSideProps and oddly, I have to use JSON.Parse(JSON.Stringify()) to get the prop to pass correctly
+Slowly but surely making progress on debugging my next.js app! 🎊
 
-Found the perfect thread for my issue
+I moved the api logic into the getServerSideProps and oddly, I have to use JSON.Parse(JSON.Stringify()) to get the prop to pass correctly. Otherwise the prop gives me this error:
+
+> object ("[object Object]") cannot be serialized as JSON. Please only return JSON serializable data types
+
+I found the perfect thread for my issue
 https://stackoverflow.com/questions/72176573/object-object-object-cannot-be-serialized-as-json-please-only-return-js
+
+It sounds like this error was popping up because the prop was likely a response object from my database? And React REQUIRED that the data be SERIALIZABLE (turned into a string)
+
+So it was yelling at me that it can't turn it into a string.
+
+The JSON.Parse(JSON.Stringify()) hack makes a copy of the response object. But when making that copy, it makes sure it ONLY has easily-seralized primitives (aka it gets rid of functions/methods, regular expressions and undefined values). So it turns it into a serializable object?
+
+JSON.stringify() ==> Convert a javaScript Object to a JSON string and omit any unsupported data types: undefined, functions or symbols. JSON doesn't support these data types because it only stores data, it doesn't execute code.
+
+ex: '{"name":"lilly","age":20"}'
+
+JSON.Parse() => converts a JSON string to JSON to a JavaScript value or object
+
+more info: https://github.com/vercel/next.js/issues/11993#issuecomment-879857441
+https://stackoverflow.com/questions/24744474/json-parsejson-stringifyx-purpose
+https://dinesh-rawat.medium.com/why-you-should-avoid-json-parse-json-stringify-for-cloning-objects-in-javascript-8337d6761926
+https://www.dhiwise.com/post/javascript-essentials-detailed-exploration-of-json-stringify
+
+Though it sounds like nowadays you can avoid this issue by using the modern app router https://nextjs.org/docs/app/api-reference/config/typescript#end-to-end-type-safety
 
 > REPLY
 >
@@ -153,83 +199,101 @@ Twitter Post Link https://twitter.com/Janetthedev/status/1634401162161197056 7:4
 ---
 
 🐸Moved most of the api logic into getserverside props
+
 🐸 managed to replace most imgs with Next Image...and now i understand why so many people hate next image (for 12 not 13) 😭
+
 🐸 added more alt tags
+
 🐸 deleted used variables, notes ect
 
-almost done (for the mvp version anyway) 🫠!
+almost done (for the mvp version anyway)!
+
 Need to:
+
 💫fix a few errors
+
 💫change the related name input for descriptions, so the user can enter any names rather than selecting from existing names. It works for now, but grabbing a list of EVERY name would be unweildly eventually
 
 I'm thinking about removing the repeating image banners, but I'm not sure yet 🤔
-![alt text](2023-03-11.jpg)
 
-This image is misbehaving juuuust a wee bit 😂Its grown to powerful with the power of next image!
+![two versions of the site, one with a banner with a background image. The other has a banner with just the page name and no background image](2023-03-11-banner.jpg)
+
+This image is misbehaving juuuust a wee bit 😂
+
+Its grown to powerful with the power of next image!
 
 ngl i cackled coming across this ridiculous error
 
-<video src="images/2023-03-11-moved-most-of-the-api.mp4" width="320" height="240" controls></video>
+<video src="images/2023-03-11-moved-most-of-the-api.mp4" alt="clicking on a button and a gigantic image of two people fighting in dino outfits takes over the page" width="320" height="240" controls></video>
 
 Rejoice! the dino gif has been contained already, it was a nice escape attempt though I got to admit 😉
 
-![alt text](2023-03-11-part-2-dino-contained.png)
+![the profile image of two people fighting in dino outfits is now normal sized](2023-03-11-part-2-dino-contained.png)
 
 Twitter Post Link https://twitter.com/Janetthedev/status/1634556497287086082 6:06 AM · Mar 11, 2023
 
 ---
 
-Hoping to borrow some of your big brains!
+I'm hoping to borrow some of your big brains!
 
 For the headers do you think it'd be better to
 
 1. keep the repeating images
+
 2. replace all header images with the one used in the dashboard
+
 3. leave it blank
    🤔
 
-![alt text](2023-03-11-banner-poll.png)
+![showing three banners. the first has a background image, the second has no background, the third has a pretty banner image](2023-03-11-banner-poll.png)
 
 Here's a poll for those who prefer them:
 
-Keep the repeating image (0%)
-use the dashboard image (72.7%)
-leave it blank (27.3%)
+- Keep the repeating image (0%)
+
+- use the dashboard image (72.7%)
+
+- leave it blank (27.3%)
 
 > REPLY
+>
 > Jeremiah @acesupmedia
+>
 > Leaving it blank may look nice and also make it easier for testing responsiveness on different screen sizes ☺️
 
 Very good point! And thanks Jeremiah taking a look and giving feedback, I might leave it blank for a few pages 😁
 
 > REPLY
+>
 > Adam Morsa🏕 @RamblingAdam
+>
 > Dashboard image 100%!
 
 Thanks adam for taking a look, super appreciate it! Looks like the dashboard image is the winner 🔥🔥🔥😁
 
-Thanks everyone for the feedback! You'll all appreciated ❤️ looks like the dashboard image wins!
+Thanks everyone for the feedback! You're all appreciated ❤️ looks like the dashboard image wins!
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1634567376040787968 6:50 AM · Mar 11, 2023
 
 ---
 
-🐢fixed share links so they no longer use localhost but instead grab the correct url from the env
+🐢fixed share links so they no longer use localhost but instead grab the correct url from the env file
 
 🐢fixed next image issues
 
-🐢improved filtering, so it doesn't flash at the user. Ended up being a dead simple fix that hit me as a random epiphany while showering
+🐢improved filtering, so it doesn't flash at the user. It ended up being a dead simple fix that hit me as a random epiphany while showering
 
 🐢changed headers!
 
-![alt text](2023-03-12-part-1.jpg)
-![alt text](2023-03-12-part-2.png)
+![header now uses the profile background image](2023-03-12-part-1.jpg)
+![individual page of a name doesn't have a header](2023-03-12-part-2.png)
 
 Main pages have the same background image (thanks everyone who commented on the poll earlier for this!)
 
 Pages for one specific item (ex: one name) I've decided to get rid of the header for
 
-💫test everything to double check if everythings working, especially as a signed out user
+💫 test everything to double check if everythings working, especially as a signed out user
+
 💫 considering adding swr to the mvp, I was going to wait to implement it until later, but it really bugs me to not have this set up
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1634953439758389249 9:24 AM · Mar 12, 2023
@@ -261,11 +325,9 @@ So I figured out I can revalidate/mutate the data when the user clicks, so they'
 Although I'd be nice to automatically have new names pop up, I worry having mutate run constantly would be too resource intensive 🤔
 
 ```
-<button onClick={()=> setSize(size +1) && mutate()}>
+<button onClick={()=> setSize(size + 1) && mutate()}>
    Load more names
 ```
-
-![alt text](deellletemarch18th.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1637111512778309637 8:19 AM · Mar 18, 2023
 
@@ -276,5 +338,7 @@ REPLY
 > If your mutate function is running too often, you could either throttle its execution, or debounce it!
 >
 > This article is discusses functions that run on window resize, but you could definitely adapt the technique for your purposes!
+>
+> https://web.archive.org/web/20220714020647/https://bencentra.com/code/2015/02/27/optimizing-window-resize.html
 
 ---
