@@ -1,23 +1,26 @@
-Thinking about making it so users can personalize how many names ect they want to show on each page.
+#
 
-And they can give a page number, so they can jump back and forth through their filtered list 🤔
+I'm thinking about making it so users can personalize how many names ect they want to show on each page.
+
+And users can give a page number, so they can jump back and forth through their filtered list 🤔
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1637137770035679232 10:03 AM · Mar 18, 2023
 
 ---
 
-Been squeezing in tiny bits of code here and there, since i've been extra tired from getting that bread/working 😪
+I've been squeezing in tiny bits of code here and there, since i've been extra tired from getting that bread/working 😪
 
-But I made some progress on pagination! I had to make it from scratch because of my apps filtering system & because I didn't want to overtax my free mongo account🎊
+But I made some progress on pagination! I had to make it from scratch because of my apps filtering system & because I didn't want to overtax my free mongo account 🎊
 
 <video src="images/2023-03-21-been-squeezing-in-tiny.mp4" width="320" height="240" controls></video>
 
-Ideally I would of liked to make a "real" pagination, where we know exactly how many items match the filters/know how many pages there are. Aka, filtered on mongodbs side before starting swr/grabbing the data in bunches.
+Ideally I would of liked to make a "real" pagination, where we know exactly how many items match the filters. In other words, we would of known exactly how many pages there are. Aka, it would of been filtered on mongodbs side before starting swr/grabbing the data in bunches.
 
 But that would require users submitting a new mongodb request EVERY time they change their filters.
-So instead, users will get the data from mongodb, and the page numbers will increase the further along they go, until the server tells us "I got nothing!". Filtering is done client side, to avoid extra requests
 
-Going to move the pagination logic into a component, then add it to the bottom as well so the user won't have to scroll alllll the way back up
+So instead, users will get the data from mongodb, and the page numbers will increase the further along they go, until the server tells us "I got nothing left!". Filtering is done client side, to avoid extra requests
+
+I'm going to move the pagination logic into a component, then add it to the bottom and the top, so the user won't have to scroll alllll the way back up to click to the next page
 
 Then its time to add the pagination && swr to the description listings and community areas of the site
 
@@ -30,21 +33,23 @@ Progress!
 
 Now time to roll back into bed for a before-work nap 😴
 
-<video src="images/2023-03-21-pagination-is-now-in.mp4" width="320" height="240" controls></video>
+<video src="images/2023-03-21-pagination-is-now-in.mp4" alt="showing the user clicking the next page and new names loading" width="640" height="480" controls></video>
 
 > REPLY
+>
 > Adam Morsa🏕 @RamblingAdam
+>
 > Custom pagination! Super cool. Good way to limit Mongo traffic. Nice work Janet!
 
 Thanks adam means a lot coming from you! my fellow 300+ hour long "100 project" friend😉
 
 ---
 
-I was going to sleep but then noticed huntober standup going on 👀its been months since I was able to catch one! I've missed hearing leons voice so much and seeing the community hyping out in chat!
+I was going to sleep but then I noticed huntober standup going on 👀 its been months since I was able to catch one! I've missed hearing leons voice so much and seeing the community hyping out in chat!
 
-Also ended up working on pagination more, cause I just can't stop myself 😂
+I also ended up working on pagination more, cause I just can't stop myself 😂
 
-<video src="images/2023-03-21-i-was-going-to-sleep.mp4" width="320" height="240" controls></video>
+<video alt="pagination now shows more than the previous, current and next page numbers" src="images/2023-03-21-i-was-going-to-sleep.mp4"  width="640" height="480" controls></video>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1638291369717547009 2:27 PM · Mar 21, 2023
 
@@ -52,7 +57,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1638291369717547009 2:
 
 alright time for bed for real this time!
 
-But looks like all thats left for the project is:
+But it looks like all thats left for the project is:
 
 - adding pagination and swr to the community section && description
 - bug hunting!/testing
@@ -68,15 +73,31 @@ The width wasn't being respected (see how the div with the white border respects
 The reason? a very long "word" from a hyperlink!
 Fixed it by telling it to break-all
 
-<video src="images/2023-03-23-finally-fixed-the-bug.mp4" width="320" height="240" controls></video>
+<video src="images/2023-03-23-finally-fixed-the-bug.mp4" alt="showing that as the page is shrunk, the width is not shrinking at a certain point because of the long text name"  width="640" height="480" controls></video>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1638858527568719873 4:01 AM · Mar 23, 2023
 
 ---
 
-Managed to find a way to make this image bow to the users' will! aka found a way to make a Next JS image to be responsive
+I managed to find a way to make this image bow to the users' will! aka found a way to make a Next JS image to be responsive
 
-<video src="images/2023-03-23-managed-to-find-a.mp4" width="320" height="240" controls></video>
+```
+  <div className="my-auto"> <===my-auto is the important bit
+            <Image
+              className=" mx-auto rounded-full lg:h-20"
+              src="/batsignaldogsrunning.avif"
+              width={140}
+              height={120}
+              alt=""
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
+          </div>
+
+```
+
+<video alt="showing that the image warps strangely until it is put into a div with a my-auto property" src="images/2023-03-23-managed-to-find-a.mp4"  width="860" height="700"  controls></video>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1638930568795815939 8:47 AM · Mar 23, 2023
 
@@ -85,7 +106,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1638930568795815939 8:
 Wow, it doesn't feel real to say but, swr and pagination is done for the main pages!
 Eventually I'll want to add it to the profile pages/ect but got to leave some things to future me haha
 
-<video src="images/2023-03-23-wow-it-doesnt-feel-real.mp4" width="320" height="240" controls></video>
+<video src="images/2023-03-23-wow-it-doesnt-feel-real.mp4" alt="showing check for more name button works" width="640" height="480" controls></video>
 
 Now its just a matter of checking for bugs and deleting the dummy data from the database 🥳
 
@@ -105,15 +126,17 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1638942533408673792 9:
 
 ---
 
-Alas! Figures deployment wouldn't go without some hitches 🥲 not sure why its giving me 500 when it works perfectly in the dev build?
+Alas! Figures deployment wouldn't go without some hitches
+
+I'm not sure why its giving me 500 when it works perfectly in the dev build?
 
 and its showing me the message that pops up when the swr api file has been found...so its managed to get inside the right file?
 
-<video src="images/2023-03-23-alas-figures-deployment.mp4" width="320" height="240" controls></video>
+<video src="images/2023-03-23-alas-figures-deployment.mp4" alt="showing a client side based error" width="640" height="480" controls></video>
 
 this is such a weird error to me... running the dev and build locally work fine? But when deployed, i'll see all the data load and then woosh, theres 500 and client side errors?
 
-![alt text](2023-03-23-errors.png)
+![showing a list of errors](2023-03-23-errors.png)
 
 the error isn't with swr infinite, since the error returned undefined.
 
@@ -121,11 +144,11 @@ Mongodb access is for all IPs (0.00 ect). Also its accessing the correct api fil
 
 not sure why the deployed version keeps getting 500 errors?? 🥴
 
-removed everything besides logging the various forms of the data
+I removed everything besides logging the various forms of the data
 
 weird that its getting nothing back when in production mode 🤔triple checked my env variable and its correct with what i have in vercel...
 
-![alt text](2023-03-23-no-filtered-names-shown.png)
+![showing that we're getting no data, filtered names or names data back](2023-03-23-no-filtered-names-shown.png)
 
 ```
 return (
