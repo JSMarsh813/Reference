@@ -1,8 +1,8 @@
-#
+# Pagination & Aggregation Sorting Party Time! & The Afterparty: Punting Bugs into the Abyss
 
 I'm thinking about making it so users can personalize how many names ect they want to show on each page.
 
-And users can give a page number, so they can jump back and forth through their filtered list 🤔
+And users can give a page number, so they can jump back and forth through the filtered list 🤔
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1637137770035679232 10:03 AM · Mar 18, 2023
 
@@ -71,7 +71,7 @@ Finally fixed the bug that made me want to punt my code off a cliff!
 The width wasn't being respected (see how the div with the white border respects it, but the one in red doesn't)
 
 The reason? a very long "word" from a hyperlink!
-Fixed it by telling it to break-all
+I fixed it by telling it to break-all
 
 <video src="images/2023-03-23-finally-fixed-the-bug.mp4" alt="showing that as the page is shrunk, the width is not shrinking at a certain point because of the long text name"  width="640" height="480" controls></video>
 
@@ -104,7 +104,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1638930568795815939 8:
 ---
 
 Wow, it doesn't feel real to say but, swr and pagination is done for the main pages!
-Eventually I'll want to add it to the profile pages/ect but got to leave some things to future me haha
+Eventually I'll want to add it to the profile pages/ect but I've got to leave some things to future me haha
 
 <video src="images/2023-03-23-wow-it-doesnt-feel-real.mp4" alt="showing check for more name button works" width="640" height="480" controls></video>
 
@@ -206,7 +206,7 @@ export defaut async function handler(req,res){
 
 ![alt text](deelllletecode.png)
 
-flashed as undefined for a second but then figured itself out, time to add the second populate back
+it flashed as undefined for a second but then figured itself out, time to add the second populate back
 ![alt text](2023-03-23-populate-progress-flashed-as-undefined.png)
 
 IT WAS POPULATE! Ugghhhh, my nemesis returns.
