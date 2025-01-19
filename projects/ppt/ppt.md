@@ -219,3 +219,74 @@ I un-commented out the client side checks for invalid characters
 annnnd we're done with validating the entered text for new names 😁
 
 https://bsky.app/profile/ghiblimagic.bsky.social/post/3leipgc2fy22p dec 29th 2024, 8:35 PM
+
+---
+
+Right new users who want to just use magic links to sign in still have to enter a password at registration.
+
+So I'm going to fix that so they don't have to.
+
+Original Code api/auth/signup.js
+
+```
+  const { name, email, password, profilename } = req.body;
+  if (
+    !name ||
+    !email ||
+    !profilename ||
+    !email.includes("@") ||
+    !password ||
+    password.trim().length < 5
+  ) {
+    res.status(422).json({
+      message: "Validation error",
+    });
+    return;
+  }
+
+```
+
+which i changed to:
+
+```
+  const { name, email, password, profilename } = req.body;
+
+  if (
+    !name ||
+    !email ||
+    !profilename ||
+    !email.includes("@")
+  ) {
+    res.status(422).json({
+      message: "Validation error, please check the name, email, profilename and email fields",
+    });
+    return;
+  }
+
+  if (password.length && password.trim().length < 5) {
+    res.status(422).json({
+      message: "Invalid password length",
+    });
+    return;
+  }
+```
+
+So I want to change this, so if there no password, a password won't be added to the new user.
+
+I considered going the easy route and giving the password a default value like "" if the user didn't enter a password. But from what I've read its best to avoid bogging down mongodb with unnecessarily blank or null fields.
+
+The original code: api/auth/signup.js
+
+```
+  const newUser = new User({
+    name,
+    email,
+    profilename: profilename.toLowerCase(),
+    password: bcryptjs.hashSync(password),
+  });
+
+
+  const user = await newUser.save();
+```
+
+https://stackoverflow.com/questions/67157904/conditional-adding-object-property-in-javascript
