@@ -4,7 +4,7 @@ I made some progress with profile pages today! 🔥🔥🔥
 
 now its 5am, so it's time to sleep
 
-![showing a styled profile page with all names showing instead of just liked names](2023-01-29-profile-page-progress.jpg)
+<img alt="showing a styled profile page with all names showing instead of just liked names" src="2023-01-29-profile-page-progress.jpg"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1619688376101376003 5:26 AM · Jan 29, 2023
 
@@ -40,7 +40,7 @@ I also created the pages for individual posts! The likes feature ect also works 
 
 This is the start of the dynamic page for individual names, and it also redirects to 404 is the name is not found
 
-![showing a page with just one individual name](2023-01-30-dynamic-name-page.jpg)
+<img alt="showing a page with just one individual name" src="2023-01-30-dynamic-name-page.jpg"/>
 
 When findById() finds nothing the redirect to 404 works now, but it required slightly different wording
 
@@ -205,7 +205,7 @@ I fixed some pages so the profile image and profile name shows
 
 And I got the backend logic for editing posts to work 🥳
 
-![showing the profile image and name showing at the top right corner](2023-02-01-showing-profile-image-and-name.jpg)
+<img alt="showing the profile image and name showing at the top right corner" src="2023-02-01-showing-profile-image-and-name.jpg"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1620916187441025024 2:45 PM · Feb 1, 2023
 
@@ -235,7 +235,7 @@ Users can now sign in with magic links through their email!
 
 Shame that for forgot passwords I can't just tell it, hey do this same exact thing, but redirect them to reset password page instead of the dashboard 🙃
 
-!["showing the login page"](2023-02-06-showing-login-page.jpg)
+<img alt="showing the login page" src="2023-02-06-showing-login-page.jpg"/>
 
 I could just tell users in the email, hey if you want to reset your password go to your edit profile page after logging in with the magic link.
 

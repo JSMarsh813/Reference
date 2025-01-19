@@ -14,21 +14,21 @@ Oh hey! a pain i know all too well :D we're twinsies in suffering! Here's how I 
 
 2. handlImageAttachment runs, which saves it in two state objects
 
-1 setImageToCloudinary ==> stores the file, which will later be sent to Cloudinary, in this state object
+State object 1 setImageToCloudinary ==> stores the file, which will later be sent to Cloudinary, in this state object
 
-2 setImagePreview ==> turns the file into a url so it can be viewed by the user, WITHOUT having to upload it to cloudinary yet, and stores it in this state object
+State object 2 setImagePreview ==> turns the file into a url so it can be viewed by the user, WITHOUT having to upload it to cloudinary yet, and stores it in this state object
 
-<img alt="" src="2023-02-08-cloudinary-part-1.png">
+<img alt="code for 1 and 2" src="2023-02-08-cloudinary-part-1.png"/>
 
 3. when they click post, handlePostCreate runs
 
-<img alt="" src="2023-02-08-cloudinary-part-2.png">
+<img alt="code for part 3" src="2023-02-08-cloudinary-part-2.png"/>
 
 handlepostCreate() calls another function, handleImageUpload()
 
-so only AFTER the image has finished uploading (aka hafter handleImageUpload has finished submissting the image to cloudinary). It allows the submission to continue
+so only AFTER the image has finished uploading (aka hafter handleImageUpload has finished submitting the image to cloudinary). It allows the submission to continue
 
-<img alt="" src="2023-02-08-cloudinary-part-3.png">
+<img alt="using arrows to show how the code is related to eachother" src="2023-02-08-cloudinary-part-3.png"/>
 
 the general code https://github.com/JSMarsh813/PetProfileTailor/blob/adding-edit-and-deletion-capabilities-to-comments-and-names/components/AddingNewData/AddPost.js  
 my api https://github.com/JSMarsh813/Pet
@@ -42,11 +42,11 @@ My Reply: For my app, I just stored the url in a variable because its all I need
 But most people do end up using the public_id from my understanding.
 You could have imagefromcloudinary store the entire data object, then take use the keys "url" and "public_id" to take out what you need
 
-![alt text](2023-02-08-cloudinary-part-4.png)
+<img alt="more arrows showing how the code is related to eachother" src="2023-02-08-cloudinary-part-4.png"/>
 
 ---
 
-I finished adding the deletion option for names! And had a 🤯 moment and realized I could easily turn it into a reusable component for all items.
+I finished adding the deletion option for names! And I had a 🤯 moment and realized I could easily turn it into a reusable component for all items.
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1623288655564648448 3:52 AM · Feb 8, 2023
 
@@ -63,7 +63,7 @@ So I wanted to split it into 2 collections, a category and a tags collection
 
 So category populate's tags based on their objectID. But no matter how I tried mongodb REFUSED to work with the individual tags collection. Yet It worked with the user collection easily!
 
-![alt text](2023-02-13-mongodb-part1.jpg)
+<img alt="arrows to show how the different models use eachother" src="2023-02-13-mongodb-part1.jpg"/>
 
 So I created a new model and it works🤷‍♀️
 
@@ -71,7 +71,7 @@ maybe since I didn't use a plural name ("NameTag" not "NameTags")?
 
 I had tried every casing w/ the old model so it shouldn't be that
 
-![alt text](2023-02-13-mongodb-part2.jpg)
+<img alt="showing the resulting model objects in the database" src="2023-02-13-mongodb-part2.jpg"/>
 
 Annnndd after killing and restarting the development server it now doesn't work 😂(smiling face with tears)
 
@@ -83,7 +83,7 @@ It was working again when I briefly switched to the user model, then back to the
 
 WELP time to sleep. I'm now more confused than ever (smiling face with tears)
 
-![alt text](2023-02-13-mongodb-part3.jpg)
+<img alt="showing a test category with selectable tags test and insert-meme-here" src="2023-02-13-mongodb-part3.jpg"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1625116999729942528 4:57 AM · Feb 13, 2023
 
@@ -97,35 +97,35 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1625116999729942528 4:
 
 the last few days at work have been busy, so not much time for much, other than sleeping and working
 
-## Twitter Post Link: https://twitter.com/Janetthedev/status/1625134363645206529 6:06 AM · Feb 13, 2023
+Twitter Post Link: https://twitter.com/Janetthedev/status/1625134363645206529 6:06 AM · Feb 13, 2023
 
 Posted this to the 100devs discord, hopefully someone will have an idea why mongoose's populate() is being so funky 🥴
 
 > "Hey everyone o/ happy valentines day! Speaking of valentines, I'll love you forever if you manage to help me solve this annoying mystery ;). Corny jokes aside, I've tried messing with mongoose's populate for hours but I'm having no luck. I'm trying to populate my namecategories collection's TAGS property, with TAGS from my tags collection.
-
+>
 > However, it seems like something must be wrong with the tags collection, because populate works perfectly with my users collection, but returns an empty object when I use my tags collection???
-
+>
 > I Tried:
-
+>
 > 1.  Dropping collections for name categories and tags in mongodb and recreating them by creating new apis and new models, and submitting the new data to the api.
-
+>
 > 2.  Dropping the tags collection and trying different names for the tags collection (NameTags, IndividualTags)
-
+>
 > 3.  Adjusting wording in the models, ect
-
+>
 > Its so weird that it works perfectly with the users collection but it hates any version of the tags collection I've tried?"
+>
+> <img alt="" src="2023-02-14-100devs-mongodb-part-1.jpg"/>
+> <img alt="" src="2023-02-14-100devs-mongodb-part-2.jpg"/>
+> <img alt="" src="2023-02-14-100devs-mongodb-part-3.jpg"/>
 
-![alt text](2023-02-14-100devs-mongodb-part-1.jpg)
-![alt text](2023-02-14-100devs-mongodb-part-2.jpg)
-![alt text](2023-02-14-100devs-mongodb-part-3.jpg)
-
-I could
-
-1. return to the old school route of manually typing the tags to the collection in mongodb.
-
-2. Or create an api which submits a put request to the name categories collection to add tags
-
-But using populate seems like the most professional solution? And its ALMOST working uggghhh
+> I could
+>
+> 1. return to the old school route of manually typing the tags to the collection in mongodb.
+>
+> 2. Or create an api which submits a put request to the name categories collection to add tags
+>
+> But using populate seems like the most professional solution? And its ALMOST working uggghhh
 
 update in case someone stumbles across this thread later: https://twitter.com/Janetthedev/status/1626464366886518784 (unlikely with twitters algo but juuuust in case)
 
@@ -181,7 +181,7 @@ I started working on descriptions! I've got the models set up and the basic apis
 
 tomorrow I've got some errands to run then I can maybe work on the fetchdescriptions page
 
-![alt text](2023-02-17-desciption-page.jpg)
+<img alt="the beginnings of the fetch description page with a working header and title" src="2023-02-17-desciption-page.jpg"/>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1626539978149994496 3:12 AM · Feb 17, 2023
 
@@ -189,7 +189,7 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1626539978149994496 3:
 
 Huh, I finished the description area in a day 😳?! Wow, All the CRUD features work already? I guess I am learning after all😂
 
-![alt text](2023-02-18-fetch-descriptions-done.jpg)
+<img alt="fetch descriptions page now has a filter and a description listing" src="2023-02-18-fetch-descriptions-done.jpg"/>
 
 welp time to review the to-do list again
 
@@ -233,7 +233,7 @@ I finished the individual pages for the descriptions!
 
 Now that its 4am 🤪 its time to sleep and get ready for a week of work
 
-![alt text](2023-02-18-individual-description-page.jpg)
+<img alt="" src="2023-02-18-individual-description-page.jpg">
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1626924140274888710 4:38 AM · Feb 18, 2023
 
@@ -245,7 +245,7 @@ I already had the individual pages set up, so I just had to follow the instructi
 
 https://medium.com/nerd-for-tech/how-to-add-copy-to-clipboard-functionality-in-a-reactjs-app-45404413fdb2
 
-<video src="images/2023-02-19-huh-letting-users-share-links.mp4" width="320" height="240" controls></video>
+<video src="images/2023-02-19-huh-letting-users-share-links.mp4" width="640" height="480" controls></video>
 
 I still have to add a toastify popup that says it copied to clipboard.
 
@@ -270,8 +270,6 @@ And when the share button is clicked, I want the share links section to pop up, 
 </section>
 ```
 
-![alt text](deleteeeeecode.png)
-
 ```
 function BatsignalPost({
     className,
@@ -282,8 +280,6 @@ function BatsignalPost({
 })
  let textForShare=`http : / / localhost: 3000/posts/${post._id}
 ```
-
-![alt text](deeeeeeeletemorecode.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1627281310212575233 4:17 AM · Feb 19, 2023
 

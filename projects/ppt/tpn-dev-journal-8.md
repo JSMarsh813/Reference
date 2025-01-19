@@ -105,15 +105,14 @@ Funnily enough I stumped across a simple solution
 ```
 / / ##### FORMATTING DATE ######
 
-const dateFormatter = new Intl.dateTimeFormat(undefined,{dateStyle: "medium",
+const dateFormatter = new Intl.dateTimeFormat(undefined,
+{dateStyle: "medium",
 timeStyle: "short",
 })
 
 let formattedPostDate= dateFormatter.format(Date.parse(postDate))
 
 ```
-
-![alt text](deletedaaate.png)
 
 @58:00 he goes over managing the time https://youtube.com/watch?v=lyNetvEfvT0&ab_channel=WebDevSimplified
 
@@ -209,8 +208,6 @@ console.log
 >
 > "createdby":{"\_id":"5354feffds", "name": "GhibliM", "profileimage":"https : / / res.cloudinary. com/dueafafaf/image/upload/v2324234/profileimage/g2fasfasf.jpg","profilename":"ghiblimagic"}}]
 
-![alt text](<deeelllte console.png>)
-
 now i can delete that extra api I made, where i had the userID as an end point to grab all their data from the database 😁
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1618839109526773760 9:11 PM · Jan 26, 2023
@@ -289,7 +286,7 @@ so I either need to find a way to tell mongoose, hey if theres no object id in t
 
 populate works fine when every post has comments though! So for now, I figured out the api logic for adding comments, and replies to comments ect, not letting replies nest too far ect ect
 
-![showing a nested comment thread](2023-01-28-progress-on-comments.png)
+<img alt="showing a nested comment thread" src="2023-01-28-progress-on-comments.png" />
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1619284632775823360 2:41 AM · Jan 28, 2023
 
