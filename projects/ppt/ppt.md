@@ -432,3 +432,11 @@ What I entered in my terminal
 > $git commit -m "edited registration logic so passwords aren't required for magic link users"
 >
 > $ git push
+
+----
+
+alright so now i've got a new error
+
+{"error":"Illegal arguments: string, undefined","status":401,"ok":false,"url":null}
+
+Though the second time I signed up without a password it says "email is already in use"
