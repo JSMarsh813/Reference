@@ -1,8 +1,10 @@
-next share can be great. But even though a press on the enter key correctly sends the user to the right app (email, reddit, ect) its DETERMINED to not show the focus ring
+# Working on Accessibility and Magic Links Ahoy!
+
+next share can be great. But its DETERMINED to not show the focus ring even though a press on the enter key correctly sends the user to the right app (email, reddit, ect)
 
 But fear not I managed to make next-share behave with tailwindcss' focus-within option! 😤
 
-<video src="images/2023-03-29-next-share-can-be-great.mp4" width="320" height="240" controls></video>
+<video alt="a focus ring wasn't showing for the email option, until i added the focus within code" src="images/2023-03-29-next-share-can-be-great.mp4" width="640" height="480" controls></video>
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1640641300994355201 2:05 AM · Mar 28, 2023
 
@@ -16,15 +18,17 @@ one of these days i'll stop thinking of "little improvements" and just debug
 
 It has begun! Alas going to need to sleep soon 😴
 
-![alt text](2023-03-28-upload-images.jpg)
+![gave the user a field to add alt tags to their profile iamges](2023-03-28-upload-images.jpg)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1640650819333935104 2:43 AM · Mar 28, 2023
 
 ---
 
-🍈worked
-🍈did a tiny bit of project work, tomorrow I'm going to edit the email sign in process. Instead of using sendgrid smtp i'm going to switch the web api
-🍅no anki
+🍈 worked
+
+🍈 did a tiny bit of project work, tomorrow I'm going to edit the email sign in process. Instead of using sendgrid smtp i'm going to switch the web api
+
+🍅 no anki
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1641075135989022720 6:49 AM · Mar 29, 2023
 
@@ -32,17 +36,22 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1641075135989022720 6:
 
 Well thats annoying, next auth pushes us to use smtp so I'll probably have to keep that.
 
-BUT even though the smtp sendgrid magic email link works in production, vercels determined to say "the e-mail could not be sent" 🫠
+BUT even though the smtp sendgrid magic email link works in production, vercels determined to say "the e-mail could not be sent"
 
-![alt text](2023-03-29-email-could-not-be-sent.png)
+![the email could not be send error message](2023-03-29-email-could-not-be-sent.png)
+
+---
 
 This seemed promising!
+
 https://vercel.com/guides/can-i-get-a-fixed-ip-address
 turns out vercel can't used a fix IP address. So I added 0.0.0.0 to sendgrid's allowed ips
 
+---
+
 no dice 😔
 
-alright so found the actual error message in vercel 🧐
+alright so I found the actual error message in vercel 🧐
 
 ```[next-auth][error][SIGNIN_EMAIL_ERROR]
 https://next-auth.js.org/errors#signin_email_error Invalid login: 535 Authentication failed: The provided authorization grant is invalid, expired, or revoked {
@@ -58,13 +67,11 @@ https://next-auth.js.org/errors#signin_email_error Invalid login: 535 Authentica
  }
 ```
 
-console log of error
+console log of error:
 
 > providerid: 'email',
-
+>
 > message: 'invalid login: 535 Authentication failed: the provided authorization grand is inalid, expired, or revoked' }
-
-![alt text](dellletemorecode.png)
 
 weird, the database is showing the verification token is created? So thats not the problem
 
@@ -74,8 +81,6 @@ the url shown was:
 
 https : / / pet-profile-tailor.vercel.app/api/auth/signin?error=EmailSignin
 
-![alt text](dellleteemail.png)
-
 this gave me pause to double check my form
 
 https://github.com/nextauthjs/next-auth/discussions/4990
@@ -84,7 +89,7 @@ and what do you know, it WAS my form. I forgot to set the buttons type to submit
 
 why where you working locally then friend?!? WELP at least the button has been purified and plays nicely with vercel now
 
-![Womp Womp Gravity Falls GIF](https://media1.tenor.com/m/GbZfwlxfk8UAAAAC/womp-womp-gravity-falls.gif)
+![text says Womp Womp, with one of the Gravity Falls twins talking in the background](https://media1.tenor.com/m/GbZfwlxfk8UAAAAC/womp-womp-gravity-falls.gif)
 
 Today I committed the cardinal sin of forgetting to put a type on a button. Unforgivable!
 
@@ -100,27 +105,39 @@ It was a journey of many, many small steps forwards and back. But! victory is mi
 
 I ended up being an overachiever again (suprise suprise). And I really, really wanted to figure out how to personalize the magic login link with next auth & add an image to the email
 
-<video src="images/2023-03-30-it-was-a-journey.mp4" width="320" height="240" controls></video>
+<video src="images/2023-03-30-it-was-a-journey.mp4" width="640" height="480" controls></video>
 
 path.join(process.cwd()) was especially a lil' fun bug to figure out and squish!
-I figured out process.cwd but vercel also required path.join() to work
+
+So to grab the right image path I needed to use path.join and process.cwd
+
+I figured out I needed to use process.cwd since next.js compiles the code in a different directory. In other words, I cant use the normal directory name since the folder the image is in will be different when compiled. Instead process.cwd allows us to point to the directory where next.js is being executed
+
+but vercel also required path.join() to work (to create the full path to the image)
+
 three cheers for googling skills && gratitude for those many helpful threads
 
 https://nextjs.org/docs/api-reference/data-fetching/get-static-props#reading-files-use-processcwd
+
 https://vercel.com/guides/how-can-i-use-files-in-serverless-functions
 
 One thing that was a bummer is I was hoping to make two buttons
 
-Button 1. signs user in and sends them to dashboard
-Button 2. signs user in and redirects to the settings page
+- Button 1. signs user in and sends them to dashboard
+- Button 2. signs user in and redirects to the settings page
 
-seems that next auth only likes one callback for magic links though?
+But it seems like next auth only likes one callback for magic links though?
 
 Thought of a workaround but its unweildly and ehh, i really need to get other stuff done 😂
 
+Unweildy idea:
+
 Could of added a Boolean "wantsToResetPassword" property to the user objects in mongo. When the user clicks the forgot password button, it would send a put request.
 
-when the magic link spits them out @ login.Then look at session.user.resetPassword...if false ==> redirect to dashboard. if true, send to settings
+when the magic link spits them out @ login.Then look at session.user.resetPassword...
+
+- if false ==> redirect to dashboard.
+- if true, send to settings
 
 When the user goes to the settings page, check if session.user.resetPassword is true. If it is send a put request to change it to false
 
@@ -128,13 +145,13 @@ so. it'd be a lot of tedious code, AND I feel like it should be possible to do t
 
 but eh as cumbersome as it feels to tell them how to manually reset their password, it works for now 🤷‍♀️
 
-![alt text](2023-03-30-screenshot-of-email.png)
+![screenshot of the email with a gif of a dog pressing a button and text that explains to sign in they can press the button](2023-03-30-screenshot-of-email.png)
 
-thought i was going to get ready for sleep, but ended up adding one more image! 😂
+thought i was going to get ready for sleep, but I ended up adding one more image! 😂
 
 In the animal welfare industry, some users aren't tech literate. So i want to make the experience as painless as possible for them.
 
-![alt text](2023-03-30-email-with-password.png)
+![added an image showing them where to go to reset their password if they need to reset it](2023-03-30-email-with-password.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1641349466711281665 12:59 AM · Mar 30, 2023
 
@@ -154,45 +171,41 @@ Got lucky today that i was juuuust under the 100 maximum email requests from sen
 
 Nothing like a good ol' debugging/developing party
 
-![alt text](dellete86.png)
-
 Twitter Post Link: https://twitter.com/Janetthedev/status/1641371280917299201 2:26 AM · Mar 30, 2023
 
 ---
 
-Even though your first instinct can be to look at the wonky element, usually its because another element later on is stubbornly demanding it be bigger than the screen width allows!
+Even though your first instinct can be to look at the wonky element, usually the issue is due to another element stubbornly demanding it be bigger than the screen width allows!
 
-the problem child here was the filtering area demanding that it wanted to be 80px. Not perfect
+the problem child here was the filtering area demanding that it wanted to be 80px.
 
-![alt text](2023-03-31-wonky-element.png)
-![alt text](2023-03-31-wonky-element-2.png.png)
+![showing lots of blank space to the right](2023-03-31-wonky-element.png)
+![less blank space to the right once the filter window was shrunk](2023-03-31-wonky-element-2.png.png)
 
-but close enough for my needs. Especially since that sliver only shows on super small mobile screens
+Not perfect but close enough for my needs. Especially since that sliver only shows on super small mobile screens
 
 I made it so the pages where tags and categories can be submitted are currently only submittable for me (my user id)
 
 sooooomething terrible happened on the register page 😂 that image is supposed to be the size of a chicken not a t-rex!
 
-![alt text](2023-03-31-register-page-large-image.jpg)
+![image of a dog takes up the whole screen](2023-03-31-register-page-large-image.jpg)
 
 I realized i had converted it to a NextImage component from an img but hadn't checked on it 🙄ugh
 
-<Image> my nemesis. Luckily flex continues to be my best bro!
+< Image > my nemesis. Luckily flex continues to be my best bro!
 
-![alt text](2023-03-31-register-page-fixed.jpg)
+![image of the dog is now normal size](2023-03-31-register-page-fixed.jpg)
 
 ```
 <div className="flex justify-center">
     <Image
-        src="/welcoemtothepack.webp"
+        src="/welcometothepack.webp"
         alt=""
         width={220}
         height={220}
     />
 </div>
 ```
-
-![alt text](deeelllletecodeagain.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1641702978582380545 12:24 AM · Mar 31, 2023
 
@@ -201,8 +214,6 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1641702978582380545 12
 So, I was getting a client side error sometimes on the community page.
 But luckily I'm familiar with this tantrum! It was because these smaller apis still use populate, which needs the user model imported (its greyed out but trust me, its an extremely annoying bug with populate)
 
-![alt text](deeeellletemorecodeagain.png)
-
 ```
 import dbConnect from "../../../../config/connectmongodb"
 import User from "../../../../models/User"
@@ -210,14 +221,14 @@ import BatSignalComments from "../../../..models/BatSignalComment";
 / / wasn't working when everything was lowercase, had to be IndividualNames not individualnames for it to work
 
 export default async function handler (req, res) {
-    const postid = req.query.post;
+    const postid = req.query.postid;
     const method = req.method;
 
     dbConnect(); / / from config/mongo.js
 
     if (method === "GET") {
         try (
-            const batSignalComments = await BatSignalCOmments.find({
+            const batSignalComments = await BatSignalComments.find({
                 postid: postid,
             }).populate({
                 path: "createdby",
