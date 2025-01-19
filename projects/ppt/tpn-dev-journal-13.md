@@ -164,15 +164,15 @@ return (
 );
 ```
 
-![alt text](deeeelllete.png)
-
 okay phew looks like i'm not insane! for some reason the production mode doesn't like the populates? (why is it always populate 😂)
-![alt text](2023-03-23-working-on-local.png)
+
+![showing that the data is coming back now](2023-03-23-working-on-local.png)
 
 My life as a dev in a nutshell 😂
-![alt text](2023-03-23-dev-nutshell-meme.png)
 
-Alright, trying to add one of the populates back. Added the model it needs to find at the top, in case we're running into THAT issue again 🙄
+![harry potter meme where the first image says "why is it when something happens, it is always you three. The second image of harry, hermonine and ron is replaced by three populates. The bottom text says "believe me, professor, i've been asking myself the same question for six years.](2023-03-23-dev-nutshell-meme.png)
+
+Alright, I'm trying to add one of the populates back. I added the model it needs to find at the top, in case we're running into THAT issue again 🙄
 
 ```
 import dbConnect from "../../../../config/connectmongodb";
@@ -204,18 +204,17 @@ export defaut async function handler(req,res){
 }
 ```
 
-![alt text](deelllletecode.png)
+it flashed as undefined for a second but then it figured itself out, so its time to add the second populate back
 
-it flashed as undefined for a second but then figured itself out, time to add the second populate back
-![alt text](2023-03-23-populate-progress-flashed-as-undefined.png)
+![showing that we got the data we needed](2023-03-23-populate-progress-flashed-as-undefined.png)
 
 IT WAS POPULATE! Ugghhhh, my nemesis returns.
 
-I had to add the models populate will use, since .populate() is a dumb little gremlin that is easily lost 🙃
+I had to add the models populate will use, since .populate() is a dumb little gremlin that is easily lost 🙃 . Even though tags and users isn't directly called on yet here (thus why they're greyed out though it might be kind of hard to see with the highlighting here)
 
-![alt text](2023-03-23-working-again.jpg)
+![code showing the users and import models added to the top are greyed out](2023-03-23-code-highlighted-populate.png)
 
-![alt text](2023-03-23-code-highlighted-populate.png)
+![showing that we're successfully getting the names again](2023-03-23-working-again.jpg)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1638984856574230528 10:42 AM · Mar 23, 2023
 
@@ -227,42 +226,41 @@ Twitter Post Link: https://twitter.com/Janetthedev/status/1638986900278226944 12
 
 ---
 
-Ended up adding sorting, because why not be an overachiever! 😂
+I ended up adding sorting, because why not be an overachiever! 😂
 
 sadly sorting by likes/popularity looks like it'd be more complicated than just comparing the likedby property lengths, so alas maybe one day.
 
 <video src="images/2023-03-23-ended-up-adding-sorting.mp4" width="320" height="240" controls></video>
 
-> Reply
-> User was deleted
-
-Swr complicates things sadly `:(`
-I get chunks of data at a time (because of swr) so it would have to be sorted on mongodb's end so i'm grabbing the most popular posts firsts.
-Looks like aggregation would work but eh saving that for later. Thanks though for the thought!
-
 Twitter Post Link: https://twitter.com/Janetthedev/status/1639096488394641408 7:47 PM · Mar 23, 2023
 
 ---
 
-Felt like i was going a bit crosseyed by the end of it, but now users can sort by the most and least popular posts!
+I felt like i was going a bit crosseyed by the end of it, but now users can sort by the most and least popular posts!
 
 Thanks to the power of mongodb's aggregration 🥳
+
 now to have a celebratory nap for 2 hours before work
 
-<video src="images/2023-03-24-felt-like-i-was-going-a-bit.mp4" width="320" height="240" controls></video>
+<video alt="showing sorting by different options working" src="images/2023-03-24-felt-like-i-was-going-a-bit.mp4" width="320" height="240" controls></video>
 
 surprisingly aggregation wasn't too difficult despite lots of troubleshooting.
 
 Found out the hard way you can't pass an object to sort like this =>
+
+```
 let sortObject = {"\_id": -1}
-{ $sort: sortObject },
+{ $sort: sortObject }
+```
 
 Instead you have to:
+
+```
 let sortObject= {};
 sortObject["_id"] = -1🥴
+```
 
-![alt text](2023-03-24-sort-logic.png)
-![alt text](deelllete.png)
+![code for sorting](2023-03-24-sort-logic.png)
 
 ```
 {
@@ -306,7 +304,7 @@ res.status(200).json(individualNames);
 <select
   id ="per-page"
   className="bg-violet-200 ml-2"
-  onChange={(e)=> setSortingLogicFunction(e.target.value)} <== highlighted code>
+  onChange={(e)=> setSortingLogicFunction(e.target.value)} <== highlighted code
   >
   <option value="_id,-1"> Newest </option>
   <option value="_id,1"> Oldest </option>
@@ -316,9 +314,7 @@ res.status(200).json(individualNames);
 
 ```
 
-![alt text](moooreetodelete.png)
-
-![alt text](2023-03-24-sort-logic-2.png)
+![more code for sorting logic](2023-03-24-sort-logic-2.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1639367607643176960 1:44 PM · Mar 24, 2023
 
@@ -331,15 +327,23 @@ SO! I found out the hobby plan vercel will give up and send a 504 if your api is
 
 So I ended up changing some logic around, and it now FINALLY works on vercel 🥳
 
-Sorting value and property was split on the client side, before being sent to the api
+Changes:
 
-parseInt was added within the aggregation
+- Sorting value and property was split on the client side, before being sent to the api.
 
-![alt text](2023-03-25-vercel.png)
+  - So left side of image = the logic that was originally in the api
+  - right side = simplified logic in the api
 
-now to add to add the new sorting options to description!
+    - the yellow section: skip & limit logic are not stored in variables anymore. Now they are built into skip and limit (bottom of right image, circled in yellow)
+    - the red sections: api no longer does this logic, the client side does this logic and stores the end results in 2 variables that are sent to the api: sortingvalue and sortingproperty
 
-or actually wait, realized i only have 3 hours to try to nap before work 😅
+- parseInt was added within the aggregation
+
+![showing the logic in the api before and after the changes](2023-03-25-vercel.png)
+
+now to add to add the new sorting options to the descriptions page!
+
+or actually wait, I realized I only have 3 hours to try to nap before work 😅
 
 well good luck to tomorrow me!
 
@@ -351,25 +355,27 @@ I had wondered why swr was throwing 500 errors for the descriptions page, then I
 
 But its working now!
 
-![alt text](2023-03-26-deleted-string.png)
+![i accidently deleted the limit pagesize section of the code](2023-03-26-deleted-string.png)
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1640078702280318976 12:50 PM · Mar 26, 2023
 
 ---
 
-Community section also uses aggregate sorting now!
+The community section also uses aggregate sorting now!
 
-ngl feel accomplished because my brain feels like fluff right now 🥴luckily any problems i faced were minor, no way I could of thought through anything major rn
+ngl I feel accomplished because my brain feels like fluff right now 🥴luckily any problems I faced were minor, no way I could of thought through anything major rn
 
 welp time for a nap before work
 
-<video src="images/2023-03-26-community-section-also-uses.mp4" width="320" height="240" controls></video>
+<video alt="showing that users can sort community posts by likes and the age of the posts" src="images/2023-03-26-community-section-also-uses.mp4" width="320" height="240" controls></video>
 
 https://twitter.com/Janetthedev/status/1640082816112402432 1:06 PM · Mar 26, 2023
 
 ---
 
-Take that forcedReload whenever an item is edited or deleted! now with the power of swr, I can call mutate() and it'll automatically refresh and show the user the updated data!
+Take that forcedReload! now with the power of swr, I can call mutate() and it'll automatically refresh and show the user the updated data!
+
+The clunky deleted code:
 
 ```
 / / if itemChanged in the state is true, then we'll force a reload of the page. this is for BOTH the edit and delete functions
@@ -384,9 +390,8 @@ if (itemChanged){
 
 ```
 
-![alt text](dellleteitemchanged.png)
+It's funny how the little things in life get so exciting!
 
-Funny how the little things in life get so exciting!
 I was laying in bed on the edge of sleep last night and mentally went !!! when I realized i could FINALLY get rid of that clunky forceReload 🥳
 
 Twitter Post Link: https://twitter.com/Janetthedev/status/1640297986268991489 3:20 AM · Mar 27, 2023
