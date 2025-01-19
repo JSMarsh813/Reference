@@ -290,3 +290,145 @@ The original code: api/auth/signup.js
 ```
 
 https://stackoverflow.com/questions/67157904/conditional-adding-object-property-in-javascript
+
+---------
+
+I switched to my laptop to code outside and was confused for a moment why npm install was giving me this error
+
+> bash: npm: command not 
+
+Then I went DOH! of course, i never installed node and npm for this machine since the markdown project didn't use any dependencies
+
+the npm docs strongly recommended using a version control program rather than manually installed node and npm so i used nvm windows
+
+https://github.com/coreybutler/nvm-windows?tab=readme-ov-file
+
+ WINDOWS POWERSHELL
+> PS C:\Users\janet> nvm
+> Running version 1.2.2.
+> PS C:\Users\janet> nvm install latest
+> 23.6.0
+> Downloading node.js version 23.6.0 (64-bit)...
+> Extracting node and npm...
+> Complete
+> Installation complete.
+> If you want to use this version, type:
+> nvm use 23.6.0
+> PS C:\Users\janet> nvm use 23.6.0
+> Now using node v23.6.0 (64-bit)
+> PS C:\Users\janet>
+
+----
+
+then i went to do npm run dev and got
+
+> Server Error
+> Error: Add Mongo URI to .env.local
+
+another doh! moment. Right, I need to remake my env file since for security reasons, its not added to my github
+
+----
+I originally was going to use dirtyFields to track if the password field has been edited or not. And then manually somehow clear the dirtyFields status if the text in the password field was deleted
+```
+    formState: { errors, dirtyFields },
+```
+but after checking looking at the react hook examples 
+https://github.com/react-hook-form/react-hook-form/tree/master/examples
+
+I found a better option, watch which acts like state. It stores the current value of the input (password) in a variable (passwordEntered)
+
+https://codesandbox.io/p/sandbox/react-hook-form-conditional-fields-qgr41?file=%2Fsrc%2Findex.js
+
+```
+...
+76   const {
+77    handleSubmit,
+78    register,
+79    getValues,
+80    formState: { errors },
+81    watch,
+82  } = useForm();
+....
+110  const passwordEntered = watch("password");
+...
+// this is the password input that we're watching
+251          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            {...register("password", {
+              minLength: { value: 6, message: "password must be more than 5 chars" },
+            })}
+            className="w-full text-darkPurple"
+            id="password"
+            autoFocus
+          ></input>
+....
+// checking if the watch works by having the string "this field is required" show if passwordEntered currently is truthy/has a value
+
+268 { passwordEntered  && (<span>"this field is required"</span>)}
+269
+270 <div className="mb-4">
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <input
+            className="w-full text-darkPurple"
+            type="password"
+            id="confirmPassword"
+            {...register("confirmPassword", {
+              required: passwordEntered&&"this field is required",
+//the confirm password field is required if the password field has input
+// so if it is required (has a truthy value, we will get the "this field is required message"). Otherwise it is falsey, so required: false
+
+              validate: (value) => value === getValues("password"),
+              minLength: {
+                value: 6,
+                message: "confirm password is more than 5 chars",
+              },
+            })}
+          />
+
+```
+
+I was wondering why i was getting a validation error message
+
+And when i went to my api i noticed that it didn't have any of the changes i made.
+
+Whoops i forgot to move to the new branch were my changes were at! 
+
+So i used git stash, git stash apply and once i confirmed the changes were added, i did git stash drop
+
+This person did a great job explaining why to use git stash apply instead of git stash pop:
+https://stackoverflow.com/questions/15286075/difference-between-git-stash-pop-and-git-stash-apply
+
+> git stash pop throws away the (topmost, by default) stash after applying it, whereas git stash apply leaves it in the stash list for possible later reuse (or you can then git stash drop it).
+> 
+> This happens unless there are conflicts after git stash pop, in which case it will not remove the stash, leaving it to behave exactly like git stash apply.
+> 
+> Another way to look at it: git stash pop is git stash apply && git stash drop.
+
+What I entered in my terminal
+
+> git stash -u
+>
+> git checkout fixing-registration-for-magic-link
+>
+> git stash apply
+>
+>    On branch fixing-registration-for-magic-link
+> Your branch is up to date with 'origin/fixing-registration-for-magic-link'.
+> 
+> Changes not staged for commit:
+>
+>   (use "git add <file>..." to update what will be committed)
+>   (use "git restore <file>..." to discard changes in working directory)
+>         modified:   pages/register.js
+> 
+> no changes added to commit (use "git add" and/or "git commit -a")
+> 
+> $ git stash drop
+> Dropped refs/stash@{0} (4de794e8e2333dc48132de8f9681b9eb0e2a6563)
+>        
+> $ git add .
+>
+> $git commit -m "edited registration logic so passwords aren't required for magic link users"
+>
+> $ git push
